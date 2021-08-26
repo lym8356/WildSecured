@@ -1,0 +1,63 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.fit5046.wildsecured"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="17"
+8-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="30" />
+9-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:5:5-67
+11-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:5:22-64
+12    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+12-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:6:5-79
+12-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:6:22-76
+13    <uses-permission android:name="android.permission.SET_ALARM" />
+13-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:7:5-68
+13-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:7:22-65
+14    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+14-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:8:5-78
+14-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:8:22-76
+15
+16    <application
+16-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:10:5-25:19
+17        android:allowBackup="true"
+17-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:11:9-35
+18        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+18-->[androidx.core:core:1.5.0] /Users/lym8356/.gradle/caches/transforms-2/files-2.1/cc5e9dcdc56dc39042f72c501235e83f/core-1.5.0/AndroidManifest.xml:24:18-86
+19        android:debuggable="true"
+20        android:icon="@mipmap/ic_launcher"
+20-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:12:9-43
+21        android:label="@string/app_name"
+21-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:13:9-41
+22        android:roundIcon="@mipmap/ic_launcher_round"
+22-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:14:9-54
+23        android:supportsRtl="true"
+23-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:15:9-35
+24        android:testOnly="true"
+25        android:theme="@style/Theme.Design.Light.NoActionBar" >
+25-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:16:9-62
+26        <activity android:name="com.fit5046.wildsecured.Home" />
+26-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:17:9-51
+26-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:17:19-39
+27        <activity android:name="com.fit5046.wildsecured.StartUp" >
+27-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:18:9-24:20
+27-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:18:19-42
+28            <intent-filter>
+28-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:19:13-23:29
+29                <action android:name="android.intent.action.MAIN" />
+29-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:20:17-69
+29-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:20:25-66
+30
+31                <category android:name="android.intent.category.LAUNCHER" />
+31-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:22:17-77
+31-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:22:27-74
+32            </intent-filter>
+33        </activity>
+34    </application>
+35
+36</manifest>

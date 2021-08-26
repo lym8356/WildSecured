@@ -30,26 +30,22 @@ public class StartUp extends AppCompatActivity {
         binding.landingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!validateUsername()){
-                    return;
-                }else{
-                    Intent intent = new Intent(getApplicationContext(), Home.class);
-                    startActivity(intent);
-                }
+                Intent intent = new Intent(getApplicationContext(), Home.class);
+                startActivity(intent);
             }
         });
 
         // clear focus when done button is pressed
 
-        binding.landingUsername.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE){
-                   binding.landingUsername.clearFocus();
-                }
-                return false;
-            }
-        });
+//        binding.landingUsername.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                if (actionId == EditorInfo.IME_ACTION_DONE){
+//                   binding.landingUsername.clearFocus();
+//                }
+//                return false;
+//            }
+//        });
 
 
     }
@@ -73,19 +69,19 @@ public class StartUp extends AppCompatActivity {
     }
 
     //validate user inputs
-    private boolean validateUsername(){
-        String username = binding.landingUsername.getText().toString();
-
-        if (username.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "Username field cannot be empty.", Toast.LENGTH_LONG).show();
-            return false;
-        }else if(username.length() > 10){
-            Toast.makeText(getApplicationContext(), "Username must be less than 10 characters.", Toast.LENGTH_LONG).show();
-            return false;
-        } else {
-            return true;
-        }
-    }
+//    private boolean validateUsername(){
+//        String username = binding.landingUsername.getText().toString();
+//
+//        if (username.isEmpty()) {
+//            Toast.makeText(getApplicationContext(), "Username field cannot be empty.", Toast.LENGTH_LONG).show();
+//            return false;
+//        }else if(username.length() > 10){
+//            Toast.makeText(getApplicationContext(), "Username must be less than 10 characters.", Toast.LENGTH_LONG).show();
+//            return false;
+//        } else {
+//            return true;
+//        }
+//    }
 
 
 }
