@@ -54,4 +54,15 @@
     <string name="animal_advice_title">Keeping Wildlife Away.</string>
     <string name="animal_advice_content">The best way to keep animals away from your campsite is to pick an ideal place to camp.
         This means knowing where specific animals like to make their home....</string>
+
+    <!--    clothing advice popup-->
+    <string name="general_advice">To best enjoy your hiking and camping experience, we recommend you use a combination of:</string>
+    <string name="clothing_advice_content">Slip on clothing that covers as much of your skin as possible.</string>
+    <string name="hat_advice_content">Slap on a broad-brimmed hat that shades your face, neck and ears.</string>
+    <string name="shoe_advice_content">Please put on closed toe shoes to avoid getting cuts on your feet.</string>
+    <string name="sunglasses_advice_content">Slide on sunglasses.</string>
+    <string name="backpack_advice_content">Insect repellent, bear spray, flares, antibiotics</string>
+
+    <!--    progress bar-->
+    <string name="progress_info">Loading...</string>
 </resources>

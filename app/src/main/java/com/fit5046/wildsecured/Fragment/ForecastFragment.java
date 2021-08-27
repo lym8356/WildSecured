@@ -1,6 +1,7 @@
 package com.fit5046.wildsecured.Fragment;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Address;
@@ -83,19 +84,9 @@ public class ForecastFragment extends Fragment {
 
         Bundle bundle = getArguments();
         if (bundle != null){
-            if (bundle.getString("lat") != null && bundle.getString("lon") != null){
-                currentLat = bundle.getString("lat");
-                currentLon = bundle.getString("lon");
-                if (bundle.getString("searchLat") != null && bundle.getString("searchLon") != null){
-                    searchLat = bundle.getString("searchLat");
-                    searchLon = bundle.getString("searchLon");
-                    System.out.println(searchLat + searchLon);
-                    getWeatherInfo(searchLon, searchLat);
-                }else{
-                    getWeatherInfo(currentLon, currentLat);
-                }
-            }
-
+            currentLat = bundle.getString("lat");
+            currentLon = bundle.getString("lon");
+            getWeatherInfo(currentLon, currentLat);
         }
 
         binding.forecastUp.setOnClickListener(new View.OnClickListener() {
@@ -122,6 +113,13 @@ public class ForecastFragment extends Fragment {
         WeatherQuery query = retrofit.create(WeatherQuery.class);
 //        String lat = "-37.8136";
 //        String lon = "144.9631";
+        final ProgressDialog progressDialog;
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMax(100);
+        progressDialog.show();
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
 
         // execute query to get forecast data
@@ -134,6 +132,7 @@ public class ForecastFragment extends Fragment {
                     assert weatherResponse != null;
                     ForecastAdapter adapter = new ForecastAdapter(getContext(), weatherResponse.getForecastWeatherResponses());
                     rvResults.setAdapter(adapter);
+                    progressDialog.dismiss();
                 }
                 else{
                     Toast.makeText(getActivity().getApplicationContext(), "Failed to retrieve weather data", Toast.LENGTH_LONG).show();
@@ -142,7 +141,9 @@ public class ForecastFragment extends Fragment {
 
             @Override
             public void onFailure(Call call, Throwable t) {
-                Toast.makeText(getActivity().getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(getActivity().getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity().getApplicationContext(), "Network Error", Toast.LENGTH_LONG).show();
+
                 System.out.println(t.getMessage());
             }
         });

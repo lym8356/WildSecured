@@ -1,4 +1,5 @@
 package com.fit5046.wildsecured.Fragment;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.fit5046.wildsecured.WeatherModel.CurrentCall;
@@ -61,9 +63,10 @@ public class HomeFragment extends Fragment {
     String currentLat;
     private GpsTracker gpsTracker;
 
-    //global lon and lat
-    String globalLon;
-    String globalLat;
+    // temp lon and lat
+    String tempLon;
+    String tempLat;
+
 
     public HomeFragment() {
         // Required empty public constructor
@@ -81,6 +84,7 @@ public class HomeFragment extends Fragment {
         LinearLayout sunIcon = binding.homeSunIcon;
         LinearLayout insectIcon = binding.homeInsectIcon;
         LinearLayout animalIcon = binding.homeAnimalIcon;
+        LinearLayout clothIcon = binding.homeClothingIcon;
 
         // check location permission and get current location
         if(checkPermission()){
@@ -151,6 +155,26 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        Balloon clothingAdviceBalloon = new Balloon.Builder(getActivity().getApplicationContext())
+                .setLayout(R.layout.clothing_advice_popup)
+                .setArrowSize(10)
+                .setArrowOrientation(ArrowOrientation.TOP)
+                .setArrowColor(ContextCompat.getColor(getActivity().getApplicationContext(), R.color.primary_orange))
+                .setWidthRatio(0.55f)
+                .setArrowPosition(0.5f)
+                .setCornerRadius(4f)
+                .setBackgroundColor(ContextCompat.getColor(getActivity().getApplicationContext(), R.color.primary_orange))
+                .setBalloonAnimation(BalloonAnimation.CIRCULAR)
+                .setLifecycleOwner(getViewLifecycleOwner())
+                .build();
+
+        binding.homeClothingIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clothingAdviceBalloon.showAlignTop(clothIcon);
+            }
+        });
+
         binding.homeBotDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -172,8 +196,10 @@ public class HomeFragment extends Fragment {
         binding.homeSearchIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(globalLat != null && globalLon != null){
-                    getWeatherInfo(globalLon, globalLat);
+                if(tempLat != null && tempLon != null){
+                    currentLon = tempLon;
+                    currentLat = tempLat;
+                    getWeatherInfo(currentLon, currentLat);
                 }else{
                     Toast.makeText(getActivity(), "Please enter an address.", Toast.LENGTH_LONG).show();
                 }
@@ -188,8 +214,8 @@ public class HomeFragment extends Fragment {
         if (requestCode == 100 && resultCode == AutocompleteActivity.RESULT_OK){
             Place place = Autocomplete.getPlaceFromIntent(data);
             binding.homeSearchBar.setText(place.getAddress());
-            globalLat = String.valueOf(place.getLatLng().latitude);
-            globalLon = String.valueOf(place.getLatLng().longitude);
+            tempLat = String.valueOf(place.getLatLng().latitude);
+            tempLon = String.valueOf(place.getLatLng().longitude);
 
         }else if(resultCode == AutocompleteActivity.RESULT_ERROR){
             Status status = Autocomplete.getStatusFromIntent(data);
@@ -200,6 +226,13 @@ public class HomeFragment extends Fragment {
     public void getWeatherInfo(String lon, String lat) {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(weatherUrl).addConverterFactory(GsonConverterFactory.create()).build();
         WeatherQuery query = retrofit.create(WeatherQuery.class);
+        final ProgressDialog progressDialog;
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMax(100);
+        progressDialog.show();
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 //        String lon = "144.9631", lat = "-37.8136";
 
 
@@ -243,6 +276,7 @@ public class HomeFragment extends Fragment {
 
                     //update UI
                     binding.homeWeatherUv.setText(String.valueOf(weatherResponse.getCurrentWeatherResponse().getUvi()));
+                    progressDialog.dismiss();
                 } else {
                     Toast.makeText(getActivity().getApplicationContext(), "Failed to retrieve weather data", Toast.LENGTH_LONG).show();
                 }
@@ -250,8 +284,8 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFailure(Call call, Throwable t) {
-                Toast.makeText(getActivity().getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
-                System.out.println(t.getMessage());
+//                Toast.makeText(getActivity().getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity().getApplicationContext(), "Network Error", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -300,8 +334,7 @@ public class HomeFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putString("lon", currentLon);
         bundle.putString("lat", currentLat);
-        bundle.putString("searchLon", globalLon);
-        bundle.putString("searchLat", globalLat);
+
         fragment.setArguments(bundle);
         getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, fragment)
                 .addToBackStack(null).commit();
