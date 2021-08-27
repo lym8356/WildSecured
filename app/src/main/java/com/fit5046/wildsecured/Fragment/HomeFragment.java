@@ -18,9 +18,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.fit5046.wildsecured.WeatherModel.CurrentCall;
+import com.fit5046.wildsecured.WeatherModel.Sys;
 import com.fit5046.wildsecured.WeatherModel.WeatherQuery;
 import com.fit5046.wildsecured.WeatherModel.WeatherResponse;
 import com.fit5046.wildsecured.R;
+import com.fit5046.wildsecured.WildLifeDataModal.WildLifeDataResponse;
+import com.fit5046.wildsecured.WildLifeDataModal.WildLifeQuery;
 import com.fit5046.wildsecured.databinding.FragmentHomeBinding;
 import com.fit5046.wildsecured.util.GpsTracker;
 import com.fit5046.wildsecured.util.Helper;
@@ -38,6 +41,7 @@ import com.skydoves.balloon.Balloon;
 import com.skydoves.balloon.BalloonAnimation;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -56,6 +60,10 @@ public class HomeFragment extends Fragment {
     private final String exclude = "minutely,hourly,alerts";
     private final String units = "metric";
 
+    //Atlas of living au related
+    private final String AlaUrl = "https://spatial.ala.org.au/";
+    private final String radius = "10000";
+
     private final String googleAppId = "AIzaSyDKQicQAusG5symiA4KGAUiWwDlpxQgtuk";
 
     //location related
@@ -66,6 +74,10 @@ public class HomeFragment extends Fragment {
     // temp lon and lat
     String tempLon;
     String tempLat;
+
+    // store animal counts
+    int insectCount = 0;
+    int wildLifeCount = 0;
 
 
     public HomeFragment() {
@@ -89,8 +101,8 @@ public class HomeFragment extends Fragment {
         // check location permission and get current location
         if(checkPermission()){
             getLocation();
+            getWeatherInfo(currentLon, currentLat);
         }
-        getWeatherInfo(currentLon, currentLat);
 
         Balloon sunAdviceBalloon = new Balloon.Builder(getActivity().getApplicationContext())
                 .setLayout(R.layout.sun_advice_popup)
@@ -135,6 +147,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+//        TextView insectNumber = insectAdviceBalloon.getContentView().findViewById(R.id.insectAdviceTitle);
         Balloon animalAdviceBalloon = new Balloon.Builder(getActivity().getApplicationContext())
                 .setLayout(R.layout.animal_advice_popup)
                 .setArrowSize(10)
@@ -154,6 +167,7 @@ public class HomeFragment extends Fragment {
                 animalAdviceBalloon.showAlignTop(animalIcon);
             }
         });
+
 
         Balloon clothingAdviceBalloon = new Balloon.Builder(getActivity().getApplicationContext())
                 .setLayout(R.layout.clothing_advice_popup)
@@ -193,6 +207,9 @@ public class HomeFragment extends Fragment {
                 startActivityForResult(intent, 100);
             }
         });
+
+        TextView animalNumber = animalAdviceBalloon.getContentView().findViewById(R.id.animal_number);
+
         binding.homeSearchIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -200,11 +217,17 @@ public class HomeFragment extends Fragment {
                     currentLon = tempLon;
                     currentLat = tempLat;
                     getWeatherInfo(currentLon, currentLat);
+//                    getWildLifeInfo(currentLon, currentLat);
+//                    animalNumber.setText(binding.invisibleField.getText().toString());
                 }else{
                     Toast.makeText(getActivity(), "Please enter an address.", Toast.LENGTH_LONG).show();
                 }
             }
         });
+//        if (getWildLifeInfo(currentLon, currentLat) != null ){
+//            animalNumber.setText(String.valueOf(getWildLifeInfo(currentLon, currentLat).get(1)));
+//        }
+
         return view;
     }
 
@@ -289,6 +312,37 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
+    public void getWildLifeInfo(String lon, String lat){
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(AlaUrl).addConverterFactory(GsonConverterFactory.create()).build();
+        WildLifeQuery query = retrofit.create(WildLifeQuery.class);
+
+        Call getWildLifeDataResponse   = query.getWildLifeData(lat, lon, radius);
+
+        getWildLifeDataResponse.enqueue(new Callback<ArrayList<WildLifeDataResponse>>() {
+            @Override
+            public void onResponse(Call<ArrayList<WildLifeDataResponse>>  call, Response<ArrayList<WildLifeDataResponse>> response) {
+
+                if (response.code() == 200) {
+                    ArrayList<WildLifeDataResponse> wildLifeDataResponseList = new ArrayList<>();
+                    wildLifeDataResponseList.addAll(response.body());
+                    assert wildLifeDataResponseList != null;
+
+                    insectCount = Helper.getDangerousInsectCount(wildLifeDataResponseList);
+                    wildLifeCount = Helper.getDangerousWildLifeCount(wildLifeDataResponseList);
+
+//                    binding.invisibleField.setText(String.valueOf(Helper.getDangerousWildLifeCount(wildLifeDataResponseList)));
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                Toast.makeText(getActivity().getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+                System.out.println(t.getMessage());
+            }
+        });
+    }
+
     public void getLocation(){
         gpsTracker = new GpsTracker(getActivity());
         if(gpsTracker.canGetLocation()){
@@ -299,6 +353,7 @@ public class HomeFragment extends Fragment {
             gpsTracker.showSettingsAlert();
         }
     }
+
 
     public boolean checkPermission(){
         try {

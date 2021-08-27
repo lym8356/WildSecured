@@ -30,15 +30,40 @@
             android:layout_margin="5dp"
             android:textColor="@color/white"
             android:textSize="18sp" />
-        <TextView
-            android:id="@+id/sunAdviceContent"
+        <LinearLayout
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/archivo_regular"
-            android:text="@string/insect_advice_content"
-            android:textColor="@color/white"
-            android:layout_margin="5dp"
-            android:textSize="16sp" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/animalAdviceContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/archivo_regular"
+                android:text="@string/animal_advice_content"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/insect_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/archivo_bold"
+                android:text="@string/insect_number"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/archivo_regular"
+                android:text="@string/insect_advice_content2"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

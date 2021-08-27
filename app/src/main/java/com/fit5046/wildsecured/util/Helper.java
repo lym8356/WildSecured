@@ -1,10 +1,13 @@
 package com.fit5046.wildsecured.util;
 
 import com.fit5046.wildsecured.R;
+import com.fit5046.wildsecured.WildLifeDataModal.WildLifeDataResponse;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class Helper {
     /**
@@ -45,5 +48,38 @@ public class Helper {
         DateFormat dateFormat = new SimpleDateFormat("EEEE ");
         String dateString = dateFormat.format(new Date(dateInMilliseconds * 1000));
         return dateString;
+    }
+
+    // loop through wild animal info
+    public static int getDangerousWildLifeCount(ArrayList<WildLifeDataResponse> wildLifeDataResponses){
+        String[] dangerousAnimal = {"wolf", "Wolf", "bear", "Bear", "snake", "Snake",
+                "shark", "Shark", "jellyfish", "Jellyfish", "crocodile", "Crocodile", "taipan", "Taipan"};
+        int count = 0;
+        for (int i=0; i<wildLifeDataResponses.size(); i++){
+            for (int j=0; j<dangerousAnimal.length; j++){
+                if (wildLifeDataResponses.get(i).getCommonNam() != null){
+                    if (wildLifeDataResponses.get(i).getCommonNam().contains(dangerousAnimal[j])){
+                        count ++;
+                    }
+                }
+            }
+        }
+        return count;
+    }
+
+    public static int getDangerousInsectCount(ArrayList<WildLifeDataResponse> wildLifeDataResponses){
+        String[] dangerousInsect = {"spider", "Spider", "wasp", "Wasp", "hornet", "Hornet",
+                "scorpion", "Scorpion", "centipede", "Centipede"};
+        int count = 0;
+        for (int i=0; i<wildLifeDataResponses.size(); i++){
+            for (int j=0; j<dangerousInsect.length; j++){
+                if (wildLifeDataResponses.get(i).getCommonNam() != null){
+                    if (wildLifeDataResponses.get(i).getCommonNam().contains(dangerousInsect[j])){
+                        count ++;
+                    }
+                }
+            }
+        }
+        return count;
     }
 }

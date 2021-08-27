@@ -42,18 +42,28 @@
 
     <!--    popup page-->
     <!--    sun advice popup-->
-    <string name="sun_advice_title">Sun Protection is not required.</string>
-    <string name="sun_advice_content">Sun protection is recommended as UV levels are forecast to be 3 or higher.</string>
+    <string name="sun_advice_title">1. UVi reading from 1 to 2 (Low)</string>
+    <string name="sun_advice_content">Sun Protection is not required.</string>
+    <string name="sun_advice_title1">2. UVi reading from 3 to 5 (Moderate)</string>
+    <string name="sun_advice_content1">Sun Screen, SPF 30+, Sunglasses.</string>
+    <string name="sun_advice_title2">3. UVi reading from 6 to 7 (High)</string>
+    <string name="sun_advice_content2">Sun Screen, SPF 30+, Sunglasses, Seek Shade.</string>
+    <string name="sun_advice_title3">4. UVi reading from 8 to 10 (Very High)</string>
+    <string name="sun_advice_content3">Sun Screen, SPF 30+, Sunglasses, Limit Time Outside</string>
+    <string name="sun_advice_title4">5. UVi reading from 11+ (Extremely High)</string>
+    <string name="sun_advice_content4">Sun Screen, SPF 30+, Sunglasses, Stay Indoor if possible.</string>
 
     <!--    insect advice popup-->
     <string name="insect_advice_title">Insect Repellent Recommended.</string>
-    <string name="insect_advice_content">For the best insect repellent on your camping adventure take a look at our range.
-        With insect repellent spray, outdoor adventures!</string>
+    <string name="insect_advice_content">There are</string>
+    <string name="insect_advice_content2">dangerous insects within the radius of 10000 meters at your selected destination.</string>
+    <string name="insect_number">0</string>
 
     <!--    animal advice popup-->
     <string name="animal_advice_title">Keeping Wildlife Away.</string>
-    <string name="animal_advice_content">The best way to keep animals away from your campsite is to pick an ideal place to camp.
-        This means knowing where specific animals like to make their home....</string>
+    <string name="animal_advice_content">There are</string>
+    <string name="animal_number">0</string>
+    <string name="animal_advice_content2">dangerous animals within the radius of 10000 meters at your selected destination.</string>
 
     <!--    clothing advice popup-->
     <string name="general_advice">To best enjoy your hiking and camping experience, we recommend you use a combination of:</string>

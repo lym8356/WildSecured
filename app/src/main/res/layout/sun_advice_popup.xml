@@ -29,7 +29,7 @@
             android:textAllCaps="true"
             android:layout_margin="5dp"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
         <TextView
             android:id="@+id/sunAdviceContent"
             android:layout_width="200dp"
@@ -38,7 +38,77 @@
             android:text="@string/sun_advice_content"
             android:textColor="@color/white"
             android:layout_margin="5dp"
+            android:textSize="14sp" />
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/archivo_bold"
+            android:text="@string/sun_advice_title1"
+            android:textAllCaps="true"
+            android:layout_margin="5dp"
+            android:textColor="@color/white"
             android:textSize="16sp" />
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/archivo_regular"
+            android:text="@string/sun_advice_content1"
+            android:textColor="@color/white"
+            android:layout_margin="5dp"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/archivo_bold"
+            android:text="@string/sun_advice_title3"
+            android:textAllCaps="true"
+            android:layout_margin="5dp"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/archivo_regular"
+            android:text="@string/sun_advice_content3"
+            android:textColor="@color/white"
+            android:layout_margin="5dp"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/archivo_bold"
+            android:text="@string/sun_advice_title4"
+            android:textAllCaps="true"
+            android:layout_margin="5dp"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/archivo_regular"
+            android:text="@string/sun_advice_content"
+            android:textColor="@color/white"
+            android:layout_margin="5dp"
+            android:textSize="14sp" />
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/archivo_bold"
+            android:text="@string/sun_advice_title4"
+            android:textAllCaps="true"
+            android:layout_margin="5dp"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/archivo_regular"
+            android:text="@string/sun_advice_content4"
+            android:textColor="@color/white"
+            android:layout_margin="5dp"
+            android:textSize="14sp" />
     </LinearLayout>
 
 </LinearLayout>
