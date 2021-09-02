@@ -73,7 +73,7 @@
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="50dp"
                     android:fontFamily="@font/archivo_regular"
                     android:text="@string/version_number"
                     android:textColor="@color/primary_orange"

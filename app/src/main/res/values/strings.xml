@@ -3,7 +3,7 @@
 
     <!--    landing page-->
     <string name="landing_slogan">Your personal wildness survival app</string>
-<!--    <string name="landing_instruction">Enter your username to get started</string>-->
+    <!--    <string name="landing_instruction">Enter your username to get started</string>-->
     <string name="version_number">Version 1.0.1</string>
     <string name="btn_start">Get Started</string>
 
@@ -20,10 +20,10 @@
     <string name="home_top_username">User</string>
     <string name="home_top_search_bar_hint">Get weather info for a different location</string>
     <!--    mid section-->
-<!--    <string name="home_mid_sun_protection_advice">Sun protection not required</string>-->
+    <!--    <string name="home_mid_sun_protection_advice">Sun protection not required</string>-->
     <string name="home_mid_UV_title">UV is now</string>
     <string name="home_mid_UV_number">0</string>
-<!--    <string name="home_mid_UV_max_title">MAX UV today</string>-->
+    <!--    <string name="home_mid_UV_max_title">MAX UV today</string>-->
     <string name="home_mid_UV_max_number">3</string>
     <string name="home_mid_travel_advice">Get Travel Advice</string>
     <!--    bot section-->
@@ -38,10 +38,11 @@
     <string name="home_bot_max_number">15</string>
     <string name="home_bot_title_main">7 Days Weather</string>
     <string name="home_bot_title_secondary">with 7 days UV forecast</string>
-    <string name="home_bot_forecast_title">Get 4 day weather forecast</string>
+    <string name="home_bot_forecast_title">Get 7 days weather forecast</string>
 
-    <!--    popup page-->
-    <!--    sun advice popup-->
+    <!--    info page-->
+    <!--    sun info page-->
+    <string name="sun_main_title">Sun Protection Advice</string>
     <string name="sun_advice_title">1. UVi reading from 1 to 2 (Low)</string>
     <string name="sun_advice_content">Sun Protection is not required.</string>
     <string name="sun_advice_title1">2. UVi reading from 3 to 5 (Moderate)</string>
@@ -53,25 +54,29 @@
     <string name="sun_advice_title4">5. UVi reading from 11+ (Extremely High)</string>
     <string name="sun_advice_content4">Sun Screen, SPF 30+, Sunglasses, Stay Indoor if possible.</string>
 
-    <!--    insect advice popup-->
+    <!--    insect advice page-->
+    <string name="insect_main_title">Insect Information</string>
     <string name="insect_advice_title">Insect Repellent Recommended.</string>
     <string name="insect_advice_content">There are</string>
     <string name="insect_advice_content2">dangerous insects within the radius of 10000 meters at your selected destination.</string>
     <string name="insect_number">0</string>
 
-    <!--    animal advice popup-->
+    <!--    animal advice page-->
+    <string name="animal_main_title">Animal Information</string>
     <string name="animal_advice_title">Keeping Wildlife Away.</string>
     <string name="animal_advice_content">There are</string>
     <string name="animal_number">0</string>
     <string name="animal_advice_content2">dangerous animals within the radius of 10000 meters at your selected destination.</string>
 
     <!--    clothing advice popup-->
+    <string name="gear_main_title">Gear Advice</string>
     <string name="general_advice">To best enjoy your hiking and camping experience, we recommend you use a combination of:</string>
     <string name="clothing_advice_content">Slip on clothing that covers as much of your skin as possible.</string>
     <string name="hat_advice_content">Slap on a broad-brimmed hat that shades your face, neck and ears.</string>
     <string name="shoe_advice_content">Please put on closed toe shoes to avoid getting cuts on your feet.</string>
     <string name="sunglasses_advice_content">Slide on sunglasses.</string>
     <string name="backpack_advice_content">Insect repellent, bear spray, flares, antibiotics</string>
+    <string name="check_list_btn">Gear Checklist</string>
 
     <!--    progress bar-->
     <string name="progress_info">Loading...</string>

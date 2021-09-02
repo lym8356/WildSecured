@@ -1,4 +1,4 @@
-package com.fit5046.wildsecured.util;
+package com.fit5046.wildsecured.Utils;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -9,14 +9,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fit5046.wildsecured.R;
 import com.fit5046.wildsecured.WeatherModel.ForecastWeatherResponse;
 
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -31,15 +28,14 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ViewHo
     }
 
     @NonNull
-    @NotNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.forecast_item, parent, false);
         return new ViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         ForecastWeatherResponse currentForecastWeatherResponse = mForecastWeatherResponse.get(position);
         holder.rvWeatherIcon.setImageResource(Helper.getArtResourceForWeatherCondition(currentForecastWeatherResponse.getWeather().get(0).getId()));
@@ -66,7 +62,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ViewHo
         private TextView rvMaxTemp;
         private TextView rvMaxUV;
 
-        public ViewHolder(@NonNull @NotNull View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
             rvDay = itemView.findViewById(R.id.forecast_day);
             rvWeatherIcon = itemView.findViewById(R.id.forecast_weather_icon);

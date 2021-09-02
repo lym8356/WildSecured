@@ -1,4 +1,4 @@
-package com.fit5046.wildsecured.util;
+package com.fit5046.wildsecured.Utils;
 
 import com.fit5046.wildsecured.R;
 import com.fit5046.wildsecured.WildLifeDataModal.WildLifeDataResponse;
@@ -7,7 +7,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 
 public class Helper {
     /**

@@ -1,4 +1,5 @@
 package com.fit5046.wildsecured.Fragment;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -13,34 +14,28 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.fit5046.wildsecured.AnimalInfoActivity;
+import com.fit5046.wildsecured.GearInfoActivity;
+import com.fit5046.wildsecured.InsectInfoActivity;
+import com.fit5046.wildsecured.SunInfoActivity;
 import com.fit5046.wildsecured.WeatherModel.CurrentCall;
-import com.fit5046.wildsecured.WeatherModel.Sys;
 import com.fit5046.wildsecured.WeatherModel.WeatherQuery;
 import com.fit5046.wildsecured.WeatherModel.WeatherResponse;
 import com.fit5046.wildsecured.R;
 import com.fit5046.wildsecured.WildLifeDataModal.WildLifeDataResponse;
 import com.fit5046.wildsecured.WildLifeDataModal.WildLifeQuery;
 import com.fit5046.wildsecured.databinding.FragmentHomeBinding;
-import com.fit5046.wildsecured.util.GpsTracker;
-import com.fit5046.wildsecured.util.Helper;
+import com.fit5046.wildsecured.Utils.GpsTracker;
+import com.fit5046.wildsecured.Utils.Helper;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
-import com.skydoves.balloon.ArrowOrientation;
-import com.skydoves.balloon.Balloon;
-import com.skydoves.balloon.BalloonAnimation;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -51,7 +46,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener{
 
     private FragmentHomeBinding binding;
     //openweather api related
@@ -72,12 +67,12 @@ public class HomeFragment extends Fragment {
     private GpsTracker gpsTracker;
 
     // temp lon and lat
-    String tempLon;
-    String tempLat;
+    String lonToSearch;
+    String latToSearch;
 
     // store animal counts
-    int insectCount = 0;
-    int wildLifeCount = 0;
+    int insectCount;
+    int wildLifeCount;
 
 
     public HomeFragment() {
@@ -90,104 +85,19 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View view = binding.getRoot();
-
-        // icon variables for balloons
-        LinearLayout sunIcon = binding.homeSunIcon;
-        LinearLayout insectIcon = binding.homeInsectIcon;
-        LinearLayout animalIcon = binding.homeAnimalIcon;
-        LinearLayout clothIcon = binding.homeClothingIcon;
 
         // check location permission and get current location
         if(checkPermission()){
             getLocation();
             getWeatherInfo(currentLon, currentLat);
+            getWildLifeInfo(currentLon, currentLat);
         }
 
-        Balloon sunAdviceBalloon = new Balloon.Builder(getActivity().getApplicationContext())
-                .setLayout(R.layout.sun_advice_popup)
-                .setArrowSize(10)
-                .setArrowOrientation(ArrowOrientation.TOP)
-                .setArrowColor(ContextCompat.getColor(getActivity().getApplicationContext(), R.color.primary_orange))
-                .setWidthRatio(0.55f)
-                .setArrowPosition(0.5f)
-                .setCornerRadius(4f)
-                .setBackgroundColor(ContextCompat.getColor(getActivity().getApplicationContext(), R.color.primary_orange))
-                .setBalloonAnimation(BalloonAnimation.CIRCULAR)
-                .setLifecycleOwner(getViewLifecycleOwner())
-                .build();
+        binding.homeSunIcon.setOnClickListener(this);
+        binding.homeInsectIcon.setOnClickListener(this);
+        binding.homeAnimalIcon.setOnClickListener(this);
+        binding.homeClothingIcon.setOnClickListener(this);
 
-        binding.homeSunIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sunAdviceBalloon.showAlignTop(sunIcon);
-            }
-        });
-
-        TextView textView = sunAdviceBalloon.getContentView().findViewById(R.id.sunAdviceTitle);
-//        textView.setText("LALALLA");
-
-        Balloon insectAdviceBalloon = new Balloon.Builder(getActivity().getApplicationContext())
-                .setLayout(R.layout.insect_advice_popup)
-                .setArrowSize(10)
-                .setArrowOrientation(ArrowOrientation.TOP)
-                .setArrowColor(ContextCompat.getColor(getActivity().getApplicationContext(), R.color.primary_orange))
-                .setWidthRatio(0.55f)
-                .setArrowPosition(0.5f)
-                .setCornerRadius(4f)
-                .setBackgroundColor(ContextCompat.getColor(getActivity().getApplicationContext(), R.color.primary_orange))
-                .setBalloonAnimation(BalloonAnimation.CIRCULAR)
-                .setLifecycleOwner(getViewLifecycleOwner())
-                .build();
-
-        binding.homeInsectIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                insectAdviceBalloon.showAlignTop(insectIcon);
-            }
-        });
-
-//        TextView insectNumber = insectAdviceBalloon.getContentView().findViewById(R.id.insectAdviceTitle);
-        Balloon animalAdviceBalloon = new Balloon.Builder(getActivity().getApplicationContext())
-                .setLayout(R.layout.animal_advice_popup)
-                .setArrowSize(10)
-                .setArrowOrientation(ArrowOrientation.TOP)
-                .setArrowColor(ContextCompat.getColor(getActivity().getApplicationContext(), R.color.primary_orange))
-                .setWidthRatio(0.55f)
-                .setArrowPosition(0.5f)
-                .setCornerRadius(4f)
-                .setBackgroundColor(ContextCompat.getColor(getActivity().getApplicationContext(), R.color.primary_orange))
-                .setBalloonAnimation(BalloonAnimation.CIRCULAR)
-                .setLifecycleOwner(getViewLifecycleOwner())
-                .build();
-
-        binding.homeAnimalIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                animalAdviceBalloon.showAlignTop(animalIcon);
-            }
-        });
-
-
-        Balloon clothingAdviceBalloon = new Balloon.Builder(getActivity().getApplicationContext())
-                .setLayout(R.layout.clothing_advice_popup)
-                .setArrowSize(10)
-                .setArrowOrientation(ArrowOrientation.TOP)
-                .setArrowColor(ContextCompat.getColor(getActivity().getApplicationContext(), R.color.primary_orange))
-                .setWidthRatio(0.55f)
-                .setArrowPosition(0.5f)
-                .setCornerRadius(4f)
-                .setBackgroundColor(ContextCompat.getColor(getActivity().getApplicationContext(), R.color.primary_orange))
-                .setBalloonAnimation(BalloonAnimation.CIRCULAR)
-                .setLifecycleOwner(getViewLifecycleOwner())
-                .build();
-
-        binding.homeClothingIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clothingAdviceBalloon.showAlignTop(clothIcon);
-            }
-        });
 
         binding.homeBotDown.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -203,42 +113,38 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 List<Place.Field> fieldList = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG, Place.Field.NAME);
-                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fieldList).build(getActivity().getApplicationContext());
+                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fieldList).setCountry("AU").build(getActivity().getApplicationContext());
                 startActivityForResult(intent, 100);
             }
         });
 
-        TextView animalNumber = animalAdviceBalloon.getContentView().findViewById(R.id.animal_number);
 
         binding.homeSearchIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(tempLat != null && tempLon != null){
-                    currentLon = tempLon;
-                    currentLat = tempLat;
-                    getWeatherInfo(currentLon, currentLat);
-//                    getWildLifeInfo(currentLon, currentLat);
-//                    animalNumber.setText(binding.invisibleField.getText().toString());
+                if(lonToSearch != null && latToSearch != null){
+
+                    getWeatherInfo(lonToSearch, latToSearch);
+                    getWildLifeInfo(lonToSearch, latToSearch);
+
                 }else{
                     Toast.makeText(getActivity(), "Please enter an address.", Toast.LENGTH_LONG).show();
                 }
             }
         });
-//        if (getWildLifeInfo(currentLon, currentLat) != null ){
-//            animalNumber.setText(String.valueOf(getWildLifeInfo(currentLon, currentLat).get(1)));
-//        }
 
+        View view = binding.getRoot();
         return view;
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100 && resultCode == AutocompleteActivity.RESULT_OK){
             Place place = Autocomplete.getPlaceFromIntent(data);
             binding.homeSearchBar.setText(place.getAddress());
-            tempLat = String.valueOf(place.getLatLng().latitude);
-            tempLon = String.valueOf(place.getLatLng().longitude);
+            latToSearch = String.valueOf(place.getLatLng().latitude);
+            lonToSearch = String.valueOf(place.getLatLng().longitude);
 
         }else if(resultCode == AutocompleteActivity.RESULT_ERROR){
             Status status = Autocomplete.getStatusFromIntent(data);
@@ -249,15 +155,14 @@ public class HomeFragment extends Fragment {
     public void getWeatherInfo(String lon, String lat) {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(weatherUrl).addConverterFactory(GsonConverterFactory.create()).build();
         WeatherQuery query = retrofit.create(WeatherQuery.class);
+        // show progress bar when the app is downloading info
         final ProgressDialog progressDialog;
         progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMax(100);
+        //progressDialog.setMax(100);
         progressDialog.show();
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setContentView(R.layout.progress_layout);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-//        String lon = "144.9631", lat = "-37.8136";
-
 
         // get current weather data
         Call getCurrentCall = query.getCurrentCallData(lat, lon, units, AppId);
@@ -278,6 +183,7 @@ public class HomeFragment extends Fragment {
                     binding.homeWeatherDesc.setText(currentCall.getWeather().get(0).getDescription());
                     binding.homeWeatherMin.setText(String.valueOf(Math.round(currentCall.getMain().getTempMin())));
                     binding.homeWeatherMax.setText(String.valueOf(Math.round(currentCall.getMain().getTempMax())));
+                    progressDialog.dismiss();
                 }
             }
 
@@ -299,7 +205,6 @@ public class HomeFragment extends Fragment {
 
                     //update UI
                     binding.homeWeatherUv.setText(String.valueOf(weatherResponse.getCurrentWeatherResponse().getUvi()));
-                    progressDialog.dismiss();
                 } else {
                     Toast.makeText(getActivity().getApplicationContext(), "Failed to retrieve weather data", Toast.LENGTH_LONG).show();
                 }
@@ -327,11 +232,12 @@ public class HomeFragment extends Fragment {
                     ArrayList<WildLifeDataResponse> wildLifeDataResponseList = new ArrayList<>();
                     wildLifeDataResponseList.addAll(response.body());
                     assert wildLifeDataResponseList != null;
-
                     insectCount = Helper.getDangerousInsectCount(wildLifeDataResponseList);
                     wildLifeCount = Helper.getDangerousWildLifeCount(wildLifeDataResponseList);
 
-//                    binding.invisibleField.setText(String.valueOf(Helper.getDangerousWildLifeCount(wildLifeDataResponseList)));
+                    binding.invisibleField.setText(String.valueOf(wildLifeCount));
+                    binding.invisibleField2.setText(String.valueOf(insectCount));
+
                 }
             }
 
@@ -393,5 +299,29 @@ public class HomeFragment extends Fragment {
         fragment.setArguments(bundle);
         getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, fragment)
                 .addToBackStack(null).commit();
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public void onClick(View v) {
+        Intent intent;
+        switch (v.getId()){
+            case R.id.home_sun_icon:
+                intent = new Intent(getActivity(), SunInfoActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.home_insect_icon:
+                intent = new Intent(getActivity(), InsectInfoActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.home_animal_icon:
+                intent = new Intent(getActivity(), AnimalInfoActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.home_clothing_icon:
+                intent = new Intent(getActivity(), GearInfoActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }

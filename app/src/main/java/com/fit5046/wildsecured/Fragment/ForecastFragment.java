@@ -1,18 +1,9 @@
 package com.fit5046.wildsecured.Fragment;
 
-import android.Manifest;
 import android.app.ProgressDialog;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,25 +14,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.fit5046.wildsecured.R;
-import com.fit5046.wildsecured.WeatherModel.CurrentCall;
-import com.fit5046.wildsecured.WeatherModel.ForecastWeatherResponse;
 import com.fit5046.wildsecured.WeatherModel.WeatherQuery;
 import com.fit5046.wildsecured.WeatherModel.WeatherResponse;
 import com.fit5046.wildsecured.databinding.FragmentForecastBinding;
-import com.fit5046.wildsecured.util.ForecastAdapter;
-import com.fit5046.wildsecured.util.Helper;
+import com.fit5046.wildsecured.Utils.ForecastAdapter;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -111,11 +89,10 @@ public class ForecastFragment extends Fragment {
     public void getWeatherInfo(String lon, String lat) {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(weatherUrl).addConverterFactory(GsonConverterFactory.create()).build();
         WeatherQuery query = retrofit.create(WeatherQuery.class);
-//        String lat = "-37.8136";
-//        String lon = "144.9631";
+
         final ProgressDialog progressDialog;
         progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMax(100);
+        //progressDialog.setMax(100);
         progressDialog.show();
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setContentView(R.layout.progress_layout);

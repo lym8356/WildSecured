@@ -1,4 +1,4 @@
-package com.fit5046.wildsecured.util;
+package com.fit5046.wildsecured.Utils;
 
 import android.Manifest;
 import android.app.Activity;
