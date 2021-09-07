@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.fit5046.wildsecured.AnimalInfoActivity;
+import com.fit5046.wildsecured.DataManager.WeatherDataManager;
 import com.fit5046.wildsecured.GearInfoActivity;
 import com.fit5046.wildsecured.InsectInfoActivity;
 import com.fit5046.wildsecured.SunInfoActivity;
@@ -74,6 +75,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     int insectCount;
     int wildLifeCount;
 
+    View v;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -83,6 +85,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        if (v!=null){
+            return v;
+        }
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
@@ -90,7 +96,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         if(checkPermission()){
             getLocation();
             getWeatherInfo(currentLon, currentLat);
-            getWildLifeInfo(currentLon, currentLat);
+//            if (WeatherDataManager.weatherResponse != null && WeatherDataManager.currentWeatherResponse != null){
+//                updateWeatherData(WeatherDataManager.weatherResponse);
+//            }else{
+//                getWeatherInfo(currentLon, currentLat);
+//            }
         }
 
         binding.homeSunIcon.setOnClickListener(this);
@@ -125,7 +135,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 if(lonToSearch != null && latToSearch != null){
 
                     getWeatherInfo(lonToSearch, latToSearch);
-                    getWildLifeInfo(lonToSearch, latToSearch);
+                    currentLat = latToSearch;
+                    currentLon = lonToSearch;
+                    //getWildLifeInfo(lonToSearch, latToSearch);
 
                 }else{
                     Toast.makeText(getActivity(), "Please enter an address.", Toast.LENGTH_LONG).show();
@@ -134,6 +146,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         });
 
         View view = binding.getRoot();
+        v=view;
         return view;
     }
 
@@ -169,12 +182,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         getCurrentCall.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
-                int iconCode;
 
                 if (response.code() == 200) {
                     CurrentCall currentCall = (CurrentCall) response.body();
                     assert currentCall != null;
-                    iconCode = currentCall.getWeather().get(0).getId();
+//                    WeatherDataManager.weatherResponse = currentCall;
+//                    updateWeatherData(currentCall);
+                    int iconCode = currentCall.getWeather().get(0).getId();
                     int iconToReplace = Helper.getArtResourceForWeatherCondition(iconCode);
                     binding.homeWeatherIcon.setImageResource(iconToReplace);
                     binding.homeWeatherIcon.setColorFilter(Color.rgb(255, 255, 255));
@@ -183,7 +197,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                     binding.homeWeatherDesc.setText(currentCall.getWeather().get(0).getDescription());
                     binding.homeWeatherMin.setText(String.valueOf(Math.round(currentCall.getMain().getTempMin())));
                     binding.homeWeatherMax.setText(String.valueOf(Math.round(currentCall.getMain().getTempMax())));
-                    progressDialog.dismiss();
+//                    progressDialog.dismiss();
                 }
             }
 
@@ -204,7 +218,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                     assert weatherResponse != null;
 
                     //update UI
+                    WeatherDataManager.currentWeatherResponse = weatherResponse;
                     binding.homeWeatherUv.setText(String.valueOf(weatherResponse.getCurrentWeatherResponse().getUvi()));
+                    progressDialog.dismiss();
                 } else {
                     Toast.makeText(getActivity().getApplicationContext(), "Failed to retrieve weather data", Toast.LENGTH_LONG).show();
                 }
@@ -216,6 +232,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 Toast.makeText(getActivity().getApplicationContext(), "Network Error", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    public void updateWeatherData(CurrentCall currentCall){
+
+        int iconCode = currentCall.getWeather().get(0).getId();
+        int iconToReplace = Helper.getArtResourceForWeatherCondition(iconCode);
+        binding.homeWeatherIcon.setImageResource(iconToReplace);
+        binding.homeWeatherIcon.setColorFilter(Color.rgb(255, 255, 255));
+        binding.homeLocation.setText(currentCall.getName());
+        binding.homeDay.setText(Helper.formatDate(currentCall.getDt()));
+        binding.homeWeatherDesc.setText(currentCall.getWeather().get(0).getDescription());
+        binding.homeWeatherMin.setText(String.valueOf(Math.round(currentCall.getMain().getTempMin())));
+        binding.homeWeatherMax.setText(String.valueOf(Math.round(currentCall.getMain().getTempMax())));
     }
 
     public void getWildLifeInfo(String lon, String lat){
@@ -234,9 +263,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                     assert wildLifeDataResponseList != null;
                     insectCount = Helper.getDangerousInsectCount(wildLifeDataResponseList);
                     wildLifeCount = Helper.getDangerousWildLifeCount(wildLifeDataResponseList);
-
-                    binding.invisibleField.setText(String.valueOf(wildLifeCount));
-                    binding.invisibleField2.setText(String.valueOf(insectCount));
 
                 }
             }

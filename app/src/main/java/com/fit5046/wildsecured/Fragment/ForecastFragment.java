@@ -17,8 +17,7 @@ import com.fit5046.wildsecured.R;
 import com.fit5046.wildsecured.WeatherModel.WeatherQuery;
 import com.fit5046.wildsecured.WeatherModel.WeatherResponse;
 import com.fit5046.wildsecured.databinding.FragmentForecastBinding;
-import com.fit5046.wildsecured.Utils.ForecastAdapter;
-import com.google.android.gms.location.FusedLocationProviderClient;
+import com.fit5046.wildsecured.Adapter.ForecastAdapter;
 
 
 import retrofit2.Call;
@@ -38,11 +37,12 @@ public class ForecastFragment extends Fragment {
     private final String units = "metric";
 
     //location related
-    FusedLocationProviderClient fusedLocationProviderClient;
     String currentLon;
     String currentLat;
-    String searchLon;
-    String searchLat;
+    String lastLon = "";
+    String lastLat = "";
+//    ForecastAdapter adapter;
+
 
     private RecyclerView rvResults;
 
@@ -54,9 +54,10 @@ public class ForecastFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         binding = FragmentForecastBinding.inflate(inflater, container, false);
-        View view = binding.getRoot();
+
 
         setupRecyclerView();
 
@@ -67,6 +68,16 @@ public class ForecastFragment extends Fragment {
             getWeatherInfo(currentLon, currentLat);
         }
 
+
+//        if (WeatherDataManager.forecastWeatherResponse != null){
+//            setupRecyclerView();
+//            updateWeatherData(WeatherDataManager.forecastWeatherResponse);
+//        }else{
+//            setupRecyclerView();
+//            getWeatherInfo(currentLon, currentLat);
+//        }
+
+
         binding.forecastUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,7 +86,7 @@ public class ForecastFragment extends Fragment {
                 }
             }
         });
-
+        View view = binding.getRoot();
         return view;
     }
 
@@ -107,6 +118,8 @@ public class ForecastFragment extends Fragment {
                 if (response.code() == 200) {
                     WeatherResponse weatherResponse = (WeatherResponse) response.body();
                     assert weatherResponse != null;
+//                    WeatherDataManager.forecastWeatherResponse = weatherResponse;
+//                    updateWeatherData(weatherResponse);
                     ForecastAdapter adapter = new ForecastAdapter(getContext(), weatherResponse.getForecastWeatherResponses());
                     rvResults.setAdapter(adapter);
                     progressDialog.dismiss();
@@ -125,5 +138,10 @@ public class ForecastFragment extends Fragment {
             }
         });
     }
+
+//    public void updateWeatherData(WeatherResponse weatherResponse){
+//        adapter = new ForecastAdapter(getContext(), weatherResponse.getForecastWeatherResponses());
+//        rvResults.setAdapter(adapter);
+//    }
 
 }

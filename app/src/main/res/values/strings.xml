@@ -78,6 +78,26 @@
     <string name="backpack_advice_content">Insect repellent, bear spray, flares, antibiotics</string>
     <string name="check_list_btn">Gear Checklist</string>
 
+    <!--    checklist -->
+    <string name="checklist_title">My Checklists</string>
+    <string name="checklist_no_result">You do not have any checklists.</string>
+    <string name="checklist_add_dialog_title">Please enter name for new list.</string>
+    <string name="checklist_card_title">Camping List</string>
+    <string name="checklist_default_number_0">0</string>
+    <string name="checklist_default_number_100">100</string>
+    <string name="checklist_desc_string">items checked off</string>
+
+    <string name="category_title">My Category</string>
+    <string name="category_desc_string">checked</string>
+    <string name="category_no_result">You do not have anything in this list.</string>
+
+    <string name="item_placeholder">Item 1</string>
+
     <!--    progress bar-->
     <string name="progress_info">Loading...</string>
+
+    <!--    Button-->
+    <string name="update">Update</string>
+    <string name="create">Create</string>
+    <string name="cancel">Cancel</string>
 </resources>

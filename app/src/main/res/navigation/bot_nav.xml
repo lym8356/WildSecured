@@ -18,9 +18,9 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/helpFragment"
-        android:name="com.fit5046.wildsecured.Fragment.HelpFragment"
+        android:name="com.fit5046.wildsecured.Fragment.InformationFragment"
         android:label="fragment_help"
-        tools:layout="@layout/fragment_help" />
+        tools:layout="@layout/fragment_information" />
     <fragment
         android:id="@+id/moreFragment"
         android:name="com.fit5046.wildsecured.Fragment.MoreFragment"

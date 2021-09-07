@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.cardview.widget.CardView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        android:elevation="5dp"
+        android:layout_margin="10dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/categoryTitleSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:background="@drawable/primary_bg"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/categoryTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/archivo_bold"
+                        android:text="@string/category_title"
+                        android:textColor="@color/primary_orange" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:layout_weight="0.5">
+
+                        <TextView
+                            android:id="@+id/categoryCheckCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/archivo_regular"
+                            android:text="@string/checklist_default_number_0"
+                            android:textColor="@color/primary_orange"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/archivo_regular"
+                            android:paddingStart="5dp"
+                            android:text="of"
+                            android:textColor="@color/primary_orange"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/categoryTotalCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/archivo_regular"
+                            android:paddingStart="5dp"
+                            android:text="@string/checklist_default_number_100"
+                            android:textColor="@color/primary_orange"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/archivo_regular"
+                            android:paddingStart="5dp"
+                            android:text="@string/category_desc_string"
+                            android:textColor="@color/primary_orange"
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp">
+
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:layout_weight="0.1">
+                        <ImageView
+                            android:id="@+id/categoryItemAdd"
+                            android:layout_width="24sp"
+                            android:layout_height="24sp"
+                            android:src="@drawable/ic_baseline_add_circle_24"
+                            android:padding="3dp"
+                            app:tint="@color/primary_orange" />
+                        <ImageView
+                            android:id="@+id/categoryEdit"
+                            android:layout_width="24sp"
+                            android:layout_height="24sp"
+                            android:src="@drawable/ic_baseline_edit_24"
+                            android:padding="3dp"
+                            app:tint="@color/primary_orange" />
+                        <ImageView
+                            android:id="@+id/categoryDelete"
+                            android:layout_width="24sp"
+                            android:layout_height="24sp"
+                            android:src="@drawable/ic_baseline_delete_24"
+                            android:padding="3dp"
+                            app:tint="@color/primary_orange" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/itemRecyclerView"
+                app:layout_constraintTop_toBottomOf="@id/categoryTitleSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_item"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

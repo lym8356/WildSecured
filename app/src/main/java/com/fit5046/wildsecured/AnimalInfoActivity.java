@@ -18,12 +18,11 @@ public class AnimalInfoActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-
-//        binding.imageView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                finish();
-//            }
-//        });
+        binding.animalAdviceBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@drawable/primary_bg"
+    tools:context=".CategoryViewActivity">
+
+    <LinearLayout
+        android:id="@+id/categoryTopSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_marginTop="20sp">
+            <ImageView
+                android:id="@+id/categoryBack"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_baseline_arrow_back_24"
+                app:tint="@color/primary_orange" />
+            <TextView
+                android:id="@+id/categoryListName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/checklist_title"
+                android:textSize="18sp"
+                android:layout_marginStart="90dp"
+                android:textColor="@color/primary_orange"
+                android:fontFamily="@font/archivo_bold" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/primary_orange"
+            android:layout_marginTop="10sp"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/categoryAddBtn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/archivo_bold"
+        android:text="New Category"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/categoryTopSection"
+        android:background="@drawable/rounded_btn" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/categoryRecyclerView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/categoryAddBtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        tools:listitem="@layout/category_item" />
+
+    <TextView
+        android:id="@+id/noResultText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/category_no_result"
+        android:textColor="@color/primary_orange"
+        android:visibility="gone"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+</androidx.constraintlayout.widget.ConstraintLayout>

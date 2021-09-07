@@ -34,7 +34,7 @@ public final class FragmentHelpBinding implements ViewBinding {
   @NonNull
   public static FragmentHelpBinding inflate(@NonNull LayoutInflater inflater,
       @Nullable ViewGroup parent, boolean attachToParent) {
-    View root = inflater.inflate(R.layout.fragment_help, parent, false);
+    View root = inflater.inflate(R.layout.fragment_information, parent, false);
     if (attachToParent) {
       parent.addView(root);
     }

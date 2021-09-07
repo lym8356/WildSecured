@@ -10,7 +10,7 @@
         android:id="@+id/home_mid_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:padding="5dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -27,15 +27,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:layout_width="26dp"
-                    android:layout_height="26dp"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_baseline_info_21"
                     app:tint="@color/primary_orange" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     android:layout_marginStart="10dp"
                     android:fontFamily="@font/archivo_bold"
                     android:text="@string/home_bot_title_main"
@@ -46,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/archivo_regular"
-                android:textSize="21sp"
+                android:textSize="18sp"
                 android:text="@string/home_bot_title_secondary"
                 android:textColor="@color/primary_orange" />
         </LinearLayout>
@@ -59,8 +59,8 @@
             android:layout_marginEnd="20dp">
             <ImageView
                 android:id="@+id/forecast_up"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:src="@drawable/ic_baseline_arrow_upward_24"
                 android:layout_gravity="center"
                 app:tint="@color/primary_orange" />
@@ -78,10 +78,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_mid_title"
-        app:layout_constraintVertical_bias="0.21"
-        />
+        app:layout_constraintVertical_bias="0.068" />
 
-<!--    <RelativeLayout-->
+    <!--    <RelativeLayout-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="400dp"-->
 <!--        android:layout_marginTop="5dp"-->

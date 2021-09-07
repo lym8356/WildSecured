@@ -1,12 +1,24 @@
 package com.fit5046.wildsecured.Utils;
 
+import android.app.Application;
+
+import androidx.lifecycle.Observer;
+
+import com.fit5046.wildsecured.CategoryViewActivity;
+import com.fit5046.wildsecured.Entity.Category;
+import com.fit5046.wildsecured.Entity.Item;
+import com.fit5046.wildsecured.Entity.UserList;
 import com.fit5046.wildsecured.R;
+import com.fit5046.wildsecured.Repository.CategoryRepository;
+import com.fit5046.wildsecured.Repository.ItemRepository;
+import com.fit5046.wildsecured.Viewmodel.ItemViewModel;
 import com.fit5046.wildsecured.WildLifeDataModal.WildLifeDataResponse;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Helper {
     /**
@@ -15,6 +27,7 @@ public class Helper {
      * @param weatherId from OpenWeatherMap API response
      * @return resource id for the corresponding icon. -1 if no relation is found.
      */
+
     public static int getArtResourceForWeatherCondition(int weatherId) {
         // Based on weather code data found at:
         // http://bugs.openweathermap.org/projects/api/wiki/Weather_Condition_Codes
@@ -79,6 +92,12 @@ public class Helper {
                 }
             }
         }
+        return count;
+    }
+
+
+    public static int getListCompletedItemCount(Application application, List<UserList> userLists){
+        int count = 0;
         return count;
     }
 }

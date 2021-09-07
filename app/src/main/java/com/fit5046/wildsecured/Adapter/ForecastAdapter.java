@@ -1,4 +1,4 @@
-package com.fit5046.wildsecured.Utils;
+package com.fit5046.wildsecured.Adapter;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fit5046.wildsecured.R;
+import com.fit5046.wildsecured.Utils.Helper;
 import com.fit5046.wildsecured.WeatherModel.ForecastWeatherResponse;
 
 

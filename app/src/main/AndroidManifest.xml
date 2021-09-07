@@ -14,13 +14,29 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Design.Light.NoActionBar">
-        <activity android:name=".GearInfoActivity"></activity>
-        <activity android:name=".InsectInfoActivity" />
-        <activity android:name=".SunInfoActivity" />
-        <activity android:name=".AnimalInfoActivity" />
-        <activity android:name=".Home" />
-        <activity android:name=".StartUp">
+        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <activity android:name=".CategoryViewActivity"></activity>
+        <activity
+            android:name=".CheckListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".GearInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".InsectInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SunInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AnimalInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Home"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".StartUp"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
