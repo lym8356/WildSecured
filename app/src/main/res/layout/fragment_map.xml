@@ -1,16 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.MapFragment"
-    android:gravity="center"
-    android:background="@drawable/primary_bg">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragment.MapFragment">
 
-    <TextView
+    <fragment
+        android:id="@+id/mapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Under Development"/>
+        android:name="com.google.android.gms.maps.SupportMapFragment" />
 
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/mapTopSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/mapStarredList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:layout_margin="15dp"
+            android:layout_alignParentStart="true"
+            app:fabCustomSize="40dp"
+            android:src="@drawable/ic_baseline_star_rate_24"
+            android:tint="@color/primary_orange" />
+
+        <EditText
+            android:id="@+id/mapSearchBar"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_toEndOf="@+id/mapStarredList"
+            android:layout_toStartOf="@id/mapTypeBtn"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:textSize="14sp"
+            android:elevation="10dp"
+            android:inputType="text"
+            android:fontFamily="@font/archivo_regular"
+            android:background="@drawable/rounded_edittext_orange_border"
+            android:drawableStart="@drawable/ic_baseline_search_24"
+            android:drawableTint="@color/primary_orange"
+            android:maxLines="1"
+            android:drawablePadding="5dp"
+            app:endIconMode="clear_text"
+            android:textColorHint="@color/primary_orange"
+            android:hint="Search a place" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/mapTypeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:layout_margin="15dp"
+            android:layout_alignParentEnd="true"
+            app:fabCustomSize="40dp"
+            android:src="@drawable/ic_baseline_layers_24"
+            android:tint="@color/primary_orange" />
+    </RelativeLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/mapPlacesList"
+        android:layout_marginHorizontal="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mapTopSection"
+        android:scrollbars="none">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/mapPlacesGroup"
+            android:elevation="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            app:singleLine="true"
+            app:singleSelection="true" />
+    </HorizontalScrollView>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/currentLocationBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mapPlacesList"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="15dp"
+        app:fabCustomSize="40dp"
+        android:src="@drawable/ic_baseline_my_location_24"
+        android:backgroundTint="@color/white"
+        android:tint="@color/primary_orange" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/zoomInBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/currentLocationBtn"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="15dp"
+        app:fabCustomSize="40dp"
+        android:src="@drawable/ic_baseline_zoom_in_24"
+        android:backgroundTint="@color/white"
+        android:tint="@color/primary_orange" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/zoomOutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/zoomInBtn"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="15dp"
+        app:fabCustomSize="40dp"
+        android:src="@drawable/ic_baseline_zoom_out_24"
+        android:backgroundTint="@color/white"
+        android:tint="@color/primary_orange" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mapPlaceRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+</RelativeLayout>

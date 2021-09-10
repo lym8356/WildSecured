@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="googlePlaceModel"
+            type="com.fit5046.wildsecured.GooglePlaceModel" />
+    </data>
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="5dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <ImageView
+            android:id="@+id/placeThumbnail"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="0.5"
+            android:scaleType="centerCrop"
+            android:src="@color/black" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <RelativeLayout
+                android:id="@+id/placeRating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/placeDRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/archivo_bold"
+                    android:textSize="16sp"
+                    android:text="@{googlePlaceModel.rating!=null?String.valueOf(googlePlaceModel.rating):`New`,default=3.4}"
+                    android:textColor="@color/black"
+                    app:drawableStartCompat="@drawable/ic_baseline_star_rate_24"
+                    app:drawableTint="@color/primary_orange" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/archivo_regular"
+                    android:layout_toEndOf="@+id/placeDRating"
+                    android:textSize="16sp"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="1dp"
+                    android:text="@{googlePlaceModel.userRatingsTotal!=null?`(`+String.valueOf(googlePlaceModel.userRatingsTotal)+`)`:``,default=`(123)`}"
+                    android:textColor="@color/primary_orange" />
+
+                <ImageView
+                    android:id="@+id/imgSaveLocation"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:src="@{googlePlaceModel.saved?@drawable/ic_baseline_bookmark_24:@drawable/ic_baseline_bookmark_border_24}"
+                    app:tint="@color/primary_orange" />
+
+                <ImageView
+                    android:id="@+id/placeDirection"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_toStartOf="@+id/imgSaveLocation"
+                    android:src="@drawable/ic_baseline_directions_24"
+                    app:tint="@color/primary_orange" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/placeName"
+                android:fontFamily="@font/archivo_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{googlePlaceModel.name!=null?googlePlaceModel.name:`No Name`,default=`Place Name`}"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/placeAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/archivo_regular"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{googlePlaceModel.vicinity!=null?googlePlaceModel.vicinity:`No Address`,default=`Place Address`}"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/placeWebsite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/archivo_regular"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{googlePlaceModel.vicinity!=null?googlePlaceModel.vicinity:`No Address`,default=`Place Address`}"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+
+</layout>

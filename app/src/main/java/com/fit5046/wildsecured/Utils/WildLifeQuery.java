@@ -1,4 +1,6 @@
-package com.fit5046.wildsecured.WildLifeDataModal;
+package com.fit5046.wildsecured.Utils;
+
+import com.fit5046.wildsecured.WildLifeDataModal.WildLifeDataResponse;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,7 @@
-package com.fit5046.wildsecured.WeatherModel;
+package com.fit5046.wildsecured.Utils;
+
+import com.fit5046.wildsecured.WeatherModel.CurrentCall;
+import com.fit5046.wildsecured.WeatherModel.WeatherResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

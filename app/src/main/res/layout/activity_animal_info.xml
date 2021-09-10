@@ -39,6 +39,30 @@
             android:background="@color/primary_orange"
             android:layout_marginTop="10sp"/>
     </LinearLayout>
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/entryPainLocationLayout"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="@string/animal_select"-->
+<!--            app:hintTextColor="@color/primary_orange"-->
+<!--            app:boxStrokeColor="@color/primary_orange"-->
+<!--            app:boxStrokeWidthFocused="2dp"-->
+<!--            android:layout_weight="0.3"-->
+<!--            android:layout_margin="5dp"-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">-->
+<!--            <AutoCompleteTextView-->
+<!--                android:id="@+id/entryPainLocation"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:fontFamily="@font/archivo_bold"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="14sp"-->
+<!--                android:editable="false" />-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+<!--    </LinearLayout>-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -49,4 +73,5 @@
             android:textSize="18sp"
             android:text="Under development" />
     </LinearLayout>
+
 </LinearLayout>

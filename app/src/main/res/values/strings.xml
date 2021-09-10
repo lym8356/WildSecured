@@ -63,10 +63,12 @@
 
     <!--    animal advice page-->
     <string name="animal_main_title">Animal Information</string>
+    <string name="animal_select">Please select a species</string>
+    <!--    animal snake advice-->
     <string name="animal_advice_title">Keeping Wildlife Away.</string>
     <string name="animal_advice_content">There are</string>
     <string name="animal_number">0</string>
-    <string name="animal_advice_content2">dangerous animals within the radius of 10000 meters at your selected destination.</string>
+    <string name="animal_advice_content2">snakes within the radius of 10000 meters at your selected destination.</string>
 
     <!--    clothing advice popup-->
     <string name="gear_main_title">Gear Advice</string>
@@ -94,10 +96,19 @@
     <string name="item_placeholder">Item 1</string>
 
     <!--    progress bar-->
-    <string name="progress_info">Loading...</string>
+    <string name="progress_info">Loading…</string>
 
     <!--    Button-->
     <string name="update">Update</string>
     <string name="create">Create</string>
     <string name="cancel">Cancel</string>
+
+    <!--    map-->
+    <string name="map_type_menu_default">Default</string>
+    <string name="map_type_menu_satellite">Satellite</string>
+    <string name="map_type_menu_terrain">Terrain</string>
+
+    <!--    api keys-->
+    <string name="GOOGLE_API_KEY">AIzaSyDKQicQAusG5symiA4KGAUiWwDlpxQgtuk</string>
+    <string name="OPENWEATHER_API_KEY">832c9987d78cef10eb4823a73e81743c</string>
 </resources>

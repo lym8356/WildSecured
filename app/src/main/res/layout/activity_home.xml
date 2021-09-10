@@ -7,6 +7,18 @@
     android:background="@drawable/primary_bg"
     tools:context=".Home">
 
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bot_nav"
+        app:navGraph="@navigation/bot_nav" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bot_nav"
         android:layout_width="match_parent"
@@ -19,19 +31,5 @@
         app:itemIconTint="@drawable/bottom_navigation_selector"
         app:itemTextColor="@drawable/bottom_navigation_selector"
         android:background="@color/primary_orange" />
-
-    <fragment
-        android:id="@+id/mainFragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:defaultNavHost="true"
-        app:layout_constraintBottom_toTopOf="@+id/bot_nav"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:navGraph="@navigation/bot_nav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

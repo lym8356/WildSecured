@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.fit5046.wildsecured.R;
-import com.fit5046.wildsecured.WeatherModel.WeatherQuery;
+import com.fit5046.wildsecured.Utils.WeatherQuery;
 import com.fit5046.wildsecured.WeatherModel.WeatherResponse;
 import com.fit5046.wildsecured.databinding.FragmentForecastBinding;
 import com.fit5046.wildsecured.Adapter.ForecastAdapter;
