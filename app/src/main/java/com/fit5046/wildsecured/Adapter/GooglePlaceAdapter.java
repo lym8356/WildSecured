@@ -32,19 +32,13 @@ import java.util.List;
 public class GooglePlaceAdapter extends RecyclerView.Adapter<GooglePlaceAdapter.ViewHolder> {
 
     private List<GooglePlaceModel> googlePlaceModelList;
-    private Context context;
     private PlacesClient placesClient;
     private HandleCardClick cardClickListener;
-    private MapFragment mapFragment;
-    private Application application;
     private SavedPlaceViewModel savedPlaceViewModel;
 
     public GooglePlaceAdapter(Context context, HandleCardClick cardClickListener, Application application, MapFragment mapFragment) {
-        this.context = context;
         placesClient = Places.createClient(context);
         this.cardClickListener = cardClickListener;
-        this.application = application;
-        this.mapFragment = mapFragment;
         savedPlaceViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(application).create(SavedPlaceViewModel.class);
     }
 

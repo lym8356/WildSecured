@@ -20,10 +20,8 @@
     <string name="home_top_username">User</string>
     <string name="home_top_search_bar_hint">Get weather info for a different location</string>
     <!--    mid section-->
-    <!--    <string name="home_mid_sun_protection_advice">Sun protection not required</string>-->
     <string name="home_mid_UV_title">UV is now</string>
     <string name="home_mid_UV_number">0</string>
-    <!--    <string name="home_mid_UV_max_title">MAX UV today</string>-->
     <string name="home_mid_UV_max_number">3</string>
     <string name="home_mid_travel_advice">Get Travel Advice</string>
     <!--    bot section-->
@@ -56,19 +54,12 @@
 
     <!--    insect advice page-->
     <string name="insect_main_title">Insect Information</string>
-    <string name="insect_advice_title">Insect Repellent Recommended.</string>
-    <string name="insect_advice_content">There are</string>
-    <string name="insect_advice_content2">dangerous insects within the radius of 10000 meters at your selected destination.</string>
-    <string name="insect_number">0</string>
+
 
     <!--    animal advice page-->
     <string name="animal_main_title">Animal Information</string>
-    <string name="animal_select">Please select a species</string>
-    <!--    animal snake advice-->
-    <string name="animal_advice_title">Keeping Wildlife Away.</string>
-    <string name="animal_advice_content">There are</string>
-    <string name="animal_number">0</string>
-    <string name="animal_advice_content2">snakes within the radius of 10000 meters at your selected destination.</string>
+    <string name="animal_select">Please select a species group</string>
+
 
     <!--    clothing advice popup-->
     <string name="gear_main_title">Gear Advice</string>
@@ -108,7 +99,36 @@
     <string name="map_type_menu_satellite">Satellite</string>
     <string name="map_type_menu_terrain">Terrain</string>
 
+    <!--    information page-->
+    <string name="info_title">Wild Survival</string>
+    <string name="info_medical">Medical</string>
+    <string name="info_shelter">Shelter</string>
+    <string name="info_tools">Tools</string>
+    <string name="info_water">Water Procurement</string>
+    <string name="info_food">Food Procurement</string>
+    <string name="info_animal">Animals</string>
+    <string name="info_plants">Survival Use of Plants</string>
+    <string name="info_fire">Making Fire</string>
+    <string name="info_direction">Direction Finding</string>
+
     <!--    api keys-->
     <string name="GOOGLE_API_KEY">AIzaSyDKQicQAusG5symiA4KGAUiWwDlpxQgtuk</string>
     <string name="OPENWEATHER_API_KEY">832c9987d78cef10eb4823a73e81743c</string>
+
+    <!-- tflite -->
+    <string name="tfe_ic_app_name" translation_description="Image Classification demo app [CHAR_LIMIT=40]">TFL Classify</string>
+    <string name="tfe_ic_camera_error" translation_description="Error regarding camera support[CHAR_LIMIT=40]">This device doesn\'t support Camera2 API.</string>
+    <string name="tfe_ic_gpu_quant_error" translation_description="Error regarding GPU support for Quant models[CHAR_LIMIT=60]">GPU does not yet supported quantized models.</string>
+    <string name="tfe_ic_model" translatable="false">Model:</string>
+    <string-array name="tfe_ic_models" translatable="false">
+        <item>Quantized</item>
+        <item>Float</item>
+    </string-array>
+
+    <string name="tfe_ic_device" translatable="false">Device:</string>
+    <string-array name="tfe_ic_devices" translatable="false">
+        <item>CPU</item>
+        <item>GPU</item>
+    </string-array>
+
 </resources>

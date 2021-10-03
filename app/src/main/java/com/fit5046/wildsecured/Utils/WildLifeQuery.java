@@ -1,18 +1,17 @@
 package com.fit5046.wildsecured.Utils;
 
-import com.fit5046.wildsecured.WildLifeDataModal.WildLifeDataResponse;
+import com.fit5046.wildsecured.WildlifeModel.WildLifeDataModel;
 
 import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 public interface WildLifeQuery {
 
-    @GET("ws/distributions/radius?")
-    Call<ArrayList<WildLifeDataResponse>> getWildLifeData(@Query("latitude") String lat,
-                                                          @Query("longitude") String lon,
-                                                          @Query("radius") String radius);
-
+//    @GET("ws/explore/group/")
+//    Call<ArrayList<WildLifeDataModel>> getWildLifeData(@Url String url);
+    @GET
+    Call<ArrayList<WildLifeDataModel>> getWildLifeData(@Url String url);
 }

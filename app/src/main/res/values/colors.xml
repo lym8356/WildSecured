@@ -15,4 +15,17 @@
     <color name="landing_slogan_text">#664D28</color>
 
     <color name="nav_icon_color">#F1E5AC</color>
+
+    <!--    wildlife threat level -->
+    <color name="harmless">#009E2D</color>
+    <color name="harmful">#B2A805</color>
+    <color name="dangerous">#FBA231</color>
+    <color name="fatal">#E80114</color>
+
+    <!--    tflite-->
+    <color name="tfe_color_primary">#ffa800</color>
+    <color name="tfe_color_primary_dark">#ff6f00</color>
+    <color name="tfe_color_accent">#425066</color>
+
+    <color name="tfe_semi_transparent">#66000000</color>
 </resources>

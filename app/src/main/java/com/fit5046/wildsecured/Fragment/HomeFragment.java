@@ -1,4 +1,5 @@
 package com.fit5046.wildsecured.Fragment;
+
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -11,6 +12,10 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+
+import android.os.Handler;
+import android.os.Looper;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,8 +30,6 @@ import com.fit5046.wildsecured.WeatherModel.CurrentCall;
 import com.fit5046.wildsecured.Utils.WeatherQuery;
 import com.fit5046.wildsecured.WeatherModel.WeatherResponse;
 import com.fit5046.wildsecured.R;
-import com.fit5046.wildsecured.WildLifeDataModal.WildLifeDataResponse;
-import com.fit5046.wildsecured.Utils.WildLifeQuery;
 import com.fit5046.wildsecured.databinding.FragmentHomeBinding;
 import com.fit5046.wildsecured.Utils.GpsTracker;
 import com.fit5046.wildsecured.Utils.Helper;
@@ -37,9 +40,9 @@ import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,7 +50,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class HomeFragment extends Fragment implements View.OnClickListener{
+public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private FragmentHomeBinding binding;
     //openweather api related
@@ -55,10 +58,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     private final String weatherUrl = "https://api.openweathermap.org/";
     private final String exclude = "minutely,hourly,alerts";
     private final String units = "metric";
-
-    //Atlas of living au related
-    private final String AlaUrl = "https://spatial.ala.org.au/";
-    private final String radius = "10000";
 
     private final String googleAppId = "AIzaSyDKQicQAusG5symiA4KGAUiWwDlpxQgtuk";
 
@@ -71,11 +70,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     String lonToSearch;
     String latToSearch;
 
-    // store animal counts
-    int insectCount;
-    int wildLifeCount;
-
     View v;
+
+    boolean isCall1Finished = false;
+    boolean isCall2Finished = false;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -86,14 +84,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        if (v!=null){
+        if (v != null) {
             return v;
         }
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
         // check location permission and get current location
-        if(checkPermission()){
+        if (checkPermission()) {
             getLocation();
             getWeatherInfo(currentLon, currentLat);
 //            if (WeatherDataManager.weatherResponse != null && WeatherDataManager.currentWeatherResponse != null){
@@ -120,8 +118,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         Places.initialize(getActivity().getApplicationContext(), googleAppId);
         binding.homeSearchBar.setFocusable(false);
         binding.homeSearchBar.setOnClickListener(new View.OnClickListener() {
+            private long mLastClickTime = 0;
             @Override
             public void onClick(View v) {
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 500){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 List<Place.Field> fieldList = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG, Place.Field.NAME);
                 Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fieldList).setCountry("AU").build(getActivity().getApplicationContext());
                 startActivityForResult(intent, 100);
@@ -132,34 +137,33 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         binding.homeSearchIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(lonToSearch != null && latToSearch != null){
+                if (lonToSearch != null && latToSearch != null) {
 
                     getWeatherInfo(lonToSearch, latToSearch);
                     currentLat = latToSearch;
                     currentLon = lonToSearch;
-                    //getWildLifeInfo(lonToSearch, latToSearch);
 
-                }else{
+                } else {
                     Toast.makeText(getActivity(), "Please enter an address.", Toast.LENGTH_LONG).show();
                 }
             }
         });
 
         View view = binding.getRoot();
-        v=view;
+        v = view;
         return view;
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 100 && resultCode == AutocompleteActivity.RESULT_OK){
+        if (requestCode == 100 && resultCode == AutocompleteActivity.RESULT_OK) {
             Place place = Autocomplete.getPlaceFromIntent(data);
             binding.homeSearchBar.setText(place.getAddress());
             latToSearch = String.valueOf(place.getLatLng().latitude);
             lonToSearch = String.valueOf(place.getLatLng().longitude);
 
-        }else if(resultCode == AutocompleteActivity.RESULT_ERROR){
+        } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
             Status status = Autocomplete.getStatusFromIntent(data);
             Toast.makeText(getActivity(), status.getStatusMessage(), Toast.LENGTH_SHORT).show();
         }
@@ -172,6 +176,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         final ProgressDialog progressDialog;
         progressDialog = new ProgressDialog(getActivity());
         //progressDialog.setMax(100);
+        progressDialog.setCancelable(false);
         progressDialog.show();
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setContentView(R.layout.progress_layout);
@@ -183,6 +188,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onResponse(Call call, Response response) {
 
+                isCall1Finished = true;
                 if (response.code() == 200) {
                     CurrentCall currentCall = (CurrentCall) response.body();
                     assert currentCall != null;
@@ -199,13 +205,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                     binding.homeWeatherMax.setText(String.valueOf(Math.round(currentCall.getMain().getTempMax())));
 //                    progressDialog.dismiss();
                 }
+                tryDismissProgressDialog(progressDialog);
             }
 
             @Override
             public void onFailure(Call call, Throwable t) {
+                isCall1Finished = true;
                 Toast.makeText(getActivity().getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
                 System.out.println(t.getMessage());
+                tryDismissProgressDialog(progressDialog);
             }
+
         });
 
         // execute query to get forecast data
@@ -213,6 +223,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         getForecastCall.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
+                isCall2Finished = true;
                 if (response.code() == 200) {
                     WeatherResponse weatherResponse = (WeatherResponse) response.body();
                     assert weatherResponse != null;
@@ -220,21 +231,30 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                     //update UI
                     WeatherDataManager.currentWeatherResponse = weatherResponse;
                     binding.homeWeatherUv.setText(String.valueOf(weatherResponse.getCurrentWeatherResponse().getUvi()));
-                    progressDialog.dismiss();
+//                    progressDialog.dismiss();
                 } else {
                     Toast.makeText(getActivity().getApplicationContext(), "Failed to retrieve weather data", Toast.LENGTH_LONG).show();
                 }
+                tryDismissProgressDialog(progressDialog);
             }
 
             @Override
             public void onFailure(Call call, Throwable t) {
+                isCall2Finished = true;
 //                Toast.makeText(getActivity().getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
                 Toast.makeText(getActivity().getApplicationContext(), "Network Error", Toast.LENGTH_LONG).show();
+                tryDismissProgressDialog(progressDialog);
             }
         });
     }
 
-    public void updateWeatherData(CurrentCall currentCall){
+    public void tryDismissProgressDialog(ProgressDialog progressDialog) {
+        if (isCall1Finished && isCall2Finished) {
+            progressDialog.dismiss();
+        }
+    }
+
+    public void updateWeatherData(CurrentCall currentCall) {
 
         int iconCode = currentCall.getWeather().get(0).getId();
         int iconToReplace = Helper.getArtResourceForWeatherCondition(iconCode);
@@ -247,54 +267,27 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         binding.homeWeatherMax.setText(String.valueOf(Math.round(currentCall.getMain().getTempMax())));
     }
 
-    public void getWildLifeInfo(String lon, String lat){
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(AlaUrl).addConverterFactory(GsonConverterFactory.create()).build();
-        WildLifeQuery query = retrofit.create(WildLifeQuery.class);
 
-        Call getWildLifeDataResponse   = query.getWildLifeData(lat, lon, radius);
-
-        getWildLifeDataResponse.enqueue(new Callback<ArrayList<WildLifeDataResponse>>() {
-            @Override
-            public void onResponse(Call<ArrayList<WildLifeDataResponse>>  call, Response<ArrayList<WildLifeDataResponse>> response) {
-
-                if (response.code() == 200) {
-                    ArrayList<WildLifeDataResponse> wildLifeDataResponseList = new ArrayList<>();
-                    wildLifeDataResponseList.addAll(response.body());
-                    assert wildLifeDataResponseList != null;
-                    insectCount = Helper.getDangerousInsectCount(wildLifeDataResponseList);
-                    wildLifeCount = Helper.getDangerousWildLifeCount(wildLifeDataResponseList);
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call call, Throwable t) {
-                Toast.makeText(getActivity().getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
-                System.out.println(t.getMessage());
-            }
-        });
-    }
-
-    public void getLocation(){
+    public void getLocation() {
         gpsTracker = new GpsTracker(getActivity());
-        if(gpsTracker.canGetLocation()){
+        if (gpsTracker.canGetLocation()) {
             currentLat = String.valueOf(gpsTracker.getLatitude());
             currentLon = String.valueOf(gpsTracker.getLongitude());
 
-        }else{
+        } else {
             gpsTracker.showSettingsAlert();
         }
     }
 
 
-    public boolean checkPermission(){
+    public boolean checkPermission() {
         try {
-            if (ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
+            if (ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 100);
-            }else{
+            } else {
                 return true;
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
@@ -306,16 +299,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         if (requestCode == 100) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(getActivity(), "Access to location info granted", Toast.LENGTH_SHORT).show();
                 getLocation();
-            }else {
+                getWeatherInfo(currentLon, currentLat);
+            } else {
                 Toast.makeText(getActivity(), "Access to location info denied", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-    public void switchFragment(Fragment fragment){
+    public void switchFragment(Fragment fragment) {
         binding.homeSearchBar.setText("");
 
         Bundle bundle = new Bundle();
@@ -331,17 +325,21 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         Intent intent;
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.home_sun_icon:
                 intent = new Intent(getActivity(), SunInfoActivity.class);
                 startActivity(intent);
                 break;
             case R.id.home_insect_icon:
                 intent = new Intent(getActivity(), InsectInfoActivity.class);
+                intent.putExtra("lat", currentLat);
+                intent.putExtra("lon", currentLon);
                 startActivity(intent);
                 break;
             case R.id.home_animal_icon:
                 intent = new Intent(getActivity(), AnimalInfoActivity.class);
+                intent.putExtra("lat", currentLat);
+                intent.putExtra("lon", currentLon);
                 startActivity(intent);
                 break;
             case R.id.home_clothing_icon:

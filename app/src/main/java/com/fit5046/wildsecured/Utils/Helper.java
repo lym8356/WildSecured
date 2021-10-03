@@ -1,18 +1,13 @@
 package com.fit5046.wildsecured.Utils;
 
-import android.app.Application;
+import android.os.Build;
+import android.text.Html;
+import android.text.SpannableString;
+import android.text.Spanned;
 
-import androidx.lifecycle.Observer;
-
-import com.fit5046.wildsecured.CategoryViewActivity;
-import com.fit5046.wildsecured.Entity.Category;
-import com.fit5046.wildsecured.Entity.Item;
-import com.fit5046.wildsecured.Entity.UserList;
+import com.fit5046.wildsecured.Entity.Wildlife;
 import com.fit5046.wildsecured.R;
-import com.fit5046.wildsecured.Repository.CategoryRepository;
-import com.fit5046.wildsecured.Repository.ItemRepository;
-import com.fit5046.wildsecured.Viewmodel.ItemViewModel;
-import com.fit5046.wildsecured.WildLifeDataModal.WildLifeDataResponse;
+import com.fit5046.wildsecured.WildlifeModel.WildLifeDataModel;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -62,42 +57,73 @@ public class Helper {
         return dateString;
     }
 
-    // loop through wild animal info
-    public static int getDangerousWildLifeCount(ArrayList<WildLifeDataResponse> wildLifeDataResponses){
-        String[] dangerousAnimal = {"wolf", "Wolf", "bear", "Bear", "snake", "Snake",
-                "shark", "Shark", "jellyfish", "Jellyfish", "crocodile", "Crocodile", "taipan", "Taipan"};
-        int count = 0;
-        for (int i=0; i<wildLifeDataResponses.size(); i++){
-            for (int j=0; j<dangerousAnimal.length; j++){
-                if (wildLifeDataResponses.get(i).getCommonNam() != null){
-                    if (wildLifeDataResponses.get(i).getCommonNam().contains(dangerousAnimal[j])){
-                        count ++;
-                    }
-                }
+
+    public static List<Wildlife> findCommonElements(List<WildLifeDataModel> fromApi, List<Wildlife> fromDb){
+        List<Wildlife> resultList = new ArrayList<>();
+        for (WildLifeDataModel wildLifeDataModel: fromApi){
+            Wildlife wildlife = find(fromDb, wildLifeDataModel);
+            if (wildlife != null){
+                resultList.add(wildlife);
             }
         }
-        return count;
+        return resultList;
     }
 
-    public static int getDangerousInsectCount(ArrayList<WildLifeDataResponse> wildLifeDataResponses){
-        String[] dangerousInsect = {"spider", "Spider", "wasp", "Wasp", "hornet", "Hornet",
-                "scorpion", "Scorpion", "centipede", "Centipede"};
-        int count = 0;
-        for (int i=0; i<wildLifeDataResponses.size(); i++){
-            for (int j=0; j<dangerousInsect.length; j++){
-                if (wildLifeDataResponses.get(i).getCommonNam() != null){
-                    if (wildLifeDataResponses.get(i).getCommonNam().contains(dangerousInsect[j])){
-                        count ++;
-                    }
-                }
+    private static Wildlife find(List<Wildlife> fromDb, WildLifeDataModel wildLifeDataModel) {
+        for (Wildlife wildlife: fromDb){
+            if (matches(wildlife, wildLifeDataModel)){
+                return wildlife;
             }
         }
-        return count;
+        return null;
+    }
+
+    private static boolean matches(Wildlife wildlife, WildLifeDataModel wildLifeDataModel) {
+        if (wildlife.getCommonName().equals(wildLifeDataModel.getCommonName())){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 
-    public static int getListCompletedItemCount(Application application, List<UserList> userLists){
-        int count = 0;
-        return count;
+    public static String getThreatLevelString(String dangerLevel){
+        if (dangerLevel.equals("1")){
+            return "Harmless";
+        }else if (dangerLevel.equals("2")){
+            return "Pose a threat";
+        }else if (dangerLevel.equals("3")){
+            return "Dangerous";
+        }else if (dangerLevel.equals("4")){
+            return "Life Threatening";
+        }else{
+            return null;
+        }
     }
+
+    public static int getThreatColor(String dangerLevel){
+        if (dangerLevel.equals("1")){
+            return R.color.harmless;
+        }else if (dangerLevel.equals("2")){
+            return R.color.harmful;
+        }else if (dangerLevel.equals("3")){
+            return R.color.dangerous;
+        }else if (dangerLevel.equals("4")){
+            return R.color.fatal;
+        }else{
+            return R.color.black;
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    public static Spanned fromHtml(String html){
+        if (html == null){
+            return new SpannableString("");
+        }else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            return Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY);
+        }else{
+            return Html.fromHtml(html);
+        }
+    }
+
 }

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="medical_basic">Basic</string>
+    <string name="medical_title_main">REQUIREMENTS FOR MAINTENANCE OF HEALTH</string>
+    <string name="medical_title_main_content">To survive, you need water and food. You must also have and apply high personal hygiene standards.\n</string>
+
+    <string name="medical_water_title">Water</string>
+    <string name="medical_water_content" tools:ignore="TypographyOther">
+        Your body loses water through normal body processes (sweating, urinating, and defecating). During average daily exertion when the atmospheric temperature is 20 degrees Celsius (C) (68 degrees Fahrenheit [F]),
+        the average adult loses 2 to 3 liters of water. Other factors can cause your body to lose more water, such as heat exposure, cold exposure, intense activity, high altitude, burns, or illness. You must replace this water.
+        \n\nDehydration results from inadequate replacement of lost body fluids. It decreases your efficiency and, if you are injured, it increases susceptibility to severe shock. Consider the following results of body fluid loss:
+        \n
+        \u2022 A 5-percent loss results in thirst, irritability, nausea, and weakness.\n
+        \u2022 A 10-percent loss results in dizziness, headache, inability to walk, and a tingling sensation in the limbs.\n
+        \u2022 A 15-percent loss results in dim vision, painful urination, swollen tongue, deafness, and a numb feeling in the skin.\n
+        \u2022 A loss greater than 15 percent may result in death.\nThe most common signs and symptoms of dehydration are:\n
+        \u2022 Dark urine with a very strong odor (Generally, the darker the urine, the more dehydrated you are).\n
+        \u2022 Low urine output.\n
+        \u2022 Dark, sunken eyes.\n
+        \u2022 Fatigue.\n
+        \u2022 Emotional instability.\n
+        \u2022 Loss of skin elasticity.\n
+        \u2022 Delayed capillary refill in fingernail beds.\n
+        \u2022 Trench line down center of tongue.\n
+        \u2022 Thirst (Last on the list because you are already 2-percent dehydrated by the time you crave fluids).\n
+        \nYou should replace water as you lose it. Trying to make up a deficit is difficult in a survival situation, and thirst is not a sign of how much water you need.\n
+        \nMost people cannot comfortably drink more than 1 liter of water at a time. So, even when not thirsty, drink small amounts of water at regular intervals each hour to prevent dehydration.\n
+        \nIf you are under physical and mental stress, or subject to severe conditions, increase your water intake. Drink enough liquids to maintain a urine output of at least 0.5 liters every 24 hours. Urine color is one indicator of hydration levels.\n
+        \nIn any situation where food intake is low, drink 6 to 8 liters of water per day. In an extreme climate, especially an arid one, the average person can lose 2.5 to 3.5 liters of water per hour. In this type of climate, you should drink 8 to 12 ounces of water every 30 minutes.
+        It is better to regulate water loss through work or rest cycles because overhydration can occur if water intake exceeds 1.5 quarts per hour. Overhydration can cause low serum sodium levels resulting in cerebral and pulmonary edema, which can lead to death.\n
+        \nWith the loss of water there is also a loss of electrolytes (body salts). The average diet can usually keep up with these losses, but in an extreme situation or illness, additional sources are necessary. You should maintain an intake of carbohydrates and other necessary electrolytes.\n
+        \nYou can make an Oral Rehydration Salts (ORS) drink to replace lost salts after severe diarrhea or vomiting by mixing 0.5 teaspoons of salt and 2 tablespoons of sugar in 1 liter of water. Recommended amounts to drink vary by body mass:\n
+        \u2022 Babies and infants (0-2 years): 0.5 liters every 24 hours\n
+        \u2022 Children (2-9 years): 1 liter every 24 hours\n
+        \u2022 Older children and adults: 3 liters every 24 hours\n
+        \nOf all the physical problems encountered in a survival situation, the loss of water is the most preventable. The following are basic guidelines for the prevention of dehydration:\n
+        \u2022 Always drink water when eating. Water is used as a part of the digestion process and can lead to dehydration.\n
+        \u2022 Acclimatize. The body performs more efficiently in extreme conditions when acclimatized.\n
+        \u2022 Conserve sweat, not water. Limit sweat-producing activities but drink water.\n
+        \u2022 Ration water. Until you find a suitable source, ration your sweat, not your water. Limit activity and heat gain or loss.\n
+        \nYou can estimate fluid loss by several means. A field dressing holds about 0.25 liters (1/4 canteen) of fluid. A soaked T-shirt holds 0.5 to 0.75 liters.\n
+        \nYou can also use the pulse and breathing rate to estimate fluid loss. Use the following as a guide:\n
+        \u2022 With a 0.75-liter loss the wrist pulse rate will be under 100 beats per minute and the breathing rate 12 to 20 breaths per minute.\n
+        \u2022 With a 0.75 to 1.5-liter loss the pulse rate will be 100 to 120 beats per minute and 20 to 30 breaths per minute.\n
+        \u2022 With a 1.5 to 2-liter loss the pulse rate will be 120 to 140 beats per minute and 30 to 40 breaths per minute. Vital signs above these rates require advanced care.\n
+    </string>
+    <string name="medical_food_title">Food</string>
+    <string name="medical_food_content">
+        Although you can live several weeks without food, you need an adequate amount to stay healthy. Without food your mental and physical capabilities will deteriorate rapidly and you will become weak. Food provides energy and replenishes the substances that your body burns.
+        Food provides vitamins, minerals, salts, and other elements essential to good health. And, possibly more important, it helps morale.\n
+        \nThe three basic sources of food are plants, animals (including fish) and fungus. In varying degrees, these provide the calories, carbohydrates, fats, and proteins needed for normal daily body functions. You should use rations to augment plant and animal foods,
+        which will extend and help maintain a balanced diet.\n
+        \nCalories are a measure of heat and potential energy. The average person needs 2,000 calories per day to function at a minimum level. An adequate amount of carbohydrates, fats, and proteins without an adequate caloric intake will lead to starvation and cannibalism of the body\'s own tissue for energy.
+        It may be useful to estimate your TDEE (Total Daily Energy Expenditure) since each individual requires different caloric minimums.\n
+    </string>
+    <string name="medical_plants_title">Plants</string>
+    <string name="medical_plants_content">
+        Plant foods provide carbohydrates—the main source of energy. Many plants provide enough protein to keep the body at normal efficiency. Although plants may not provide a balanced diet, they will sustain you even in the arctic, where meat\'s 
+        heat-producing qualities are normally essential. Many plant foods such as nuts and seeds will give you enough protein and oils for normal efficiency. Roots, green vegetables, and plant foods containing natural sugar will provide calories and carbohydrates that give the body natural energy.\n
+        \nThe food value of plants becomes more and more important if you are eluding enemies or if you are in an area where wildlife is scarce. For instance:\n
+        \u2022 You can dry plants by wind, air, sun, or fire. This retards spoilage so that you can store or carry the plant food with you to use when needed.\n
+        \u2022 You can often obtain plants more easily than meat.\n
+    </string>
+    <string name="medical_animals_title">Animals</string>
+    <string name="medical_animals_content">
+        Meat is more nourishing than plant food. It may even be more readily available in some places. However, to get meat, you need to know the habits of (and how to capture) the various wildlife.\n
+        \nTo satisfy immediate food needs, first seek the more abundant and easily obtained wildlife. This includes insects, crustaceans, mollusks, fish, and reptiles. These can satisfy hunger while you are preparing traps and snares for larger game.\n
+    </string>
+    <string name="medical_personal_hygiene_title">PERSONAL HYGIENE</string>
+    <string name="medical_personal_hygiene_content">
+        Cleanliness is always an important factor in preventing infection and disease. This becomes even more important in a survival situation since poor hygiene can reduce chances of survival.\n
+        \nA daily shower with hot water and soap is ideal, but you can stay clean without this luxury. Use a cloth and soapy water to wash yourself. Pay special attention to the feet, armpits, crotch, hands, and hair as these are prime areas for infestation and infection. If water is scarce, take an "air" bath.
+        Remove as much of your clothing as practical and expose your body to the sun and air for at least 1 hour. Be careful not to sunburn.\n
+        \nIf you don\'t have soap, use ashes or sand, or make soap from animal fat and wood ashes if your situation allows. To make soap:\n
+        \u2022 Extract grease from animal fat by cutting the fat into small pieces and cooking it in a pot.\n
+        \u2022 Add enough water to the pot to keep the fat from sticking as it cooks.\n
+        \u2022 Cook the fat slowly, stirring frequently.\n
+        \u2022 After the fat is rendered, pour the grease into a container to harden.\n
+        \u2022 Place ashes in a container with a spout near the bottom.\n
+        \u2022 Pour water over the ashes and collect the liquid that drips out of the spout in a separate container. This liquid is the potash or lye.\n
+        \nAnother way to get the lye is to pour the slurry (the mixture of ashes and water) through a straining cloth.\n
+        \u2022 In a cooking pot, mix two parts grease to one part lye.\n
+        \u2022 Place this mixture over a fire and boil it until it thickens.\n
+        \nAfter the mixture (the soap) cools, you can use it in the semiliquid state directly from the pot. You can also pour it into a pan, allow it to harden, and cut it into bars for later use.\n
+    </string>
+    <string name="medical_hands_clean_title">Keep Your Hands Clean</string>
+    <string name="medical_hands_clean_content">
+        Germs on your hands can infect food and wounds. Wash your hands after handling any material that is likely to carry germs, after urinating or defecating, after caring for the sick, and before handling any food, food utensils, or drinking water.
+        Keep your fingernails closely trimmed and clean, and keep your fingers out of your mouth.\n
+    </string>
+    <string name="medical_hair_clean_title">Keep Your Hair Clean</string>
+    <string name="medical_hair_clean_content">
+        Hair can become a haven for bacteria, fleas, lice, and other parasites. Keeping your hair clean, combed, and trimmed helps you avoid this danger.\n
+    </string>
+    <string name="medical_cloth_clean_title">Keep Your Clothing Clean</string>
+    <string name="medical_cloth_clean_content">Keep your clothing and bedding as clean as possible to reduce the chances of skin infection or parasitic infestation. Clean your outer clothing whenever it becomes soiled. Wear clean underclothing and socks each day. If water is scarce, "air" clean your clothing by shaking, airing, and sunning it for 2 hours.
+        If you are using a sleeping bag, turn it inside out after each use, fluff it, and air it.\n</string>
+    <string name="medical_teeth_clean_title">Keep Your Teeth Clean</string>
+    <string name="medical_teeth_clean_content">
+        Thoroughly clean your mouth and teeth with a toothbrush at least once each day. If you don\'t have a toothbrush, make a chewing stick. Find a twig about 20 centimeters (cm) (8 inches) long and 1 centimeter (1/3 inch) wide. Chew one end of the stick to separate the fibers. Then brush your teeth thoroughly.
+        Another way is to wrap a clean strip of cloth around your fingers and rub your teeth with it to wipe away food particles. You can also brush your teeth with small amounts of sand, baking soda, salt, or soap. Rinse your mouth with water, salt water, or willow bark tea. Flossing your teeth with string or fiber also helps oral hygiene.\n
+        \nIf you have cavities, you can make temporary fillings by placing candle wax, tobacco, hot pepper, toothpaste or powder, or portions of a gingerroot into the cavity. Make sure you clean the cavity by rinsing or picking the particles out of the cavity before placing a filling in the cavity.\n
+    </string>
+    <string name="medical_care_feet_title">Take Care of Your Feet</string>
+    <string name="medical_care_feet_content">
+        To prevent serious foot problems, break in your shoes before wearing them on any mission. Wash and massage your feet daily. Trim your toenails straight across. Wear an insole and the proper size of dry socks. Powder and check your feet daily for blisters.\n
+        \nIf you get a small blister, do not open it. An intact blister is safe from infection. Apply a padding material around the blister to relieve pressure and reduce friction. If the blister bursts, treat it as an open wound. Clean and dress it daily and pad around it. Leave large blisters intact. To avoid having the blister burst or tear under pressure and cause a painful and open sore, do the following:\n
+        \u2022 Obtain a sewing-type needle and a clean or sterilized thread.\n
+        \u2022 Run the needle and thread through the blister after cleaning the blister.\n
+        \u2022 Detach the needle and leave both ends of the thread hanging out of the blister. The thread will absorb the liquid inside. This reduces the size of the hole and ensures that the hole does not close up.\n
+        \u2022 Pad around the blister.\n
+    </string>
+    <string name="medical_rest_title">Get Sufficient Rest</string>
+    <string name="medical_rest_content">
+        You need a certain amount of rest to keep going. Plan for regular rest periods of at least 10 minutes per hour during your daily activities. Learn to make yourself comfortable under less-than-ideal conditions. A change from mental to physical activity or vice versa can be refreshing when time or situation does not permit total relaxation.\n
+    </string>
+    <string name="medical_campsite_clean_title">Keep Campsite Clean</string>
+    <string name="medical_campsite_clean_content">
+        Do not soil the ground in the campsite area with urine or feces. Use latrines, if available. When latrines are not available, dig "cat holes" and cover the waste. Collect drinking water upstream from the campsite. Purify all water.
+    </string>
+
+
+    <string name="medical_emergency">Medical Emergencies</string>
+    <string name="medical_emergency_title">MEDICAL EMERGENCIES</string>
+    <string name="medical_emergency_content">
+        Medical problems and emergencies you may face include breathing problems, severe bleeding, and shock. The following paragraphs explain each of these problems and what you can expect if they occur.\n
+    </string>
+    <string name="medical_breathing_title">BREATHING PROBLEMS</string>
+    <string name="medical_breathing_content">
+        Any one of the following can cause airway obstruction, resulting in stopped breathing:\n
+        \u2022 Foreign matter in mouth or throat which obstructs the opening to the trachea.\n
+        \u2022 Face or neck injuries.\n
+        \u2022 Inflammation and swelling of mouth and throat caused by inhaling smoke, flames, irritating vapors, or by an allergic reaction.\n
+        \u2022 "Kink" in the throat (caused by the neck bent forward so that the chin rests upon the chest).
+        \u2022 Tongue blocks passage of air to the lungs upon unconsciousness. When an individual is unconscious, the muscles of the lower jaw and tongue relax as the neck drops forward. This causes the lower jaw to sag and the tongue to drop back and block the passage of air.\n
+    </string>
+    <string name="medical_bleeding_title">SEVERE BLEEDING</string>
+    <string name="medical_bleeding_content">
+        Severe bleeding from any major blood vessel in the body is extremely dangerous. The loss of 1 liter of blood will produce moderate symptoms of shock. The loss of 2 liters will produce a severe state of shock that places the body in extreme danger. The loss of 3 liters is usually fatal.\n
+    </string>
+    <string name="medical_shock_title">SHOCK</string>
+    <string name="medical_shock_content">
+        Shock (acute stress reaction) is not a disease in itself. It is a clinical condition characterized by symptoms that arise when cardiac output is insufficient to fill the arteries with blood under enough pressure to provide an adequate blood supply to the organs and tissues.\n
+    </string>
+    <string name="medical_lifesaving_steps_title">LIFESAVING STEPS</string>
+    <string name="medical_lifesaving_steps_content">
+        Control panic, both your own and the victim\'s. Reassure him and try to keep him quiet. Perform a rapid physical exam. Look for the cause of the injury and follow the ABCs of first aid. Start with the airway and breathing, but be discerning.
+        In some cases, a person may die from arterial bleeding more quickly than from an airway obstruction. The following paragraphs describe how to treat airway, bleeding, and shock emergencies.\n
+    </string>
+    <string name="medical_airway_title">OPEN AIRWAY AND MAINTAIN</string>
+    <string name="medical_airway_content">
+        You can open an airway and maintain it by using the following steps:\n
+        \u2022 Step 1. You should check to see if the victim has a partial or complete airway obstruction. If he can cough or speak, allow him to clear the obstruction naturally. Stand by, reassure the victim, and be ready to clear his airway and perform mouth-to-mouth resuscitation should he become unconscious. If his airway is completely obstructed, administer abdominal thrusts until the obstruction is cleared.\n
+        \u2022 Step 2. Using a finger, quickly sweep the victim\'s mouth clear of any foreign objects, broken teeth, dentures, and sand.\n
+        \u2022 Step 3. Using the jaw thrust method, grasp the angles of the victim\'s lower jaw and lift with both hands, one on each side, moving the jaw forward. For stability, rest your elbows on the surface on which the victim is lying. If his lips are closed, gently open the lower lip with your thumb.\n
+    </string>
+    <string name="medical_figure_4_1">Figure 4–1. Jaw Thrust Method</string>
+</resources>

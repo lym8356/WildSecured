@@ -10,21 +10,24 @@ import com.fit5046.wildsecured.DAO.CategoryDAO;
 import com.fit5046.wildsecured.DAO.ItemDAO;
 import com.fit5046.wildsecured.DAO.SavedPlaceDAO;
 import com.fit5046.wildsecured.DAO.UserListDAO;
+import com.fit5046.wildsecured.DAO.WildlifeDAO;
 import com.fit5046.wildsecured.Entity.Category;
 import com.fit5046.wildsecured.Entity.Item;
 import com.fit5046.wildsecured.Entity.UserList;
+import com.fit5046.wildsecured.Entity.Wildlife;
 import com.fit5046.wildsecured.SavedPlace;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {UserList.class, Category.class, Item.class, SavedPlace.class}, version = 4, exportSchema = false)
+@Database(entities = {UserList.class, Category.class, Item.class, SavedPlace.class, Wildlife.class}, version = 5, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract UserListDAO userListDAO();
     public abstract CategoryDAO categoryDAO();
     public abstract ItemDAO itemDAO();
     public abstract SavedPlaceDAO savedPlaceDAO();
+    public abstract WildlifeDAO wildlifeDAO();
 
     public static AppDatabase INSTANCE;
 

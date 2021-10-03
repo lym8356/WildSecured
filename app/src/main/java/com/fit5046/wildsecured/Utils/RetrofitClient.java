@@ -9,7 +9,7 @@ public class RetrofitClient {
     private static Retrofit retrofit = null;
     public static final String GOOGLE_PLACE_BASE_URL = "https://maps.googleapis.com/";
     public static final String OPEN_WEATHER_BASE_URL = "https://api.openweathermap.org/";
-    public static final String ALA_BASE_URL = "https://spatial.ala.org.au/";
+    public static final String ALA_BASE_URL = "https://biocache-ws.ala.org.au/";
 
     public static Retrofit openWeatherRetrofitClient(){
         if (retrofit == null){
