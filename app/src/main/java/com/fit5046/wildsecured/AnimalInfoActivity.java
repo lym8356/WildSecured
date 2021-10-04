@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +27,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -36,6 +38,7 @@ import retrofit2.Response;
 public class AnimalInfoActivity extends AppCompatActivity {
 
     private final String snakeFilterQuery = "&q=family:Elapidae+Typhlopidae+Pythonidae+Colubridae+Acrochordidae";
+    private final String batFilterQuery = "&q=family:Vespertilionidae+Miniopteridae+Pteropodidae+Molossidae+Emballonuridae";
 
     private ActivityAnimalInfoBinding binding;
     private List<WildLifeDataModel> wildLifeListFromApi;
@@ -43,18 +46,34 @@ public class AnimalInfoActivity extends AppCompatActivity {
     private WildlifeViewModel wildlifeViewModel;
     private List<Wildlife> wildlifeListFromDb;
     private List<Wildlife> filteredList;
+    private boolean isFABOpen;
+    private boolean isNameListDesc = false;
+    private boolean isDangerListDesc = false;
+    private ProgressDialog progressDialog;
 
-    private String lon, lat;
+    private String lon, lat, cityName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityAnimalInfoBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
+
         setContentView(view);
+
+        progressDialog = new ProgressDialog(this);
+        //progressDialog.setMax(100);
+        progressDialog.setCancelable(false);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
         Intent intent = getIntent();
         lat = intent.getStringExtra("lat");
         lon = intent.getStringExtra("lon");
+        cityName = intent.getStringExtra("cityName");
+        isFABOpen = false;
+
+        binding.cityName.setText(cityName);
 
         binding.animalAdviceBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,81 +84,144 @@ public class AnimalInfoActivity extends AppCompatActivity {
 
         ArrayList<String> animalGroupList = new ArrayList<>();
         animalGroupList.add("Reptiles");
-        animalGroupList.add("Mammals");
+        animalGroupList.add("Bats");
+        animalGroupList.add("Others");
         ArrayAdapter<String> animalGroupAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, animalGroupList);
         binding.animalGroup.setAdapter(animalGroupAdapter);
         binding.animalGroup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selected = (String) parent.getItemAtPosition(position);
-//                Toast.makeText(AnimalInfoActivity.this, selected, Toast.LENGTH_SHORT).show();
-                getAnimalInfo(selected);
                 switch (selected){
                     case "Reptiles":
-                        getAnimalInfo(selected);
-                    case "Mammals":
-                        getAnimalInfo(selected);
+                        progressDialog.show();
+                        binding.animalOtherInfo.setVisibility(View.GONE);
+                        getAnimalInfo(selected, snakeFilterQuery);
+                        break;
+                    case "Bats":
+                        progressDialog.show();
+                        binding.animalOtherInfo.setVisibility(View.GONE);
+                        getAnimalInfo("Mammals", batFilterQuery);
+                        break;
+                    case "Others":
+                        binding.animalOtherInfo.setVisibility(View.VISIBLE);
+                        getDataFromDb(selected);
+                        break;
+
+                }
+            }
+        });
+        binding.sortBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isFABOpen){
+                    binding.sortByName.setVisibility(View.INVISIBLE);
+                    binding.sortByThreat.setVisibility(View.INVISIBLE);
+                    isFABOpen = false;
+                }else{
+                    binding.sortByName.setVisibility(View.VISIBLE);
+                    binding.sortByThreat.setVisibility(View.VISIBLE);
+                    isFABOpen = true;
+                }
+            }
+        });
+        binding.sortByThreat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (filteredList != null){
+                    if (isDangerListDesc){
+                        filteredList.sort(Wildlife.sortByDangerLevelAsc);
+                        wildlifeListFromDb.sort(Wildlife.sortByDangerLevelAsc);
+                        wildlifeInfoAdapter.notifyDataSetChanged();
+                        isDangerListDesc = false;
+                    }else{
+                        filteredList.sort(Wildlife.sortByDangerLevelDesc);
+                        wildlifeListFromDb.sort(Wildlife.sortByDangerLevelDesc);
+                        wildlifeInfoAdapter.notifyDataSetChanged();
+                        isDangerListDesc = true;
+                    }
+                }else if (wildlifeListFromDb != null){
+                    if (isNameListDesc){
+                        wildlifeListFromDb.sort(Wildlife.sortByDangerLevelAsc);
+                        wildlifeInfoAdapter.notifyDataSetChanged();
+                        isNameListDesc = false;
+                    }else{
+                        wildlifeListFromDb.sort(Wildlife.sortByDangerLevelDesc);
+                        wildlifeInfoAdapter.notifyDataSetChanged();
+                        isNameListDesc = true;
+                    }
+                }
+            }
+        });
+        binding.sortByName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (filteredList != null){
+                    if (isNameListDesc){
+                        filteredList.sort(Wildlife.sortByNameAsc);
+                        wildlifeListFromDb.sort(Wildlife.sortByNameAsc);
+                        wildlifeInfoAdapter.notifyDataSetChanged();
+                        isNameListDesc = false;
+                    }else{
+                        filteredList.sort(Wildlife.sortByNameDesc);
+                        wildlifeListFromDb.sort(Wildlife.sortByNameDesc);
+                        wildlifeInfoAdapter.notifyDataSetChanged();
+                        isNameListDesc = true;
+                    }
+                }else if (wildlifeListFromDb != null){
+                    if (isNameListDesc){
+                        wildlifeListFromDb.sort(Wildlife.sortByNameAsc);
+                        wildlifeInfoAdapter.notifyDataSetChanged();
+                        isNameListDesc = false;
+                    }else{
+                        wildlifeListFromDb.sort(Wildlife.sortByNameDesc);
+                        wildlifeInfoAdapter.notifyDataSetChanged();
+                        isNameListDesc = true;
+                    }
                 }
             }
         });
 
         initViewModel();
         initRecyclerView();
-        performDataInsertion();
     }
 
-    private List<Wildlife> readData() throws IOException {
-        List<Wildlife> returnList = new ArrayList<>();
-
-        InputStream is = getResources().openRawResource(R.raw.reptiles);
-        InputStreamReader csvStreamReader = new InputStreamReader(is);
-
-        CSVReader reader = new CSVReader(csvStreamReader);
-        reader.skip(1);
-        String[] record = null;
-        String mCommonName, mScientificName, mBriefDescription, mIdentification, mBiology, mRiskToHuman, mDiet, mDangerLevel, mGroup, mImageUrl;
-
-
-        while((record = reader.readNext()) != null){
-            mCommonName = record[0];
-            mScientificName = record[1];
-            mBriefDescription = record[2];
-            mIdentification = record[3];
-            mBiology = record[4];
-            mRiskToHuman = record[5];
-            mDiet = record[6];
-            mDangerLevel = record[7];
-            mGroup = record[8];
-            mImageUrl = record[9];
-
-            Wildlife wildlife = new Wildlife(mCommonName, mScientificName, mBriefDescription, mIdentification,
-                    mBiology, mRiskToHuman, mDiet, mDangerLevel, mGroup, mImageUrl);
-
-            returnList.add(wildlife);
-
-            System.out.println("Just created: " + "common name: " + mCommonName + "scientific name: " + mScientificName +
-                    "brief description: " + mBriefDescription + "identification: " + mIdentification + "biology: " + mBiology +
-                    "risk to human: " + mRiskToHuman + "diet: " + mDiet + "danger level: " + mDangerLevel + "group: " + mGroup +
-                    "image url: " + mImageUrl);
-        }
-        return returnList;
-    }
-
-    private void performDataInsertion(){
-        CompletableFuture<Void> future = CompletableFuture.runAsync(new Runnable() {
+    private void getDataFromDb(String group){
+        CompletableFuture future = CompletableFuture.runAsync(new Runnable() {
             @Override
             public void run() {
-                List<Wildlife> existingList =  wildlifeViewModel.getAllWildlifeList();
-                if (existingList.isEmpty()){
-                    try {
-                        wildlifeListFromDb = readData();
-                        wildlifeViewModel.insertAll(wildlifeListFromDb);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }else{
-                    wildlifeListFromDb = existingList;
+                wildlifeListFromDb = wildlifeViewModel.getWildlifeInGroup(group);
+                System.out.println(wildlifeListFromDb.size());
+            }
+        }).thenRun(new Runnable() {
+            @Override
+            public void run() {
+                if (!group.equals("Others")){
+                    getFilteredList(wildLifeListFromApi, wildlifeListFromDb);
                 }
+                setUi(group);
+            }
+        });
+    }
+
+    private void setUi(String group){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (!group.equals("Others")){
+                    if (wildLifeListFromApi == null || wildLifeListFromApi.size() == 0){
+                        binding.noResult.setVisibility(View.VISIBLE);
+                        binding.animalRecyclerView.setVisibility(View.GONE);
+                    }
+                    wildlifeInfoAdapter.setWildLifeList(filteredList);
+                }else{
+                    if (wildLifeListFromApi == null || wildLifeListFromApi.size() == 0){
+                        binding.noResult.setVisibility(View.GONE);
+                        binding.animalRecyclerView.setVisibility(View.VISIBLE);
+                    }
+                    wildlifeInfoAdapter.setWildLifeList(wildlifeListFromDb);
+                }
+                binding.animalRecyclerView.setAdapter(wildlifeInfoAdapter);
             }
         });
     }
@@ -156,11 +238,11 @@ public class AnimalInfoActivity extends AppCompatActivity {
         wildlifeViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(WildlifeViewModel.class);
     }
 
-    private void getAnimalInfo(String animalGroup){
+    private void getAnimalInfo(String animalGroup, String filterQuery){
 
         WildLifeQuery query = RetrofitClient.alaRetrofitClient().create(WildLifeQuery.class);
-        String searchUrl = "ws/explore/group/" + animalGroup + "?" + "lat=" + lat + "&" + "lon=" + lon + "&" +"radius=15"
-        +  "&pageSize=50&sort=count" + snakeFilterQuery;
+        String searchUrl = "ws/explore/group/" + animalGroup + "?" + "lat=" + lat + "&" + "lon=" + lon + "&" +"radius=20"
+        +  "&pageSize=50&sort=count" + filterQuery;
         query.getWildLifeData(searchUrl).enqueue(new Callback<ArrayList<WildLifeDataModel>>() {
             @Override
             public void onResponse(Call<ArrayList<WildLifeDataModel>> call, Response<ArrayList<WildLifeDataModel>> response) {
@@ -168,21 +250,19 @@ public class AnimalInfoActivity extends AppCompatActivity {
                 String res = gson.toJson(response.body());
                 Log.d("TAG", "onResponse: " + res);
                 wildLifeListFromApi = response.body();
-                getFilteredList(wildLifeListFromApi, wildlifeListFromDb);
-                wildlifeInfoAdapter.setWildLifeList(filteredList);
-                binding.animalRecyclerView.setAdapter(wildlifeInfoAdapter);
+                getDataFromDb(animalGroup);
+                progressDialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<ArrayList<WildLifeDataModel>> call, Throwable t) {
-
+                progressDialog.dismiss();
             }
         });
     }
 
     private void getFilteredList(List<WildLifeDataModel> fromApi, List<Wildlife> fromDb){
-        filteredList = Helper.findCommonElements(fromApi, fromDb);
-//        System.out.println(filteredList.get(0).getCommonName());
+        filteredList = Helper.findCommonElements(fromApi, fromDb, false);
     }
 
 }

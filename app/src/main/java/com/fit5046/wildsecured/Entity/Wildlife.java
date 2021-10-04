@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Comparator;
+
 @Entity
 public class Wildlife {
 
@@ -17,12 +19,10 @@ public class Wildlife {
     private String briefDescription;
     @ColumnInfo(name = "identification")
     private String identification;
-    @ColumnInfo(name = "biology")
-    private String biology;
+    @ColumnInfo(name = "habitat")
+    private String habitat;
     @ColumnInfo(name = "riskToHuman")
     private String riskToHuman;
-    @ColumnInfo(name = "diet")
-    private String diet;
     @ColumnInfo(name = "dangerLevel")
     private String dangerLevel;
     @ColumnInfo(name = "wildlifeGroup")
@@ -31,14 +31,13 @@ public class Wildlife {
     private String imageUrl;
 
     public Wildlife(String commonName, String scientificName, String briefDescription, String identification,
-                    String biology, String riskToHuman, String diet, String dangerLevel, String wildlifeGroup, String imageUrl) {
+                    String habitat, String riskToHuman,  String dangerLevel, String wildlifeGroup, String imageUrl) {
         this.commonName = commonName;
         this.scientificName = scientificName;
         this.briefDescription = briefDescription;
         this.identification = identification;
-        this.biology = biology;
+        this.habitat = habitat;
         this.riskToHuman = riskToHuman;
-        this.diet = diet;
         this.dangerLevel = dangerLevel;
         this.wildlifeGroup = wildlifeGroup;
         this.imageUrl = imageUrl;
@@ -84,14 +83,6 @@ public class Wildlife {
         this.identification = identification;
     }
 
-    public String getBiology() {
-        return biology;
-    }
-
-    public void setBiology(String biology) {
-        this.biology = biology;
-    }
-
     public String getRiskToHuman() {
         return riskToHuman;
     }
@@ -100,12 +91,12 @@ public class Wildlife {
         this.riskToHuman = riskToHuman;
     }
 
-    public String getDiet() {
-        return diet;
+    public String getHabitat() {
+        return habitat;
     }
 
-    public void setDiet(String diet) {
-        this.diet = diet;
+    public void setHabitat(String habitat) {
+        this.habitat = habitat;
     }
 
     public String getDangerLevel() {
@@ -131,4 +122,32 @@ public class Wildlife {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+    public static Comparator<Wildlife> sortByNameAsc = new Comparator<Wildlife>() {
+        @Override
+        public int compare(Wildlife o1, Wildlife o2) {
+            return o1.getCommonName().compareTo(o2.getCommonName());
+        }
+    };
+
+    public static Comparator<Wildlife> sortByNameDesc = new Comparator<Wildlife>() {
+        @Override
+        public int compare(Wildlife o1, Wildlife o2) {
+            return o2.getCommonName().compareTo(o1.getCommonName());
+        }
+    };
+
+    public static Comparator<Wildlife> sortByDangerLevelAsc = new Comparator<Wildlife>() {
+        @Override
+        public int compare(Wildlife o1, Wildlife o2) {
+            return Integer.parseInt(o1.getDangerLevel()) - Integer.parseInt(o2.getDangerLevel());
+        }
+    };
+
+    public static Comparator<Wildlife> sortByDangerLevelDesc = new Comparator<Wildlife>() {
+        @Override
+        public int compare(Wildlife o1, Wildlife o2) {
+            return Integer.parseInt(o2.getDangerLevel()) - Integer.parseInt(o1.getDangerLevel());
+        }
+    };
 }

@@ -53,22 +53,41 @@
     <string name="sun_advice_content4">Sun Screen, SPF 30+, Sunglasses, Stay Indoor if possible.</string>
 
     <!--    insect advice page-->
+    <string name="advice_info">
+        Note: This feature only works with areas in Victoria,\n
+        searching places in other states may produce incorrect results.
+    </string>
+
     <string name="insect_main_title">Insect Information</string>
-
-
+    <string name="insect_main_content">Get a list of dangerous animals you might encounter in</string>
+    <string name="insect_destination">Destination</string>
+    <string name="insect_select">Please select a insect group</string>
+    <string name="insect_no_result">
+        No dangerous insects found! You are safe!\n
+        But please do not let your guard down, avoid contact with any unknown insects.
+    </string>
     <!--    animal advice page-->
     <string name="animal_main_title">Animal Information</string>
+    <string name="animal_main_content">Get a list of dangerous animals you might encounter in</string>
+    <string name="animal_destination">Destination</string>
     <string name="animal_select">Please select a species group</string>
+    <string name="animal_other_info">
+        \nThese animals might not appear in your searched destination, but they are found everywhere in Australia.\nThese animals can be dangerous as attacks on humans have been recorded.
+    </string>
+    <string name="animal_no_result">
+        No dangerous animals found! You are safe!\n
+        But please do not let your guard down, avoid contact with any unknown animals.
+    </string>
 
 
     <!--    clothing advice popup-->
-    <string name="gear_main_title">Gear Advice</string>
+    <string name="gear_main_title">Backpack Organizer</string>
     <string name="general_advice">To best enjoy your hiking and camping experience, we recommend you use a combination of:</string>
     <string name="clothing_advice_content">Slip on clothing that covers as much of your skin as possible.</string>
     <string name="hat_advice_content">Slap on a broad-brimmed hat that shades your face, neck and ears.</string>
     <string name="shoe_advice_content">Please put on closed toe shoes to avoid getting cuts on your feet.</string>
     <string name="sunglasses_advice_content">Slide on sunglasses.</string>
-    <string name="backpack_advice_content">Insect repellent, bear spray, flares, antibiotics</string>
+    <string name="backpack_advice_content">Use the checklist below to pack your backpack for the trip.</string>
     <string name="check_list_btn">Gear Checklist</string>
 
     <!--    checklist -->

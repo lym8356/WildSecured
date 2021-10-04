@@ -81,7 +81,7 @@ public abstract class CameraActivity extends AppCompatActivity
             rotationTextView,
             inferenceTimeTextView;
     protected ImageView bottomSheetArrowImageView;
-    private ImageView plusImageView, minusImageView;
+    private ImageView plusImageView, minusImageView, cameraBack;
     private Spinner modelSpinner;
     private Spinner deviceSpinner;
     private TextView threadsTextView;
@@ -106,6 +106,7 @@ public abstract class CameraActivity extends AppCompatActivity
         threadsTextView = findViewById(R.id.threads);
         plusImageView = findViewById(R.id.plus);
         minusImageView = findViewById(R.id.minus);
+        cameraBack = findViewById(R.id.cameraBack);
         modelSpinner = findViewById(R.id.model_spinner);
         deviceSpinner = findViewById(R.id.device_spinner);
         bottomSheetLayout = findViewById(R.id.bottom_sheet_layout);
@@ -178,6 +179,7 @@ public abstract class CameraActivity extends AppCompatActivity
 
         plusImageView.setOnClickListener(this);
         minusImageView.setOnClickListener(this);
+        cameraBack.setOnClickListener(this);
 
         model = Classifier.Model.valueOf(modelSpinner.getSelectedItem().toString().toUpperCase());
         device = Classifier.Device.valueOf(deviceSpinner.getSelectedItem().toString());
@@ -622,6 +624,8 @@ public abstract class CameraActivity extends AppCompatActivity
             }
             setNumThreads(--numThreads);
             threadsTextView.setText(String.valueOf(numThreads));
+        } else if(v.getId() == R.id.cameraBack){
+            finish();
         }
     }
 

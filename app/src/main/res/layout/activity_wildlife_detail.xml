@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:orientation="vertical">
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
@@ -23,6 +23,7 @@
                 android:id="@+id/wildlifeInfoBack"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:layout_alignParentStart="true"
                 android:src="@drawable/ic_baseline_arrow_back_24"
                 app:tint="@color/primary_orange" />
             <TextView
@@ -31,10 +32,10 @@
                 android:layout_height="wrap_content"
                 android:text="Wildlife Name"
                 android:textSize="18sp"
-                android:layout_marginStart="90dp"
+                android:layout_centerHorizontal="true"
                 android:textColor="@color/primary_orange"
                 android:fontFamily="@font/archivo_bold" />
-        </LinearLayout>
+        </RelativeLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -61,104 +62,112 @@
                 android:layout_height="200dp"
                 android:layout_gravity="center"
                 android:src="@color/black" />
-            <TextView
-                android:id="@+id/wildlifeDetailCommonName"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Wildlife Name"
-                android:fontFamily="@font/archivo_bold"
-                android:textSize="14sp" />
-            <TextView
-                android:id="@+id/wildlifeDetailSciName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Wildlife Name"
-                android:fontFamily="@font/archivo_italic"
-                android:textSize="14sp" />
-            <TextView
-                android:id="@+id/wildlifeDetailDescTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Brief Description"
-                android:fontFamily="@font/archivo_bold"
-                android:textSize="14sp" />
-            <TextView
-                android:id="@+id/wildlifeDetailDesc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Description"
-                android:fontFamily="@font/archivo_regular"
-                android:textSize="14sp" />
-            <TextView
-                android:id="@+id/wildlifeDetailIdentificationTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Identification"
-                android:fontFamily="@font/archivo_bold"
-                android:textSize="14sp" />
-            <TextView
-                android:id="@+id/wildlifeDetailIdentification"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Identification"
-                android:fontFamily="@font/archivo_regular"
-                android:textSize="14sp" />
-            <TextView
-                android:id="@+id/wildlifeDetailBiologyTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Biology"
-                android:fontFamily="@font/archivo_bold"
-                android:textSize="14sp" />
-            <TextView
-                android:id="@+id/wildlifeDetailBiology"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Biology"
-                android:fontFamily="@font/archivo_regular"
-                android:textSize="14sp" />
-            <TextView
-                android:id="@+id/wildlifeDetailDietTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Diet"
-                android:fontFamily="@font/archivo_bold"
-                android:textSize="14sp" />
-            <TextView
-                android:id="@+id/wildlifeDetailDiet"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Diet"
-                android:fontFamily="@font/archivo_regular"
-                android:textSize="14sp" />
-            <TextView
-                android:id="@+id/wildlifeDetailRiskTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Risk to Humans"
-                android:fontFamily="@font/archivo_bold"
-                android:textSize="14sp" />
-            <TextView
-                android:id="@+id/wildlifeDetailRisk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_below="@+id/wildlifeDetailRiskTitle"
-                android:text="Risk to Humans"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="@font/archivo_regular"
-                android:textSize="14sp" />
+                android:orientation="vertical"
+                android:padding="10dp">
+                <TextView
+                    android:id="@+id/wildlifeDetailCommonName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Wildlife Name"
+                    android:fontFamily="@font/archivo_bold"
+                    android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/wildlifeDetailSciName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Wildlife Name"
+                    android:fontFamily="@font/archivo_italic"
+                    android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/wildlifeDetailThreatLevelTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Threat Level"
+                    android:fontFamily="@font/archivo_bold"
+                    android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/wildlifeDetailThreatLevel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Dangerous"
+                    android:fontFamily="@font/archivo_bold"
+                    android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/wildlifeDetailDescTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Brief Description"
+                    android:fontFamily="@font/archivo_bold"
+                    android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/wildlifeDetailDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Description"
+                    android:fontFamily="@font/archivo_regular"
+                    android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/wildlifeDetailIdentificationTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Identification"
+                    android:fontFamily="@font/archivo_bold"
+                    android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/wildlifeDetailIdentification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Identification"
+                    android:fontFamily="@font/archivo_regular"
+                    android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/wildlifeDetailHabitatTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Habitat"
+                    android:fontFamily="@font/archivo_bold"
+                    android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/wildlifeDetailHabitat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Habitat"
+                    android:fontFamily="@font/archivo_regular"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/wildlifeDetailRiskTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Risk to Humans"
+                    android:fontFamily="@font/archivo_bold"
+                    android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/wildlifeDetailRisk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@+id/wildlifeDetailRiskTitle"
+                    android:text="Risk to Humans"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/archivo_regular"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

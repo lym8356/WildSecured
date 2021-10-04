@@ -8,7 +8,11 @@ import android.text.Spanned;
 import com.fit5046.wildsecured.Entity.Wildlife;
 import com.fit5046.wildsecured.R;
 import com.fit5046.wildsecured.WildlifeModel.WildLifeDataModel;
+import com.opencsv.CSVReader;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -58,10 +62,10 @@ public class Helper {
     }
 
 
-    public static List<Wildlife> findCommonElements(List<WildLifeDataModel> fromApi, List<Wildlife> fromDb){
+    public static List<Wildlife> findCommonElements(List<WildLifeDataModel> fromApi, List<Wildlife> fromDb, boolean isInsect){
         List<Wildlife> resultList = new ArrayList<>();
         for (WildLifeDataModel wildLifeDataModel: fromApi){
-            Wildlife wildlife = find(fromDb, wildLifeDataModel);
+            Wildlife wildlife = find(fromDb, wildLifeDataModel, isInsect);
             if (wildlife != null){
                 resultList.add(wildlife);
             }
@@ -69,21 +73,30 @@ public class Helper {
         return resultList;
     }
 
-    private static Wildlife find(List<Wildlife> fromDb, WildLifeDataModel wildLifeDataModel) {
+    private static Wildlife find(List<Wildlife> fromDb, WildLifeDataModel wildLifeDataModel, boolean isInsect) {
         for (Wildlife wildlife: fromDb){
-            if (matches(wildlife, wildLifeDataModel)){
+            if (matches(wildlife, wildLifeDataModel, isInsect)){
                 return wildlife;
             }
         }
         return null;
     }
 
-    private static boolean matches(Wildlife wildlife, WildLifeDataModel wildLifeDataModel) {
-        if (wildlife.getCommonName().equals(wildLifeDataModel.getCommonName())){
-            return true;
+    private static boolean matches(Wildlife wildlife, WildLifeDataModel wildLifeDataModel, boolean isInsect) {
+        if (isInsect){
+            if (wildlife.getScientificName().equals(wildLifeDataModel.getName())){
+                return true;
+            }else{
+                return false;
+            }
         }else{
-            return false;
+            if (wildlife.getCommonName().equals(wildLifeDataModel.getCommonName())){
+                return true;
+            }else{
+                return false;
+            }
         }
+
     }
 
 
@@ -124,6 +137,42 @@ public class Helper {
         }else{
             return Html.fromHtml(html);
         }
+    }
+
+    public static List<Wildlife> readData() throws IOException {
+        List<Wildlife> returnList = new ArrayList<>();
+
+        InputStream is = App.getContext().getResources().openRawResource(R.raw.all_species);
+        InputStreamReader csvStreamReader = new InputStreamReader(is);
+
+        CSVReader reader = new CSVReader(csvStreamReader);
+        reader.skip(1);
+        String[] record = null;
+        String mCommonName, mScientificName, mBriefDescription, mIdentification, mHabitat, mRiskToHuman, mDangerLevel, mGroup, mImageUrl;
+
+
+        while((record = reader.readNext()) != null){
+            mCommonName = record[0];
+            mScientificName = record[1];
+            mBriefDescription = record[2];
+            mIdentification = record[3];
+            mHabitat = record[4];
+            mRiskToHuman = record[5];
+            mDangerLevel = record[6];
+            mGroup = record[7];
+            mImageUrl = record[8];
+
+            Wildlife wildlife = new Wildlife(mCommonName, mScientificName, mBriefDescription, mIdentification,
+                    mHabitat, mRiskToHuman, mDangerLevel, mGroup, mImageUrl);
+
+            returnList.add(wildlife);
+
+            System.out.println("Created on database build: " + "common name: " + mCommonName + "scientific name: " + mScientificName +
+                    "brief description: " + mBriefDescription + "identification: " + mIdentification + "habitat: " + mHabitat +
+                    "risk to human: " + mRiskToHuman + "danger level: " + mDangerLevel + "group: " + mGroup +
+                    "image url: " + mImageUrl);
+        }
+        return returnList;
     }
 
 }

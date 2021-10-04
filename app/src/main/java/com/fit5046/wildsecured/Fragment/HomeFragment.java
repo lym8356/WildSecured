@@ -75,6 +75,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     boolean isCall1Finished = false;
     boolean isCall2Finished = false;
 
+    private String currentCity;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -199,6 +201,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     binding.homeWeatherIcon.setImageResource(iconToReplace);
                     binding.homeWeatherIcon.setColorFilter(Color.rgb(255, 255, 255));
                     binding.homeLocation.setText(currentCall.getName());
+                    currentCity = currentCall.getName();
                     binding.homeDay.setText(Helper.formatDate(currentCall.getDt()));
                     binding.homeWeatherDesc.setText(currentCall.getWeather().get(0).getDescription());
                     binding.homeWeatherMin.setText(String.valueOf(Math.round(currentCall.getMain().getTempMin())));
@@ -334,12 +337,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 intent = new Intent(getActivity(), InsectInfoActivity.class);
                 intent.putExtra("lat", currentLat);
                 intent.putExtra("lon", currentLon);
+                intent.putExtra("cityName", currentCity);
                 startActivity(intent);
                 break;
             case R.id.home_animal_icon:
                 intent = new Intent(getActivity(), AnimalInfoActivity.class);
                 intent.putExtra("lat", currentLat);
                 intent.putExtra("lon", currentLon);
+                intent.putExtra("cityName", currentCity);
                 startActivity(intent);
                 break;
             case R.id.home_clothing_icon:

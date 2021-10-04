@@ -56,11 +56,16 @@ public class WildlifeInfoAdapter extends RecyclerView.Adapter<WildlifeInfoAdapte
             Glide.with(context)
                     .load(wildLifeList.get(position).getImageUrl())
                     .placeholder(R.drawable.load)
+                    .error(R.drawable.image_not_available)
+                    .fitCenter()
+                    .into(holder.binding.wildlifeThumbnail);
+        }else{
+            Glide.with(context)
+                    .load(R.drawable.image_not_available)
                     .fitCenter()
                     .into(holder.binding.wildlifeThumbnail);
         }
 
-        holder.binding.wildlifeName.setText(wildLifeList.get(position).getCommonName());
 
         holder.binding.wildlifeDangerLevel.setText(Helper.getThreatLevelString(wildLifeList.get(position).getDangerLevel()));
         holder.binding.wildlifeDangerLevel.setTextColor(context.getResources().getColor(Helper.getThreatColor(wildLifeList.get(position).getDangerLevel())));
