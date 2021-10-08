@@ -11,40 +11,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.fit5046.wildsecured.R;
-import com.fit5046.wildsecured.Utils.WeatherQuery;
-import com.fit5046.wildsecured.WeatherModel.WeatherResponse;
+import com.fit5046.wildsecured.WeatherModel.Daily;
 import com.fit5046.wildsecured.databinding.FragmentForecastBinding;
 import com.fit5046.wildsecured.Adapter.ForecastAdapter;
 
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import java.util.ArrayList;
 
 
 public class ForecastFragment extends Fragment {
 
     private FragmentForecastBinding binding;
-    //openweather api related
-    private final String AppId = "832c9987d78cef10eb4823a73e81743c";
-    private final String weatherUrl = "https://api.openweathermap.org/";
-    private final String exclude = "minutely,hourly,alerts";
-    private final String units = "metric";
 
-    //location related
-    String currentLon;
-    String currentLat;
-    String lastLon = "";
-    String lastLat = "";
-//    ForecastAdapter adapter;
-
+    private ArrayList<Daily> forecastList;
 
     private RecyclerView rvResults;
+
+    private ProgressDialog progressDialog;
 
     public ForecastFragment() {
         // Required empty public constructor
@@ -58,25 +42,18 @@ public class ForecastFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentForecastBinding.inflate(inflater, container, false);
 
+        forecastList = new ArrayList<>();
+        progressDialog = new ProgressDialog(getActivity());
+        //progressDialog.setMax(100);
+
 
         setupRecyclerView();
 
         Bundle bundle = getArguments();
         if (bundle != null){
-            currentLat = bundle.getString("lat");
-            currentLon = bundle.getString("lon");
-            getWeatherInfo(currentLon, currentLat);
+            forecastList = bundle.getParcelableArrayList("forecastList");
+            getWeatherInfo();
         }
-
-
-//        if (WeatherDataManager.forecastWeatherResponse != null){
-//            setupRecyclerView();
-//            updateWeatherData(WeatherDataManager.forecastWeatherResponse);
-//        }else{
-//            setupRecyclerView();
-//            getWeatherInfo(currentLon, currentLat);
-//        }
-
 
         binding.forecastUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,8 +63,8 @@ public class ForecastFragment extends Fragment {
                 }
             }
         });
-        View view = binding.getRoot();
-        return view;
+
+        return binding.getRoot();
     }
 
     public void setupRecyclerView(){
@@ -97,51 +74,15 @@ public class ForecastFragment extends Fragment {
         rvResults.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
     }
 
-    public void getWeatherInfo(String lon, String lat) {
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(weatherUrl).addConverterFactory(GsonConverterFactory.create()).build();
-        WeatherQuery query = retrofit.create(WeatherQuery.class);
-
-        final ProgressDialog progressDialog;
-        progressDialog = new ProgressDialog(getActivity());
-        //progressDialog.setMax(100);
-        progressDialog.show();
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setContentView(R.layout.progress_layout);
-        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+    public void getWeatherInfo() {
 
 
-        // execute query to get forecast data
-        Call getForecastCall = query.getCurrentWeatherData(lat, lon, exclude, units, AppId);
-        getForecastCall.enqueue(new Callback() {
-            @Override
-            public void onResponse(Call call, Response response) {
-                if (response.code() == 200) {
-                    WeatherResponse weatherResponse = (WeatherResponse) response.body();
-                    assert weatherResponse != null;
-//                    WeatherDataManager.forecastWeatherResponse = weatherResponse;
-//                    updateWeatherData(weatherResponse);
-                    ForecastAdapter adapter = new ForecastAdapter(getContext(), weatherResponse.getForecastWeatherResponses());
-                    rvResults.setAdapter(adapter);
-                    progressDialog.dismiss();
-                }
-                else{
-                    Toast.makeText(getActivity().getApplicationContext(), "Failed to retrieve weather data", Toast.LENGTH_LONG).show();
-                }
-            }
+        ForecastAdapter adapter = new ForecastAdapter();
+        if (forecastList != null){
+            adapter.setForecastData(forecastList);
+            rvResults.setAdapter(adapter);
+        }
 
-            @Override
-            public void onFailure(Call call, Throwable t) {
-//                Toast.makeText(getActivity().getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
-                Toast.makeText(getActivity().getApplicationContext(), "Network Error", Toast.LENGTH_LONG).show();
-
-                System.out.println(t.getMessage());
-            }
-        });
     }
-
-//    public void updateWeatherData(WeatherResponse weatherResponse){
-//        adapter = new ForecastAdapter(getContext(), weatherResponse.getForecastWeatherResponses());
-//        rvResults.setAdapter(adapter);
-//    }
 
 }

@@ -1,7 +1,6 @@
 package com.fit5046.wildsecured;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,7 +14,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.fit5046.wildsecured.Adapter.CategoryAdapter;
-import com.fit5046.wildsecured.Adapter.UserListAdapter;
 import com.fit5046.wildsecured.Entity.Category;
 import com.fit5046.wildsecured.Entity.Item;
 import com.fit5046.wildsecured.Viewmodel.CategoryViewModel;
@@ -24,7 +22,6 @@ import com.fit5046.wildsecured.databinding.ActivityCategoryViewBinding;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 public class CategoryViewActivity extends AppCompatActivity  implements CategoryAdapter.HandleCategoryClick{
 

@@ -9,7 +9,6 @@ import androidx.lifecycle.LiveData;
 import com.fit5046.wildsecured.DAO.SavedPlaceDAO;
 import com.fit5046.wildsecured.Database.AppDatabase;
 import com.fit5046.wildsecured.SavedPlace;
-import com.fit5046.wildsecured.WeatherModel.Sys;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -62,6 +61,16 @@ public class SavedPlaceRepository {
             @Override
             public SavedPlace get() {
                 return savedPlaceDAO.findByPlaceId(placeId);
+            }
+        }, AppDatabase.databaseWriteExecutor);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public CompletableFuture<SavedPlace> findCurrentDefaultPlace() {
+        return CompletableFuture.supplyAsync(new Supplier<SavedPlace>() {
+            @Override
+            public SavedPlace get() {
+                return savedPlaceDAO.findCurrentDefaultPlace();
             }
         }, AppDatabase.databaseWriteExecutor);
     }

@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
 import android.os.Looper;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -100,6 +102,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
     private int radius = 5000;
     private GooglePlaceAdapter googlePlaceAdapter;
     private Marker currentMarker;
+    private MarkerOptions showMarkerOptions;
+    private MarkerOptions searchedMarker;
     private SavedPlaceViewModel savedPlaceViewModel;
     private ArrayList<String> userSavedLocationId;
     
@@ -107,6 +111,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
     public MapFragment() {
         // Required empty public constructor
     }
+
+//    public MapFragment(MarkerOptions markerOptions) {
+//        this.showMarkerOptions = markerOptions;
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -149,6 +157,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
                     case R.id.terrainBtn:
                         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
                         break;
+//                    case R.id.offlineMapBtn:
+//                        MapBoxFragment mapBoxFragment = new MapBoxFragment();
+//                        getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, mapBoxFragment).addToBackStack(null).commit();
+//                        break;
                 }
                 return true;
             });
@@ -175,8 +187,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
         Places.initialize(getActivity().getApplicationContext(), getResources().getString(R.string.GOOGLE_API_KEY));
         binding.mapSearchBar.setFocusable(false);
         binding.mapSearchBar.setOnClickListener(new View.OnClickListener() {
+            private long mLastClickTime = 0;
             @Override
             public void onClick(View v) {
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 500){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 List<Place.Field> fieldList = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG, Place.Field.NAME);
                 Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fieldList).setCountry("AU").build(getActivity().getApplicationContext());
                 startActivityForResult(intent, 100);
@@ -239,7 +258,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
                     }).create().show();
         }else{
             requestLocation();
+            if (showMarkerOptions != null){
+                mGoogleMap.clear();
+                mGoogleMap.addMarker(showMarkerOptions);
+            }
         }
+    }
+
+    public void showClickedLocation(MarkerOptions markerOptions){
+        Toast.makeText(requireActivity(), "Clicked", Toast.LENGTH_SHORT).show();
     }
     
     private void requestLocation(){
@@ -415,6 +442,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
                                             }
                                             Toast.makeText(requireContext(), resCount +" results found, zoom out might be required to see the results", Toast.LENGTH_SHORT).show();
                                             googlePlaceAdapter.setGooglePlaceModels(googlePlaceModelList);
+                                            if (searchedMarker != null){
+                                                mGoogleMap.addMarker(searchedMarker);
+                                            }
 
                                         } else if (response.body().getError() != null) {
                                             Toast.makeText(requireContext(), "Network Error", Toast.LENGTH_SHORT).show();
@@ -427,7 +457,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
                                                 getNearByPlaces(typeName, locationToSearch);
                                                 Log.d("TAG", "onResponse: " + radius);
                                             }
-                                            Toast.makeText(requireContext(), "No results found", Toast.LENGTH_SHORT).show();
+                                            if (googlePlaceModelList.size() == 0){
+                                                Toast.makeText(requireContext(), "No results found", Toast.LENGTH_SHORT).show();
+                                            }
                                         }
                                     }
 
@@ -469,6 +501,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
             }
             MarkerOptions markerOptions = new MarkerOptions().position(new LatLng(lat, lon)).title(place.getAddress()).snippet(place.getName());
             markerOptions.icon(getCustomIcon());
+            searchedMarker = markerOptions;
             mGoogleMap.addMarker(markerOptions);
 
         }else if(resultCode == AutocompleteActivity.RESULT_ERROR){
@@ -537,6 +570,27 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
 
     private void initViewModel(){
         savedPlaceViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()).create(SavedPlaceViewModel.class);
+        savedPlaceViewModel.getSavedPlaceList().observe(requireActivity(), new Observer<List<SavedPlace>>() {
+            @Override
+            public void onChanged(List<SavedPlace> savedPlaceList) {
+                if (savedPlaceList != null && savedPlaceList.size() != 0){
+                    userSavedLocationId.clear();
+                    for (int i=0; i<savedPlaceList.size(); i++){
+                        userSavedLocationId.add(savedPlaceList.get(i).placeId);
+                    }
+                    for (int j=0; j<googlePlaceModelList.size(); j++){
+                        if (userSavedLocationId.contains(googlePlaceModelList.get(j).getPlaceId())){
+                            googlePlaceModelList.get(j).setSaved(true);
+                            googlePlaceAdapter.notifyDataSetChanged();
+                        }else{
+                            googlePlaceModelList.get(j).setSaved(false);
+                            googlePlaceAdapter.notifyDataSetChanged();
+                        }
+                    }
+
+                }
+            }
+        });
     }
 
     @Override
@@ -608,7 +662,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
     }
 
     @Override
-    public void navigationClick() {
-
+    public void navigationClick(String lat, String lon) {
+        Intent intent = new Intent(Intent.ACTION_VIEW,
+                Uri.parse("google.navigation:q=" + lat + "," + lon + "&mode=l"));
+        intent.setPackage("com.google.android.apps.maps");
+        if (intent.resolveActivity(requireActivity().getPackageManager()) != null){
+            startActivity(intent);
+        }
     }
+
 }

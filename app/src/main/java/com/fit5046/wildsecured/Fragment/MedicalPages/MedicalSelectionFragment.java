@@ -51,6 +51,22 @@ public class MedicalSelectionFragment extends Fragment {
             }
         });
 
+        binding.medicalBone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new MedicalBoneFragment();
+                getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, fragment).addToBackStack(null).commit();
+            }
+        });
+
+        binding.medicalBitesAndStings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new MedicalBitesFragment();
+                getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, fragment).addToBackStack(null).commit();
+            }
+        });
+
         // Inflate the layout for this fragment
         return binding.getRoot();
     }

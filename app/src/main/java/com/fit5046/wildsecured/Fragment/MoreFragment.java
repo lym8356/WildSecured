@@ -26,11 +26,18 @@ public class MoreFragment extends Fragment {
         binding = FragmentMoreBinding.inflate(inflater, container, false);
 
 
-        binding.test.setOnClickListener(new View.OnClickListener() {
+        binding.moreSnakeRecognition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ClassifierActivity.class);
                 startActivity(intent);
+            }
+        });
+        binding.moreAboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new AboutUsFragment();
+                getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, fragment).addToBackStack(null).commit();
             }
         });
         return binding.getRoot();

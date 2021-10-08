@@ -33,4 +33,9 @@ public class SavedPlaceViewModel extends AndroidViewModel {
     public CompletableFuture<SavedPlace> findByPlaceIdFuture(final String placeId){
         return savedPlaceRepo.findByPlaceIdFuture(placeId);
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public CompletableFuture<SavedPlace> findCurrentDefaultPlace(){
+        return savedPlaceRepo.findCurrentDefaultPlace();
+    }
 }

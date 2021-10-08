@@ -12,5 +12,8 @@
     <item
         android:id="@+id/terrainBtn"
         android:title="@string/map_type_menu_terrain" />
+<!--    <item-->
+<!--        android:id="@+id/offlineMapBtn"-->
+<!--        android:title="@string/mapOffline" />-->
 
 </menu>

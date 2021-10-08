@@ -52,6 +52,8 @@
     <string name="sun_advice_title4">5. UVi reading from 11+ (Extremely High)</string>
     <string name="sun_advice_content4">Sun Screen, SPF 30+, Sunglasses, Stay Indoor if possible.</string>
 
+    <string name="location_set_default"><u>Click here to set as default location</u></string>
+
     <!--    insect advice page-->
     <string name="advice_info">
         Note: This feature only works with areas in Victoria,\n
@@ -133,6 +135,7 @@
     <!--    api keys-->
     <string name="GOOGLE_API_KEY">AIzaSyDKQicQAusG5symiA4KGAUiWwDlpxQgtuk</string>
     <string name="OPENWEATHER_API_KEY">832c9987d78cef10eb4823a73e81743c</string>
+    <string name="MAPBOX_API_KEY">pk.eyJ1IjoibHltODM1NiIsImEiOiJja293MGM3bDIwMWFhMndtZ2hwbTFsYXhyIn0.-V6wRsshm8vFVNXkWj6pxA</string>
 
     <!-- tflite -->
     <string name="tfe_ic_app_name" translation_description="Image Classification demo app [CHAR_LIMIT=40]">TFL Classify</string>
@@ -149,5 +152,13 @@
         <item>CPU</item>
         <item>GPU</item>
     </string-array>
+
+    <string name="about_us_title">About Us</string>
+    <string name="about_us">
+        In order to raise the awareness of the camper and hiking lovers, we, Sunbeamers, decided to build an Android APP named wildscured. This APP is designed for those people who love camping or hiking to better plan their trip and avoid getting hurt during their trip.\n 
+        It helps them to plan for the trip in advance and give them tips on being safe in nature while still able to enjoy their trip.
+    </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

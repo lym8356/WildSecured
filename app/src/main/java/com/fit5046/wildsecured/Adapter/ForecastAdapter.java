@@ -1,6 +1,5 @@
 package com.fit5046.wildsecured.Adapter;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,19 +12,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fit5046.wildsecured.R;
 import com.fit5046.wildsecured.Utils.Helper;
-import com.fit5046.wildsecured.WeatherModel.ForecastWeatherResponse;
+import com.fit5046.wildsecured.WeatherModel.Daily;
 
 
 import java.util.ArrayList;
 
 public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ViewHolder> {
 
-    private ArrayList<ForecastWeatherResponse> mForecastWeatherResponse;
-    private Context mContext;
+    private ArrayList<Daily> forecastData;
 
-    public ForecastAdapter(Context context, ArrayList<ForecastWeatherResponse> forecastWeatherResponse){
-        mContext = context;
-        mForecastWeatherResponse = forecastWeatherResponse;
+    public ForecastAdapter(){
     }
 
     @NonNull
@@ -38,20 +34,29 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        ForecastWeatherResponse currentForecastWeatherResponse = mForecastWeatherResponse.get(position);
-        holder.rvWeatherIcon.setImageResource(Helper.getArtResourceForWeatherCondition(currentForecastWeatherResponse.getWeather().get(0).getId()));
+        Daily currentData = forecastData.get(position);
+        if (position == 0){
+            holder.rvDay.setText("Today");
+        }else{
+            holder.rvDay.setText(Helper.formatDate(currentData.getDt()));
+        }
+        holder.rvWeatherIcon.setImageResource(Helper.getArtResourceForWeatherCondition(currentData.getWeather().get(0).getId()));
         holder.rvWeatherIcon.setColorFilter(Color.parseColor("#FF8047"));
-        holder.rvWeatherDesc.setText(currentForecastWeatherResponse.getWeather().get(0).getDescription());
-        holder.rvDay.setText(Helper.formatDate(currentForecastWeatherResponse.getDt()));
-        holder.rvMinTemp.setText(String.valueOf(Math.round(currentForecastWeatherResponse.getTemp().getMin())));
-        holder.rvMaxTemp.setText(String.valueOf(Math.round(currentForecastWeatherResponse.getTemp().getMax())));
-        holder.rvMaxUV.setText(String.valueOf(Math.round(currentForecastWeatherResponse.getUvi())));
+        holder.rvWeatherDesc.setText(currentData.getWeather().get(0).getDescription());
+        holder.rvMinTemp.setText(String.valueOf(Math.round(currentData.getTemp().getMin())));
+        holder.rvMaxTemp.setText(String.valueOf(Math.round(currentData.getTemp().getMax())));
+        holder.rvMaxUV.setText(String.valueOf(Math.round(currentData.getUvi())));
+
     }
 
+    public void setForecastData(ArrayList<Daily> forecastData) {
+        this.forecastData = forecastData;
+        notifyDataSetChanged();
+    }
 
     @Override
     public int getItemCount() {
-        return mForecastWeatherResponse.size();
+        return forecastData.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

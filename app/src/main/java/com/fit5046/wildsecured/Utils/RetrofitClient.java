@@ -6,41 +6,43 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class RetrofitClient {
 
-    private static Retrofit retrofit = null;
+    private static Retrofit weatherRetrofit = null;
+    private static Retrofit alaRetrofit = null;
+    private static Retrofit googleRetrofit = null;
     public static final String GOOGLE_PLACE_BASE_URL = "https://maps.googleapis.com/";
     public static final String OPEN_WEATHER_BASE_URL = "https://api.openweathermap.org/";
     public static final String ALA_BASE_URL = "https://biocache-ws.ala.org.au/";
 
     public static Retrofit openWeatherRetrofitClient(){
-        if (retrofit == null){
-            retrofit = new Retrofit.Builder()
+        if (weatherRetrofit == null){
+            weatherRetrofit = new Retrofit.Builder()
                     .baseUrl(OPEN_WEATHER_BASE_URL)
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
-        return retrofit;
+        return weatherRetrofit;
     }
 
     public static Retrofit alaRetrofitClient(){
-        if (retrofit == null){
-            retrofit = new Retrofit.Builder()
+        if (alaRetrofit == null){
+            alaRetrofit = new Retrofit.Builder()
                     .baseUrl(ALA_BASE_URL)
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
-        return retrofit;
+        return alaRetrofit;
     }
 
     public static Retrofit placeRetrofitClient(){
-        if (retrofit == null){
-            retrofit = new Retrofit.Builder()
+        if (googleRetrofit == null){
+            googleRetrofit = new Retrofit.Builder()
                     .baseUrl(GOOGLE_PLACE_BASE_URL)
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
-        return retrofit;
+        return googleRetrofit;
     }
 }

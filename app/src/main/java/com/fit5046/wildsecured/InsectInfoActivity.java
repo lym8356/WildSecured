@@ -58,11 +58,6 @@ public class InsectInfoActivity extends AppCompatActivity {
         setContentView(view);
 
         progressDialog = new ProgressDialog(this);
-        //progressDialog.setMax(100);
-        progressDialog.setCancelable(false);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setContentView(R.layout.progress_layout);
-        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
         Intent intent = getIntent();
         lat = intent.getStringExtra("lat");
@@ -90,9 +85,11 @@ public class InsectInfoActivity extends AppCompatActivity {
                 String selected = (String) parent.getItemAtPosition(position);
                 switch (selected){
                     case "Spiders":
+                        showProgressDialog();
                         getInsectInfo("Arthropods", spiderFilterQuery, true);
                         break;
                     case "Ants, bees & wasps":
+                        showProgressDialog();
                         getInsectInfo("Arthropods", insectFilterQuery, false);
                         break;
                 }
@@ -223,5 +220,15 @@ public class InsectInfoActivity extends AppCompatActivity {
 
     private void getFilteredList(List<WildLifeDataModel> fromApi, List<Wildlife> fromDb){
         filteredList = Helper.findCommonElements(fromApi, fromDb, true);
+    }
+
+    private void showProgressDialog(){
+
+        //progressDialog.setMax(100);
+        progressDialog.show();
+        progressDialog.setCancelable(false);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
     }
 }

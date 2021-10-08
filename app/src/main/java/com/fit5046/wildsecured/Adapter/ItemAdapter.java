@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fit5046.wildsecured.Entity.Item;
 import com.fit5046.wildsecured.R;
-import com.fit5046.wildsecured.WeatherModel.Sys;
 
 import java.util.List;
 

@@ -89,6 +89,15 @@ public class GooglePlaceAdapter extends RecyclerView.Adapter<GooglePlaceAdapter.
             });
         }
 
+        holder.binding.placeDirection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String lon = String.valueOf(googlePlaceModelList.get(position).getGeometry().getLocation().getLng());
+                String lat = String.valueOf(googlePlaceModelList.get(position).getGeometry().getLocation().getLat());
+                cardClickListener.navigationClick(lat,lon);
+            }
+        });
+
         holder.binding.imgSaveLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,6 +132,6 @@ public class GooglePlaceAdapter extends RecyclerView.Adapter<GooglePlaceAdapter.
     public interface HandleCardClick{
         void cardClick(GooglePlaceModel googlePlaceModel);
         void savePlaceClick(GooglePlaceModel googlePlaceModel);
-        void navigationClick();
+        void navigationClick(String lat, String lon);
     }
 }

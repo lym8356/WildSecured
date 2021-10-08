@@ -60,7 +60,7 @@
             android:id="@+id/noResultText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/checklist_no_result"
+            android:text="You do not have any saved places."
             android:textColor="@color/primary_orange"
             android:visibility="gone"
             android:textSize="18sp"

@@ -57,20 +57,16 @@ public class AnimalInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAnimalInfoBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
+        progressDialog = new ProgressDialog(this);
 
         setContentView(view);
-
-        progressDialog = new ProgressDialog(this);
-        //progressDialog.setMax(100);
-        progressDialog.setCancelable(false);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setContentView(R.layout.progress_layout);
-        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
         Intent intent = getIntent();
         lat = intent.getStringExtra("lat");
         lon = intent.getStringExtra("lon");
         cityName = intent.getStringExtra("cityName");
+        System.out.println(lon+lat);
+
         isFABOpen = false;
 
         binding.cityName.setText(cityName);
@@ -94,12 +90,12 @@ public class AnimalInfoActivity extends AppCompatActivity {
                 String selected = (String) parent.getItemAtPosition(position);
                 switch (selected){
                     case "Reptiles":
-                        progressDialog.show();
+                        showProgressDialog();
                         binding.animalOtherInfo.setVisibility(View.GONE);
                         getAnimalInfo(selected, snakeFilterQuery);
                         break;
                     case "Bats":
-                        progressDialog.show();
+                        showProgressDialog();
                         binding.animalOtherInfo.setVisibility(View.GONE);
                         getAnimalInfo("Mammals", batFilterQuery);
                         break;
@@ -191,7 +187,7 @@ public class AnimalInfoActivity extends AppCompatActivity {
             @Override
             public void run() {
                 wildlifeListFromDb = wildlifeViewModel.getWildlifeInGroup(group);
-                System.out.println(wildlifeListFromDb.size());
+                System.out.println( "Data from database: " + wildlifeListFromDb.size());
             }
         }).thenRun(new Runnable() {
             @Override
@@ -241,11 +237,12 @@ public class AnimalInfoActivity extends AppCompatActivity {
     private void getAnimalInfo(String animalGroup, String filterQuery){
 
         WildLifeQuery query = RetrofitClient.alaRetrofitClient().create(WildLifeQuery.class);
-        String searchUrl = "ws/explore/group/" + animalGroup + "?" + "lat=" + lat + "&" + "lon=" + lon + "&" +"radius=20"
+        String searchUrl = "ws/explore/group/" + animalGroup + "?lat=" + lat + "&lon=" + lon + "&radius=20"
         +  "&pageSize=50&sort=count" + filterQuery;
         query.getWildLifeData(searchUrl).enqueue(new Callback<ArrayList<WildLifeDataModel>>() {
             @Override
             public void onResponse(Call<ArrayList<WildLifeDataModel>> call, Response<ArrayList<WildLifeDataModel>> response) {
+                Log.d("TAG", "code: " + response.code());
                 Gson gson = new Gson();
                 String res = gson.toJson(response.body());
                 Log.d("TAG", "onResponse: " + res);
@@ -263,6 +260,16 @@ public class AnimalInfoActivity extends AppCompatActivity {
 
     private void getFilteredList(List<WildLifeDataModel> fromApi, List<Wildlife> fromDb){
         filteredList = Helper.findCommonElements(fromApi, fromDb, false);
+    }
+
+    private void showProgressDialog(){
+
+        //progressDialog.setMax(100);
+        progressDialog.show();
+        progressDialog.setCancelable(false);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
     }
 
 }

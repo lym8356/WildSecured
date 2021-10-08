@@ -29,4 +29,7 @@ public interface SavedPlaceDAO {
     @Query("Select * from SavedPlace where placeId = :pId limit 1")
     SavedPlace findByPlaceId(String pId);
 
+    @Query("Select * from SavedPlace where isSelected = 1 limit 1")
+    SavedPlace findCurrentDefaultPlace();
+
 }

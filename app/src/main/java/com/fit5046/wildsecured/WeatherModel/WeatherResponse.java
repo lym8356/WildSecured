@@ -3,7 +3,7 @@ package com.fit5046.wildsecured.WeatherModel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class WeatherResponse {
     @SerializedName("lat")
@@ -17,35 +17,59 @@ public class WeatherResponse {
     private String timezone;
     @SerializedName("timezone_offset")
     @Expose
-    private int timezone_offset;
+    private Integer timezoneOffset;
     @SerializedName("current")
     @Expose
-    private CurrentWeatherResponse currentWeatherResponse;
+    private Current current;
     @SerializedName("daily")
     @Expose
-    private ArrayList<ForecastWeatherResponse> forecastWeatherResponses = new ArrayList<ForecastWeatherResponse>();
+    private List<Daily> daily = null;
 
     public Double getLat() {
         return lat;
+    }
+
+    public void setLat(Double lat) {
+        this.lat = lat;
     }
 
     public Double getLon() {
         return lon;
     }
 
+    public void setLon(Double lon) {
+        this.lon = lon;
+    }
+
     public String getTimezone() {
         return timezone;
     }
 
-    public int getTimezone_offset() {
-        return timezone_offset;
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
     }
 
-    public CurrentWeatherResponse getCurrentWeatherResponse() {
-        return currentWeatherResponse;
+    public Integer getTimezoneOffset() {
+        return timezoneOffset;
     }
 
-    public ArrayList<ForecastWeatherResponse> getForecastWeatherResponses() {
-        return forecastWeatherResponses;
+    public void setTimezoneOffset(Integer timezoneOffset) {
+        this.timezoneOffset = timezoneOffset;
+    }
+
+    public Current getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(Current current) {
+        this.current = current;
+    }
+
+    public List<Daily> getDaily() {
+        return daily;
+    }
+
+    public void setDaily(List<Daily> daily) {
+        this.daily = daily;
     }
 }
