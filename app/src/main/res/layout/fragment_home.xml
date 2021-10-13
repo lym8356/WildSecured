@@ -46,7 +46,7 @@
                         android:layout_height="wrap_content"
                         android:layout_toEndOf="@id/homeLocationIcon"
                         android:fontFamily="@font/archivo_regular"
-                        android:layout_margin="3dp"
+                        android:layout_margin="5dp"
                         android:text="@string/home_top_location"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
@@ -430,9 +430,10 @@
             <ImageView
                 app:layout_constraintTop_toBottomOf="@+id/forecastInfo"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="10dp"
                 android:id="@+id/home_bot_down"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_baseline_arrow_downward_24"
                 app:tint="@color/primary_orange" />

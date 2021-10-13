@@ -37,13 +37,13 @@ public abstract class Classifier {
     /** The model type used for classification. */
     public enum Model{
         FLOAT,
-        QUANTIZED
+        //QUANTIZED
     }
 
     /** The runtime device type used for executing classification. */
     public enum Device {
         CPU,
-        NNAPI,
+        //NNAPI,
         GPU
     }
 
@@ -95,11 +95,11 @@ public abstract class Classifier {
 
     public static Classifier create(Activity activity, Model model,  Device device, int numThreads)
             throws IOException {
-        if (model == Model.QUANTIZED){
-            return new ClassifierQuantizedMobileNet(activity, device, numThreads);
-        }else{
+//        if (model == Model.QUANTIZED){
+//            return new ClassifierQuantizedMobileNet(activity, device, numThreads);
+//        }else{
             return new ClassifierFloatMobileNet(activity, device, numThreads);
-        }
+//        }
     }
 
     /** An immutable result returned by a Classifier describing what was recognized. */
@@ -174,10 +174,10 @@ public abstract class Classifier {
     protected Classifier(Activity activity, Device device, int numThreads) throws IOException {
         tfliteModel = FileUtil.loadMappedFile(activity, getModelPath());
         switch (device) {
-            case NNAPI:
-                nnApiDelegate = new NnApiDelegate();
-                tfliteOptions.addDelegate(nnApiDelegate);
-                break;
+//            case NNAPI:
+//                nnApiDelegate = new NnApiDelegate();
+//                tfliteOptions.addDelegate(nnApiDelegate);
+//                break;
             case GPU:
                 gpuDelegate = new GpuDelegate();
                 tfliteOptions.addDelegate(gpuDelegate);

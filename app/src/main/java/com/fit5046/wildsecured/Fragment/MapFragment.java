@@ -157,10 +157,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
                     case R.id.terrainBtn:
                         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
                         break;
-//                    case R.id.offlineMapBtn:
-//                        MapBoxFragment mapBoxFragment = new MapBoxFragment();
-//                        getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, mapBoxFragment).addToBackStack(null).commit();
-//                        break;
                 }
                 return true;
             });

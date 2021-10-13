@@ -116,15 +116,15 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
             classifier.close();
             classifier = null;
         }
-        if (device == Device.GPU && model == Classifier.Model.QUANTIZED){
-            LOGGER.d("Not creating classifier: GPU doesn't support quantized models.");
-            runOnUiThread(
-                    () -> {
-                        Toast.makeText(this, "GPU does not yet supported quantized models.", Toast.LENGTH_LONG)
-                                .show();
-                    });
-            return;
-        }
+//        if (device == Device.GPU && model == Classifier.Model.QUANTIZED){
+//            LOGGER.d("Not creating classifier: GPU doesn't support quantized models.");
+//            runOnUiThread(
+//                    () -> {
+//                        Toast.makeText(this, "GPU does not yet supported quantized models.", Toast.LENGTH_LONG)
+//                                .show();
+//                    });
+//            return;
+//        }
         try {
             LOGGER.d(
                     "Creating classifier (device=%s, numThreads=%d)", device, numThreads);

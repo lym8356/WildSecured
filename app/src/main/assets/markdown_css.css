@@ -1,0 +1,53 @@
+
+html {
+  background-image: linear-gradient(to bottom, #EFEFEE, #FFD4B5);
+  color: black;
+  max-width: 100%;
+}
+
+img {
+  max-width: 100%;
+  margin: 0.5rem auto;
+}
+
+details {
+  margin: 1rem auto;
+  padding: 0 1rem;
+  width: 35em;
+  max-width: calc(100% - 2rem);
+  position: relative;
+  border: 1px solid #78909C;
+  border-radius: 6px;
+  background-color: transparent;
+  color: #263238;
+}
+
+summary {
+  padding: 1rem 2em 1rem 0;
+  outline: none;
+  display: block;
+  position: relative;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+li {
+  font-size: 1em;
+}
+
+.scrollup {
+    visibility: hidden;
+}
+
+table{
+    max-width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+th, td{
+    max-width: 100%;
+    align: center;
+    border:1px solid black;
+    font-size: 1em;
+}

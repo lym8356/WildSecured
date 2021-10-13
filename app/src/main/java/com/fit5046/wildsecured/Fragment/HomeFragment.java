@@ -8,20 +8,15 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.os.Looper;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -45,6 +40,8 @@ import com.fit5046.wildsecured.R;
 import com.fit5046.wildsecured.databinding.FragmentHomeBinding;
 import com.fit5046.wildsecured.Utils.GpsTracker;
 import com.fit5046.wildsecured.Utils.Helper;
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -70,6 +67,10 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import smartdevelop.ir.eram.showcaseviewlib.GuideView;
+import smartdevelop.ir.eram.showcaseviewlib.config.DismissType;
+import smartdevelop.ir.eram.showcaseviewlib.config.Gravity;
+import smartdevelop.ir.eram.showcaseviewlib.listener.GuideListener;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
@@ -114,6 +115,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         progressDialog = new ProgressDialog(getActivity());
         //progressDialog.setMax(100);
+
+        Bundle bundle = this.getArguments();
+        if (bundle != null){
+            if (bundle.getString("key").equals("tutorial")){
+                showTutorial();
+            }
+        }
 
         initViewModel();
 
@@ -406,4 +414,82 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
         }
     }
+
+    private void showTutorial(){
+        new GuideView.Builder(requireContext())
+                .setTitle("Your starred list.")
+                .setTargetView(binding.homeLocationWrapper)
+                .setContentText("The places you saved will be displayed here.")
+                .setDismissType(DismissType.anywhere)
+                .setGravity(Gravity.center)
+                .setTitleTextSize(16)
+                .setContentTextSize(14)
+                .setGuideListener(new GuideListener() {
+                    @Override
+                    public void onDismiss(View view) {
+                        new GuideView.Builder(requireContext())
+                                .setTitle("Sun Protection Information.")
+                                .setTargetView(binding.homeSunIcon)
+                                .setContentText("Sun protection recommendation.")
+                                .setDismissType(DismissType.anywhere)
+                                .setGravity(Gravity.center)
+                                .setTitleTextSize(16)
+                                .setContentTextSize(14)
+                                .setGuideListener(new GuideListener() {
+                                    @Override
+                                    public void onDismiss(View view) {
+                                        new GuideView.Builder(requireContext())
+                                                .setTitle("Insect Information")
+                                                .setTargetView(binding.homeInsectIcon)
+                                                .setContentText("Get a list of dangerous insects that might appear in your searched area.")
+                                                .setDismissType(DismissType.anywhere)
+                                                .setGravity(Gravity.center)
+                                                .setTitleTextSize(16)
+                                                .setContentTextSize(14)
+                                                .setGuideListener(new GuideListener() {
+                                                    @Override
+                                                    public void onDismiss(View view) {
+                                                        new GuideView.Builder(requireContext())
+                                                                .setTitle("Animal Information")
+                                                                .setTargetView(binding.homeAnimalIcon)
+                                                                .setContentText("Get a list of dangerous animals that might appear in your searched area.")
+                                                                .setDismissType(DismissType.anywhere)
+                                                                .setGravity(Gravity.center)
+                                                                .setTitleTextSize(16)
+                                                                .setContentTextSize(14)
+                                                                .setGuideListener(new GuideListener() {
+                                                                    @Override
+                                                                    public void onDismiss(View view) {
+                                                                        new GuideView.Builder(requireContext())
+                                                                                .setTitle("Backpack Organizer")
+                                                                                .setTargetView(binding.homeClothingIcon)
+                                                                                .setContentText("Helps you organize the items you need to pack.")
+                                                                                .setDismissType(DismissType.anywhere)
+                                                                                .setGravity(Gravity.center)
+                                                                                .setTitleTextSize(16)
+                                                                                .setContentTextSize(14)
+                                                                                .setGuideListener(new GuideListener() {
+                                                                                    @Override
+                                                                                    public void onDismiss(View view) {
+                                                                                        new GuideView.Builder(requireContext())
+                                                                                                .setTitle("Weather Forecast")
+                                                                                                .setTargetView(binding.homeBotDown)
+                                                                                                .setContentText("Get 7 days weather forecast.")
+                                                                                                .setDismissType(DismissType.anywhere)
+                                                                                                .setGravity(Gravity.center)
+                                                                                                .setTitleTextSize(16)
+                                                                                                .setContentTextSize(14).
+                                                                                                build().show();
+                                                                                    }
+                                                                                }).build().show();
+                                                                    }
+                                                                }).build().show();
+                                                    }
+                                                }).build().show();
+                                    }
+                                }).build().show();
+                    }
+                }).build().show();
+    }
+
 }

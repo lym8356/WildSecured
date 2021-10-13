@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.fit5046.wildsecured.CheckListActivity;
 import com.fit5046.wildsecured.ClassifierActivity;
 import com.fit5046.wildsecured.R;
 import com.fit5046.wildsecured.databinding.FragmentMoreBinding;
@@ -38,6 +39,30 @@ public class MoreFragment extends Fragment {
             public void onClick(View v) {
                 Fragment fragment = new AboutUsFragment();
                 getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, fragment).addToBackStack(null).commit();
+            }
+        });
+        binding.moreTutorial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("key", "tutorial");
+                Fragment fragment = new HomeFragment();
+                fragment.setArguments(bundle);
+                getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, fragment).addToBackStack(null).commit();
+            }
+        });
+        binding.moreStatistics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new StatisticsFragment();
+                getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, fragment).addToBackStack(null).commit();
+            }
+        });
+        binding.moreBackpack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CheckListActivity.class);
+                startActivity(intent);
             }
         });
         return binding.getRoot();

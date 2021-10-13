@@ -88,6 +88,9 @@ dependencies {
         exclude group: 'group_name', module: 'module_name'
     }
 
+    implementation 'com.getkeepsafe.taptargetview:taptargetview:1.13.0'
+    implementation 'com.github.mreram:showcaseview:1.4.0'
+    implementation 'com.github.tiagohm.MarkdownView:library:0.19.0'
 
     //TFLite
     implementation('org.tensorflow:tensorflow-lite:0.0.0-nightly') { changing = true }

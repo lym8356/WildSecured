@@ -1,6 +1,8 @@
-0 Carpet Python
-1 Curl Snake
-2 Eastern Brown Snake
-3 Lowland Copperhead
-4 Red-bellied_Black_Snake
-5 Tiger Snake
+0 Bandy-Bandy Danger lv_ 3
+1 Carpet Python Danger lv_ 2
+2 Copperhead Snake Danger lv_ 4
+3 Coral Snake Danger lv_ 3
+4 Curl Snake Danger lv_ 3
+5 Eastern Brown Snake Danger lv_ 4
+6 Red-bellied Black Snake Danger lv_ 4
+7 Tiger Snake Danger lv_ 4

@@ -132,6 +132,22 @@
     <string name="info_fire">Making Fire</string>
     <string name="info_direction">Direction Finding</string>
 
+    <!-- markdown fragment -->
+    <string name="md_title">Place Holder</string>
+    <!-- water info page -->
+    <string name="water_sources">Water Sources</string>
+    <string name="water_still_construction">Still Construction</string>
+    <string name="water_purification">Water Purification</string>
+    <!-- fire info page -->
+    <string name="fire_site">Site Selection and Preparation</string>
+    <string name="fire_material">Fire Material Selection</string>
+    <string name="fire_build">How To Build A Fire</string>
+    <string name="fire_light">How To Light A Fire</string>
+    <!-- direction info page -->
+    <string name="direction_sun">Using the Sun and Shadows</string>
+    <string name="direction_moon">Using the Moon and the Stars</string>
+    <string name="direction_other">Other Methods</string>
+
     <!--    api keys-->
     <string name="GOOGLE_API_KEY">AIzaSyDKQicQAusG5symiA4KGAUiWwDlpxQgtuk</string>
     <string name="OPENWEATHER_API_KEY">832c9987d78cef10eb4823a73e81743c</string>
@@ -143,14 +159,14 @@
     <string name="tfe_ic_gpu_quant_error" translation_description="Error regarding GPU support for Quant models[CHAR_LIMIT=60]">GPU does not yet supported quantized models.</string>
     <string name="tfe_ic_model" translatable="false">Model:</string>
     <string-array name="tfe_ic_models" translatable="false">
-        <item>Quantized</item>
+        <!--        <item>Quantized</item>-->
         <item>Float</item>
     </string-array>
 
     <string name="tfe_ic_device" translatable="false">Device:</string>
     <string-array name="tfe_ic_devices" translatable="false">
         <item>CPU</item>
-        <item>GPU</item>
+        <!--        <item>GPU</item>-->
     </string-array>
 
     <string name="about_us_title">About Us</string>
@@ -160,5 +176,6 @@
     </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>
