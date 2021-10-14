@@ -1,4 +1,4 @@
-package com.fit5046.wildsecured;
+package com.fit5046.wildsecured.Activity;
 
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -7,12 +7,14 @@ import android.media.ImageReader.OnImageAvailableListener;
 import android.os.SystemClock;
 import android.util.Size;
 import android.util.TypedValue;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.List;
+
+import com.fit5046.wildsecured.Activity.CameraActivity;
 import com.fit5046.wildsecured.Env.BorderedText;
 import com.fit5046.wildsecured.Env.Logger;
+import com.fit5046.wildsecured.R;
 import com.fit5046.wildsecured.TfLite.Classifier;
 import com.fit5046.wildsecured.TfLite.Classifier.Device;
 

@@ -1,4 +1,4 @@
-package com.fit5046.wildsecured;
+package com.fit5046.wildsecured.Activity;
 
 import android.Manifest;
 import android.app.Fragment;
@@ -12,7 +12,6 @@ import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.Image;
 import android.media.Image.Plane;
 import android.media.ImageReader;
-import android.media.ImageReader.OnImageAvailableListener;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -35,6 +34,7 @@ import androidx.annotation.UiThread;
 
 import com.fit5046.wildsecured.Fragment.CameraConnectionFragment;
 import com.fit5046.wildsecured.Fragment.LegacyCameraConnectionFragment;
+import com.fit5046.wildsecured.R;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import java.nio.ByteBuffer;
 import java.util.List;
@@ -42,7 +42,6 @@ import java.util.List;
 import com.fit5046.wildsecured.Env.Logger;
 import com.fit5046.wildsecured.TfLite.Classifier;
 import com.fit5046.wildsecured.Env.ImageUtils;
-import com.fit5046.wildsecured.Env.Logger;
 import com.fit5046.wildsecured.TfLite.Classifier.Device;
 import com.fit5046.wildsecured.TfLite.Classifier.Recognition;
 

@@ -21,6 +21,7 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,15 +38,17 @@ import android.widget.Toast;
 
 import com.fit5046.wildsecured.Adapter.GooglePlaceAdapter;
 import com.fit5046.wildsecured.Constant.AllConstant;
+import com.fit5046.wildsecured.GoogleModel.SharedPlaceModel;
 import com.fit5046.wildsecured.GooglePlaceModel;
 import com.fit5046.wildsecured.GoogleModel.GoogleResponseModel;
 import com.fit5046.wildsecured.GoogleModel.PlaceModel;
 import com.fit5046.wildsecured.R;
 import com.fit5046.wildsecured.SavedPlace;
-import com.fit5046.wildsecured.SavedPlacesActivity;
+import com.fit5046.wildsecured.Activity.SavedPlacesActivity;
 import com.fit5046.wildsecured.Utils.GooglePlaceQuery;
 import com.fit5046.wildsecured.Utils.Permissions;
 import com.fit5046.wildsecured.Utils.RetrofitClient;
+import com.fit5046.wildsecured.Viewmodel.CoordinateViewModel;
 import com.fit5046.wildsecured.Viewmodel.SavedPlaceViewModel;
 import com.fit5046.wildsecured.databinding.FragmentMapBinding;
 import com.google.android.gms.common.api.Status;
@@ -106,6 +109,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
     private MarkerOptions searchedMarker;
     private SavedPlaceViewModel savedPlaceViewModel;
     private ArrayList<String> userSavedLocationId;
+    private CoordinateViewModel coordinateViewModel;
+    private String initialLat, initialLon, initialAddress, initialName;
     
 
     public MapFragment() {
@@ -125,6 +130,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
         progressDialog = new ProgressDialog(getActivity());
         googlePlaceModelList = new ArrayList<>();
         userSavedLocationId = new ArrayList<>();
+        coordinateViewModel = ViewModelProviders.of(getActivity()).get(CoordinateViewModel.class);
 
         binding.zoomInBtn.setOnClickListener(view -> mGoogleMap.animateCamera(CameraUpdateFactory.zoomIn()));
 
@@ -132,7 +138,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
 
         binding.currentLocationBtn.setOnClickListener(location ->{
             getCurrentLocation();
-            moveCameraToLocation(currentLocation);
+            moveCameraToLocation(currentLocation, 15);
             if (googlePlaceModelList != null){
                 googlePlaceModelList.clear();
                 googlePlaceAdapter.setGooglePlaceModels(googlePlaceModelList);
@@ -171,9 +177,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
                     PlaceModel placeModel = AllConstant.places.get(checkedId - 1);
                     selectedPlaceModel = placeModel;
                     if (searchLocation != null){
-                        getNearByPlaces(placeModel.getPlaceType(), searchLocation);
+                        getNearByPlaces(placeModel.getPlaceType(), searchLocation, placeModel.getDrawableId());
                     }else{
-                        getNearByPlaces(placeModel.getPlaceType(), currentLocation);
+                        getNearByPlaces(placeModel.getPlaceType(), currentLocation, placeModel.getDrawableId());
                     }
 
                 }
@@ -238,6 +244,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mGoogleMap = googleMap;
+
+        initPlace();
         
         if (Permissions.isLocationOk(requireContext())){
 
@@ -296,7 +304,21 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
         mGoogleMap.setOnMarkerClickListener(this::onMarkerClick);
 
         setUpLocationUpdate();
-        getCurrentLocationMoveCamera();
+
+        if (initialAddress != null){
+            MarkerOptions markerOptions = new MarkerOptions().position(new LatLng(Double.parseDouble(initialLat), Double.parseDouble(initialLon))).title(initialAddress).snippet(initialName);
+            searchedMarker = markerOptions;
+            mGoogleMap.addMarker(markerOptions);
+            Location location = new Location("");
+            location.setLatitude(Double.parseDouble(initialLat));
+            location.setLongitude(Double.parseDouble(initialLon));
+            moveCameraToLocation(location, 12);
+            searchLocation = location;
+        }else{
+            getCurrentLocationMoveCamera();
+        }
+
+
     }
 
     private void setUpLocationUpdate() {
@@ -371,13 +393,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
             @Override
             public void onSuccess(Location location) {
                 currentLocation = location;
-                moveCameraToLocation(location);
+                moveCameraToLocation(location, 18);
             }
         });
     }
 
-    private void moveCameraToLocation(Location location) {
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 17);
+    private void moveCameraToLocation(Location location, int zoomLevel) {
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), zoomLevel);
         mGoogleMap.animateCamera(cameraUpdate);
     }
 
@@ -401,7 +423,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
             startLocationUpdates(); }
     }
 
-    private void getNearByPlaces(String typeName, Location locationToSearch){
+    private void getNearByPlaces(String typeName, Location locationToSearch, int resourceId){
         if (isLocationPermissionOk){
             if (currentLocation != null){
 
@@ -433,7 +455,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
                                                     response.body().getGooglePlaceModelList().get(i).setSaved(true);
                                                 }
                                                 googlePlaceModelList.add(response.body().getGooglePlaceModelList().get(i));
-                                                addMarker(response.body().getGooglePlaceModelList().get(i), i);
+                                                addMarker(response.body().getGooglePlaceModelList().get(i), i, resourceId);
                                                 resCount += 1;
                                             }
                                             Toast.makeText(requireContext(), resCount +" results found, zoom out might be required to see the results", Toast.LENGTH_SHORT).show();
@@ -448,9 +470,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
                                             mGoogleMap.clear();
                                             googlePlaceModelList.clear();
                                             googlePlaceAdapter.setGooglePlaceModels(googlePlaceModelList);
-                                            while(radius < 100000){
+                                            while(radius < 60000){
                                                 radius += 20000;
-                                                getNearByPlaces(typeName, locationToSearch);
+                                                getNearByPlaces(typeName, locationToSearch, resourceId);
                                                 Log.d("TAG", "onResponse: " + radius);
                                             }
                                             if (googlePlaceModelList.size() == 0){
@@ -488,7 +510,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
             Location location = new Location("");
             location.setLatitude(lat);
             location.setLongitude(lon);
-            moveCameraToLocation(location);
+            moveCameraToLocation(location, 12);
             searchLocation = location;
             if (googlePlaceModelList != null){
                 googlePlaceModelList.clear();
@@ -496,7 +518,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
                 mGoogleMap.clear();
             }
             MarkerOptions markerOptions = new MarkerOptions().position(new LatLng(lat, lon)).title(place.getAddress()).snippet(place.getName());
-            markerOptions.icon(getCustomIcon());
+//            markerOptions.icon(getCustomIcon());
             searchedMarker = markerOptions;
             mGoogleMap.addMarker(markerOptions);
 
@@ -506,10 +528,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
         }
     }
 
-    private BitmapDescriptor getCustomIcon() {
+    private BitmapDescriptor getCustomIcon(int resourceId) {
 
-        Drawable background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_push_pin_24);
-        background.setTint(getResources().getColor(R.color.quantum_googred900, null));
+//        Drawable background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_push_pin_24);
+        Drawable background = ContextCompat.getDrawable(requireContext(), resourceId);
+        background.setTint(getResources().getColor(R.color.primary_orange, null));
         background.setBounds(0, 0, background.getIntrinsicWidth(), background.getIntrinsicHeight());
         Bitmap bitmap = Bitmap.createBitmap(background.getIntrinsicWidth(), background.getIntrinsicHeight(),
                 Bitmap.Config.ARGB_8888);
@@ -518,12 +541,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
         return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
 
-    private void addMarker(GooglePlaceModel googlePlaceModel, int position){
+    private void addMarker(GooglePlaceModel googlePlaceModel, int position, int resourceId){
         MarkerOptions markerOptions = new MarkerOptions()
                 .position(new LatLng(googlePlaceModel.getGeometry().getLocation().getLat(),
                         googlePlaceModel.getGeometry().getLocation().getLng()))
                 .title(googlePlaceModel.getName())
                 .snippet(googlePlaceModel.getVicinity());
+        markerOptions.icon(getCustomIcon(resourceId));
         mGoogleMap.addMarker(markerOptions).setTag(position);
     }
 
@@ -548,7 +572,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
                 if (position > -1) {
                     GooglePlaceModel googlePlaceModel = googlePlaceModelList.get(position);
                     mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(googlePlaceModel.getGeometry().getLocation().getLat(),
-                            googlePlaceModel.getGeometry().getLocation().getLng()), 15));
+                            googlePlaceModel.getGeometry().getLocation().getLng()), 12));
                 }
             }
         });
@@ -585,6 +609,18 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
                     }
 
                 }
+            }
+        });
+    }
+
+    private void initPlace(){
+        coordinateViewModel.sharedPlace.observe(getActivity(), new Observer<SharedPlaceModel>() {
+            @Override
+            public void onChanged(SharedPlaceModel sharedPlaceModel) {
+                initialLat = sharedPlaceModel.getLat();
+                initialLon = sharedPlaceModel.getLon();
+                initialAddress = sharedPlaceModel.getAddress();
+                initialName = sharedPlaceModel.getName();
             }
         });
     }

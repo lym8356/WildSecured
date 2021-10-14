@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide;
 import com.fit5046.wildsecured.Entity.Wildlife;
 import com.fit5046.wildsecured.R;
 import com.fit5046.wildsecured.Utils.Helper;
-import com.fit5046.wildsecured.WildlifeDetailActivity;
+import com.fit5046.wildsecured.Activity.WildlifeDetailActivity;
 import com.fit5046.wildsecured.databinding.WildlifeItemBinding;
 import com.google.gson.Gson;
 //import com.squareup.picasso.Picasso;

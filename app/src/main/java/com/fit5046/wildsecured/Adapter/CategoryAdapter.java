@@ -5,7 +5,6 @@ import android.app.Application;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.fit5046.wildsecured.CategoryViewActivity;
+import com.fit5046.wildsecured.Activity.CategoryViewActivity;
 import com.fit5046.wildsecured.Entity.Category;
 import com.fit5046.wildsecured.Entity.Item;
 import com.fit5046.wildsecured.R;

@@ -9,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.fit5046.wildsecured.CheckListActivity;
-import com.fit5046.wildsecured.ClassifierActivity;
+import com.fit5046.wildsecured.Activity.CheckListActivity;
+import com.fit5046.wildsecured.Activity.ClassifierActivity;
+import com.fit5046.wildsecured.Activity.SnakeRecognizerActivity;
+import com.fit5046.wildsecured.DataManager.UtilDataManager;
 import com.fit5046.wildsecured.R;
 import com.fit5046.wildsecured.databinding.FragmentMoreBinding;
 
@@ -30,7 +32,7 @@ public class MoreFragment extends Fragment {
         binding.moreSnakeRecognition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ClassifierActivity.class);
+                Intent intent = new Intent(getActivity(), SnakeRecognizerActivity.class);
                 startActivity(intent);
             }
         });
@@ -46,6 +48,7 @@ public class MoreFragment extends Fragment {
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
                 bundle.putString("key", "tutorial");
+                UtilDataManager.isTutorial = true;
                 Fragment fragment = new HomeFragment();
                 fragment.setArguments(bundle);
                 getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, fragment).addToBackStack(null).commit();

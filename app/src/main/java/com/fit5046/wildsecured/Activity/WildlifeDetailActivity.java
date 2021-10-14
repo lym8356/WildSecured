@@ -1,4 +1,4 @@
-package com.fit5046.wildsecured;
+package com.fit5046.wildsecured.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.bumptech.glide.Glide;
 import com.fit5046.wildsecured.Entity.Wildlife;
+import com.fit5046.wildsecured.R;
 import com.fit5046.wildsecured.Utils.Helper;
 import com.fit5046.wildsecured.databinding.ActivityWildlifeDetailBinding;
 import com.google.gson.Gson;

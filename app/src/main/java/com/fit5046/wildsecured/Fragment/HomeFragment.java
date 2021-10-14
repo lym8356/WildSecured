@@ -2,7 +2,6 @@ package com.fit5046.wildsecured.Fragment;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -16,6 +15,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.os.SystemClock;
 import android.util.Log;
@@ -24,15 +24,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.fit5046.wildsecured.AnimalInfoActivity;
+import com.fit5046.wildsecured.Activity.AnimalInfoActivity;
+import com.fit5046.wildsecured.DataManager.UtilDataManager;
 import com.fit5046.wildsecured.DataManager.WeatherDataManager;
-import com.fit5046.wildsecured.GearInfoActivity;
-import com.fit5046.wildsecured.InsectInfoActivity;
+import com.fit5046.wildsecured.Activity.GearInfoActivity;
+import com.fit5046.wildsecured.Activity.InsectInfoActivity;
+import com.fit5046.wildsecured.GoogleModel.SharedPlaceModel;
 import com.fit5046.wildsecured.SavedPlace;
-import com.fit5046.wildsecured.SavedPlacesActivity;
-import com.fit5046.wildsecured.SunInfoActivity;
+import com.fit5046.wildsecured.Activity.SavedPlacesActivity;
+import com.fit5046.wildsecured.Activity.SunInfoActivity;
 import com.fit5046.wildsecured.Utils.RetrofitClient;
 import com.fit5046.wildsecured.Utils.WeatherQuery;
+import com.fit5046.wildsecured.Viewmodel.CoordinateViewModel;
 import com.fit5046.wildsecured.Viewmodel.SavedPlaceViewModel;
 import com.fit5046.wildsecured.WeatherModel.Daily;
 import com.fit5046.wildsecured.WeatherModel.WeatherResponse;
@@ -40,17 +43,7 @@ import com.fit5046.wildsecured.R;
 import com.fit5046.wildsecured.databinding.FragmentHomeBinding;
 import com.fit5046.wildsecured.Utils.GpsTracker;
 import com.fit5046.wildsecured.Utils.Helper;
-import com.getkeepsafe.taptargetview.TapTarget;
-import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.widget.Autocomplete;
@@ -61,7 +54,6 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.List;
 
 import retrofit2.Call;
@@ -76,6 +68,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private FragmentHomeBinding binding;
     private ProgressDialog progressDialog;
+    private CoordinateViewModel coordinateViewModel;
+    private SharedPlaceModel sharedPlace;
 
     //openWeather api parameters
     private final String exclude = "minutely,hourly,alerts";
@@ -116,8 +110,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         progressDialog = new ProgressDialog(getActivity());
         //progressDialog.setMax(100);
 
+        coordinateViewModel = ViewModelProviders.of(getActivity()).get(CoordinateViewModel.class);
+
+        sharedPlace = coordinateViewModel.getPlace();
+
         Bundle bundle = this.getArguments();
-        if (bundle != null){
+        if (bundle != null && UtilDataManager.isTutorial){
             if (bundle.getString("key").equals("tutorial")){
                 showTutorial();
             }
@@ -186,6 +184,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        UtilDataManager.isTutorial = false;
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100 && resultCode == AutocompleteActivity.RESULT_OK) {
@@ -193,12 +197,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             binding.homeSearchBar.setText(place.getAddress());
             latToSearch = String.valueOf(place.getLatLng().latitude);
             lonToSearch = String.valueOf(place.getLatLng().longitude);
+            if (sharedPlace == null) {
+                SharedPlaceModel initSharedPlace = new SharedPlaceModel(String.valueOf(place.getLatLng().latitude), String.valueOf(place.getLatLng().longitude),
+                        place.getAddress(), place.getName());
+                coordinateViewModel.setSharedPlace(initSharedPlace);
+            }else{
+                sharedPlace.setLon(lonToSearch);
+                sharedPlace.setLat(latToSearch);
+                sharedPlace.setAddress(place.getAddress());
+                sharedPlace.setName(place.getName());
 
-            if (lonToSearch != null && latToSearch != null) {
-                currentLat = latToSearch;
-                currentLon = lonToSearch;
-                getWeatherInfo(lonToSearch, latToSearch);
+                coordinateViewModel.setSharedPlace(sharedPlace);
             }
+
+            currentLat = latToSearch;
+            currentLon = lonToSearch;
+            getWeatherInfo(lonToSearch, latToSearch);
 
         } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
             Status status = Autocomplete.getStatusFromIntent(data);
@@ -245,7 +259,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onFailure(Call call, Throwable t) {
-                Toast.makeText(getActivity().getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity().getApplicationContext(), "Network Error.", Toast.LENGTH_LONG).show();
                 System.out.println(t.getMessage());
                 progressDialog.dismiss();
             }
@@ -296,6 +310,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         savedPlaceViewModel.findCurrentDefaultPlace().thenApply(defaultPlace -> {
             if (defaultPlace != null){
                 this.previousDefaultPlace = defaultPlace;
+
+                if (sharedPlace == null){
+                    SharedPlaceModel initSharedPlace = new SharedPlaceModel(String.valueOf(defaultPlace.getPlaceLat()), String.valueOf(defaultPlace.getPlaceLon()),
+                            defaultPlace.getPlaceAddress(), defaultPlace.getPlaceName());
+                    coordinateViewModel.setSharedPlace(initSharedPlace);
+                }else{
+                    sharedPlace.setLon(String.valueOf(defaultPlace.getPlaceLon()));
+                    sharedPlace.setLat(String.valueOf(defaultPlace.getPlaceLat()));
+                    sharedPlace.setAddress(defaultPlace.getPlaceAddress());
+                    sharedPlace.setName(defaultPlace.getPlaceName());
+
+                    coordinateViewModel.setSharedPlace(sharedPlace);
+                }
             }else{
                 SavedPlace exampleSavedPlace = new SavedPlace("Flagstaff Gardens",
                         "309-311 William Street, West Melbourne",

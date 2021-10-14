@@ -4,14 +4,9 @@ import android.app.AlertDialog;
 import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.media.Image;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,15 +14,11 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.fit5046.wildsecured.CheckListActivity;
 import com.fit5046.wildsecured.R;
 import com.fit5046.wildsecured.SavedPlace;
-import com.fit5046.wildsecured.SavedPlacesActivity;
-import com.fit5046.wildsecured.Viewmodel.ItemViewModel;
+import com.fit5046.wildsecured.Activity.SavedPlacesActivity;
 import com.fit5046.wildsecured.Viewmodel.SavedPlaceViewModel;
 import com.fit5046.wildsecured.databinding.SavedPlaceItemBinding;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;

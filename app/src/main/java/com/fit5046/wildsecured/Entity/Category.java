@@ -3,6 +3,7 @@ package com.fit5046.wildsecured.Entity;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "Category", foreignKeys = {

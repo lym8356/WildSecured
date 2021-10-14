@@ -17,7 +17,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-
     <application
         android:name=".Utils.App"
         android:allowBackup="true"
@@ -27,25 +26,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge">
-        <activity android:name=".ClassifierActivity"></activity>
-        <activity android:name=".CameraActivity" />
-        <activity android:name=".WildlifeDetailActivity" />
-        <activity android:name=".SavedPlacesActivity" />
-        <activity android:name=".CategoryViewActivity" />
+        <activity android:name=".Activity.SnakeRecognizerActivity"></activity>
+        <activity android:name=".Activity.ClassifierActivity" />
+        <activity android:name=".Activity.CameraActivity" />
+        <activity android:name=".Activity.WildlifeDetailActivity" />
+        <activity android:name=".Activity.SavedPlacesActivity" />
+        <activity android:name=".Activity.CategoryViewActivity" />
         <activity
-            android:name=".CheckListActivity"
+            android:name=".Activity.CheckListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".GearInfoActivity"
+            android:name=".Activity.GearInfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".InsectInfoActivity"
+            android:name=".Activity.InsectInfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SunInfoActivity"
+            android:name=".Activity.SunInfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AnimalInfoActivity"
+            android:name=".Activity.AnimalInfoActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Home"

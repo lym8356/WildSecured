@@ -1,6 +1,5 @@
-package com.fit5046.wildsecured;
+package com.fit5046.wildsecured.Activity;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -10,17 +9,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fit5046.wildsecured.Adapter.UserListAdapter;
 import com.fit5046.wildsecured.Entity.UserList;
-import com.fit5046.wildsecured.Viewmodel.ItemViewModel;
+import com.fit5046.wildsecured.R;
 import com.fit5046.wildsecured.Viewmodel.UserListViewModel;
 import com.fit5046.wildsecured.databinding.ActivityCheckListBinding;
 import com.google.android.material.textfield.TextInputLayout;

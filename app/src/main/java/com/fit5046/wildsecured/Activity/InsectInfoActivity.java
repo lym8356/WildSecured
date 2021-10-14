@@ -1,4 +1,4 @@
-package com.fit5046.wildsecured;
+package com.fit5046.wildsecured.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 
 import com.fit5046.wildsecured.Adapter.WildlifeInfoAdapter;
 import com.fit5046.wildsecured.Entity.Wildlife;
+import com.fit5046.wildsecured.R;
 import com.fit5046.wildsecured.Utils.Helper;
 import com.fit5046.wildsecured.Utils.RetrofitClient;
 import com.fit5046.wildsecured.Utils.WildLifeQuery;

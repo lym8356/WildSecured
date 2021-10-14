@@ -96,48 +96,48 @@
 51        android:testOnly="true"
 52        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge" >
 52-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:29:9-81
-53        <activity android:name="com.fit5046.wildsecured.ClassifierActivity" />
+53        <activity android:name="com.fit5046.wildsecured.Activity.ClassifierActivity" />
 53-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:30:9-65
 53-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:30:19-53
-54        <activity android:name="com.fit5046.wildsecured.CameraActivity" />
+54        <activity android:name="com.fit5046.wildsecured.Activity.CameraActivity" />
 54-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:31:9-52
 54-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:31:19-49
-55        <activity android:name="com.fit5046.wildsecured.WildlifeDetailActivity" />
+55        <activity android:name="com.fit5046.wildsecured.Activity.WildlifeDetailActivity" />
 55-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:32:9-60
 55-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:32:19-57
-56        <activity android:name="com.fit5046.wildsecured.SavedPlacesActivity" />
+56        <activity android:name="com.fit5046.wildsecured.Activity.SavedPlacesActivity" />
 56-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:33:9-57
 56-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:33:19-54
-57        <activity android:name="com.fit5046.wildsecured.CategoryViewActivity" />
+57        <activity android:name="com.fit5046.wildsecured.Activity.CategoryViewActivity" />
 57-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:34:9-58
 57-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:34:19-55
 58        <activity
 58-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:35:9-37:52
-59            android:name="com.fit5046.wildsecured.CheckListActivity"
+59            android:name="com.fit5046.wildsecured.Activity.CheckListActivity"
 59-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:36:13-46
 60            android:screenOrientation="portrait" />
 60-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:37:13-49
 61        <activity
 61-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:38:9-40:52
-62            android:name="com.fit5046.wildsecured.GearInfoActivity"
+62            android:name="com.fit5046.wildsecured.Activity.GearInfoActivity"
 62-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:39:13-45
 63            android:screenOrientation="portrait" />
 63-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:40:13-49
 64        <activity
 64-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:41:9-43:52
-65            android:name="com.fit5046.wildsecured.InsectInfoActivity"
+65            android:name="com.fit5046.wildsecured.Activity.InsectInfoActivity"
 65-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:42:13-47
 66            android:screenOrientation="portrait" />
 66-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:43:13-49
 67        <activity
 67-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:44:9-46:52
-68            android:name="com.fit5046.wildsecured.SunInfoActivity"
+68            android:name="com.fit5046.wildsecured.Activity.SunInfoActivity"
 68-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:45:13-44
 69            android:screenOrientation="portrait" />
 69-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:46:13-49
 70        <activity
 70-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:47:9-49:52
-71            android:name="com.fit5046.wildsecured.AnimalInfoActivity"
+71            android:name="com.fit5046.wildsecured.Activity.AnimalInfoActivity"
 71-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:48:13-47
 72            android:screenOrientation="portrait" />
 72-->/Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:49:13-49

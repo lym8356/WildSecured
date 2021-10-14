@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/primary_bg"
-    tools:context=".SunInfoActivity">
+    tools:context=".Activity.SunInfoActivity">
 
     <LinearLayout
         android:id="@+id/sunAdviceTopSection"

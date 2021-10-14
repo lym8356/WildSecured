@@ -10,8 +10,6 @@ import retrofit2.http.Url;
 
 public interface WildLifeQuery {
 
-//    @GET("ws/explore/group/")
-//    Call<ArrayList<WildLifeDataModel>> getWildLifeData(@Url String url);
     @GET
     Call<ArrayList<WildLifeDataModel>> getWildLifeData(@Url String url);
 }

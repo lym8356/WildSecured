@@ -16,7 +16,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.fit5046.wildsecured.CheckListActivity;
+import com.fit5046.wildsecured.Activity.CheckListActivity;
 import com.fit5046.wildsecured.Entity.UserList;
 import com.fit5046.wildsecured.R;
 import com.fit5046.wildsecured.Viewmodel.ItemViewModel;

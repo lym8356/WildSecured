@@ -187,4 +187,13 @@
         It helps them to plan for the trip in advance and give them tips on being safe in nature while still able to enjoy their trip.
     </string>
 
+    <string name="snake_title">Snake Recognizer</string>
+    <string name="snake_camera">Open Camera</string>
+    <string name="snake_alert">
+        NOTE: Please be aware that the snake recognizer is intended to be used with the snake list below to identify a snake.Please do not refer to the snake recognizer alone to identify a snake.\n
+        \nPlease stay away with any unknown wild animals as they may attack humans.\n
+        \nCurrently, the snake recognizer can identify 8 common snakes in Victoria:\n
+        1. Bandy-Bandy 2.Carpet Python 3.Copperhead Family 4.Coral Snake 5.Curl Snake 6.Eastern Brown Snake 7.Red-bellied Black Snake 8.Tiger Snake
+    </string>
+
 </resources>

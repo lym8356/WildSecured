@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.fit5046.wildsecured.DataManager.UtilDataManager;
 import com.fit5046.wildsecured.WeatherModel.Daily;
 import com.fit5046.wildsecured.databinding.FragmentForecastBinding;
 import com.fit5046.wildsecured.Adapter.ForecastAdapter;

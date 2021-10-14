@@ -18,7 +18,6 @@ import com.fit5046.wildsecured.Entity.Item;
 import com.fit5046.wildsecured.Entity.UserList;
 import com.fit5046.wildsecured.Entity.Wildlife;
 import com.fit5046.wildsecured.SavedPlace;
-import com.fit5046.wildsecured.Utils.App;
 import com.fit5046.wildsecured.Utils.Helper;
 
 import java.io.IOException;

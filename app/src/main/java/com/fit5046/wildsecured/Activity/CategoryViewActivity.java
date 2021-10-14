@@ -1,4 +1,4 @@
-package com.fit5046.wildsecured;
+package com.fit5046.wildsecured.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.fit5046.wildsecured.Adapter.CategoryAdapter;
 import com.fit5046.wildsecured.Entity.Category;
 import com.fit5046.wildsecured.Entity.Item;
+import com.fit5046.wildsecured.R;
 import com.fit5046.wildsecured.Viewmodel.CategoryViewModel;
 import com.fit5046.wildsecured.Viewmodel.ItemViewModel;
 import com.fit5046.wildsecured.databinding.ActivityCategoryViewBinding;

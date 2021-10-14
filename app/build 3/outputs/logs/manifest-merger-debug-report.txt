@@ -403,51 +403,51 @@ MERGED from [com.android.volley:volley:1.1.1] /Users/lym8356/.gradle/caches/tran
 		ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:29:9-81
 	android:name
 		ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:22:9-34
-activity#com.fit5046.wildsecured.ClassifierActivity
+activity#com.fit5046.wildsecured.Activity.ClassifierActivity
 ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:30:9-65
 	android:name
 		ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:30:19-53
-activity#com.fit5046.wildsecured.CameraActivity
+activity#com.fit5046.wildsecured.Activity.CameraActivity
 ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:31:9-52
 	android:name
 		ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:31:19-49
-activity#com.fit5046.wildsecured.WildlifeDetailActivity
+activity#com.fit5046.wildsecured.Activity.WildlifeDetailActivity
 ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:32:9-60
 	android:name
 		ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:32:19-57
-activity#com.fit5046.wildsecured.SavedPlacesActivity
+activity#com.fit5046.wildsecured.Activity.SavedPlacesActivity
 ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:33:9-57
 	android:name
 		ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:33:19-54
-activity#com.fit5046.wildsecured.CategoryViewActivity
+activity#com.fit5046.wildsecured.Activity.CategoryViewActivity
 ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:34:9-58
 	android:name
 		ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:34:19-55
-activity#com.fit5046.wildsecured.CheckListActivity
+activity#com.fit5046.wildsecured.Activity.CheckListActivity
 ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:35:9-37:52
 	android:screenOrientation
 		ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:37:13-49
 	android:name
 		ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:36:13-46
-activity#com.fit5046.wildsecured.GearInfoActivity
+activity#com.fit5046.wildsecured.Activity.GearInfoActivity
 ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:38:9-40:52
 	android:screenOrientation
 		ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:40:13-49
 	android:name
 		ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:39:13-45
-activity#com.fit5046.wildsecured.InsectInfoActivity
+activity#com.fit5046.wildsecured.Activity.InsectInfoActivity
 ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:41:9-43:52
 	android:screenOrientation
 		ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:43:13-49
 	android:name
 		ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:42:13-47
-activity#com.fit5046.wildsecured.SunInfoActivity
+activity#com.fit5046.wildsecured.Activity.SunInfoActivity
 ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:44:9-46:52
 	android:screenOrientation
 		ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:46:13-49
 	android:name
 		ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:45:13-44
-activity#com.fit5046.wildsecured.AnimalInfoActivity
+activity#com.fit5046.wildsecured.Activity.AnimalInfoActivity
 ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:47:9-49:52
 	android:screenOrientation
 		ADDED from /Users/lym8356/Documents/Android_Projects/WildSecured/app/src/main/AndroidManifest.xml:49:13-49

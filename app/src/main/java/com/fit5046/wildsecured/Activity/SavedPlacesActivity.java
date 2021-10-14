@@ -1,8 +1,7 @@
-package com.fit5046.wildsecured;
+package com.fit5046.wildsecured.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,7 +15,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.fit5046.wildsecured.Adapter.SavedPlaceAdapter;
-import com.fit5046.wildsecured.Fragment.MapFragment;
+import com.fit5046.wildsecured.SavedPlace;
 import com.fit5046.wildsecured.Viewmodel.SavedPlaceViewModel;
 import com.fit5046.wildsecured.databinding.ActivitySavedPlacesBinding;
 import com.google.android.gms.maps.model.MarkerOptions;

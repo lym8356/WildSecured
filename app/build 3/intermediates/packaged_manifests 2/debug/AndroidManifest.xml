@@ -50,25 +50,25 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge" >
-        <activity android:name="com.fit5046.wildsecured.ClassifierActivity" />
-        <activity android:name="com.fit5046.wildsecured.CameraActivity" />
-        <activity android:name="com.fit5046.wildsecured.WildlifeDetailActivity" />
-        <activity android:name="com.fit5046.wildsecured.SavedPlacesActivity" />
-        <activity android:name="com.fit5046.wildsecured.CategoryViewActivity" />
+        <activity android:name="com.fit5046.wildsecured.Activity.ClassifierActivity" />
+        <activity android:name="com.fit5046.wildsecured.Activity.CameraActivity" />
+        <activity android:name="com.fit5046.wildsecured.Activity.WildlifeDetailActivity" />
+        <activity android:name="com.fit5046.wildsecured.Activity.SavedPlacesActivity" />
+        <activity android:name="com.fit5046.wildsecured.Activity.CategoryViewActivity" />
         <activity
-            android:name="com.fit5046.wildsecured.CheckListActivity"
+            android:name="com.fit5046.wildsecured.Activity.CheckListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.fit5046.wildsecured.GearInfoActivity"
+            android:name="com.fit5046.wildsecured.Activity.GearInfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.fit5046.wildsecured.InsectInfoActivity"
+            android:name="com.fit5046.wildsecured.Activity.InsectInfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.fit5046.wildsecured.SunInfoActivity"
+            android:name="com.fit5046.wildsecured.Activity.SunInfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.fit5046.wildsecured.AnimalInfoActivity"
+            android:name="com.fit5046.wildsecured.Activity.AnimalInfoActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.fit5046.wildsecured.Home"
