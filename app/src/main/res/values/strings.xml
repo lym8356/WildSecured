@@ -147,6 +147,18 @@
     <string name="direction_sun">Using the Sun and Shadows</string>
     <string name="direction_moon">Using the Moon and the Stars</string>
     <string name="direction_other">Other Methods</string>
+    <!-- plant info page -->
+    <string name="plant_identification">Plant Identification</string>
+    <string name="plant_edibility">Edibility of Plants</string>
+    <string name="plant_medicine">Plants For Medicine</string>
+    <string name="plant_miscellaneous">Miscellaneous Uses of Plants</string>
+    <!-- medical info page -->
+    <string name="medical_maintenance">Maintenance of Health</string>
+    <string name="medical_emergencies">Medical Emergencies</string>
+    <string name="medical_bone">Bone and Joint Injury</string>
+    <string name="medical_bites">Bites and Stings</string>
+    <string name="medical_wounds">Wounds</string>
+    <string name="medical_environmental">Environmental Injuries</string>
 
     <!--    api keys-->
     <string name="GOOGLE_API_KEY">AIzaSyDKQicQAusG5symiA4KGAUiWwDlpxQgtuk</string>
@@ -174,8 +186,5 @@
         In order to raise the awareness of the camper and hiking lovers, we, Sunbeamers, decided to build an Android APP named wildscured. This APP is designed for those people who love camping or hiking to better plan their trip and avoid getting hurt during their trip.\n 
         It helps them to plan for the trip in advance and give them tips on being safe in nature while still able to enjoy their trip.
     </string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
 
 </resources>

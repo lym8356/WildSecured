@@ -11,53 +11,44 @@ import android.view.ViewGroup;
 
 import com.fit5046.wildsecured.Fragment.MarkdownFragment;
 import com.fit5046.wildsecured.R;
-import com.fit5046.wildsecured.databinding.FragmentDirectionSelectionBinding;
+import com.fit5046.wildsecured.databinding.FragmentMedicalSelectionBinding;
 
-public class DirectionSelectionFragment extends Fragment {
-    FragmentDirectionSelectionBinding binding;
+public class MedicalSelectionFragment extends Fragment {
 
-    public DirectionSelectionFragment() {
+    FragmentMedicalSelectionBinding binding;
+    public MedicalSelectionFragment() {
         // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentDirectionSelectionBinding.inflate(inflater, container, false);
+
+        binding = FragmentMedicalSelectionBinding.inflate(inflater, container, false);
         Bundle bundle = new Bundle();
 
-        binding.directionInfoBack.setOnClickListener(new View.OnClickListener() {
+        binding.medicalInfoBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 fragmentManager.popBackStack();
             }
         });
-        binding.directionSun.setOnClickListener(new View.OnClickListener() {
+        binding.medicalMaintenance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bundle.putString("md_file_name","direction_sun.md");
-                bundle.putString("md_title","Using the Sun and Shadows");
+                bundle.putString("md_file_name","medical_maintenance.md");
+                bundle.putString("md_title","Maintenance of Health");
                 Fragment fragment = new MarkdownFragment();
                 fragment.setArguments(bundle);
                 getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, fragment).addToBackStack(null).commit();
             }
         });
-        binding.directionMoon.setOnClickListener(new View.OnClickListener() {
+        binding.medicalEmergencies.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bundle.putString("md_file_name","direction_moon.md");
-                bundle.putString("md_title","Using the Moon and the Stars");
-                Fragment fragment = new MarkdownFragment();
-                fragment.setArguments(bundle);
-                getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, fragment).addToBackStack(null).commit();
-            }
-        });
-        binding.directionOther.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bundle.putString("md_file_name","direction_other.md");
-                bundle.putString("md_title","Other Methods");
+                bundle.putString("md_file_name","medical_emergencies.md");
+                bundle.putString("md_title","Medical Emergencies");
                 Fragment fragment = new MarkdownFragment();
                 fragment.setArguments(bundle);
                 getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, fragment).addToBackStack(null).commit();

@@ -11,9 +11,12 @@ import android.view.ViewGroup;
 
 import com.fit5046.wildsecured.Fragment.SelectView.DirectionSelectionFragment;
 import com.fit5046.wildsecured.Fragment.SelectView.FireSelectionFragment;
+import com.fit5046.wildsecured.Fragment.SelectView.MedicalSelectionFragment;
+import com.fit5046.wildsecured.Fragment.SelectView.PlantSelectionFragment;
 import com.fit5046.wildsecured.Fragment.SelectView.WaterSelectionFragment;
 import com.fit5046.wildsecured.R;
 import com.fit5046.wildsecured.databinding.FragmentInformationBinding;
+import com.fit5046.wildsecured.databinding.FragmentPlantSelectionBinding;
 
 public class InformationFragment extends Fragment {
 
@@ -31,7 +34,8 @@ public class InformationFragment extends Fragment {
         binding.infoMedicalCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Fragment fragment = new MedicalSelectionFragment();
+                getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, fragment).addToBackStack(null).commit();
             }
         });
         binding.infoDirectionCard.setOnClickListener(new View.OnClickListener() { 
@@ -51,7 +55,8 @@ public class InformationFragment extends Fragment {
         binding.infoPlantCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Fragment fragment = new PlantSelectionFragment();
+                getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, fragment).addToBackStack(null).commit();
             }
         });
         binding.infoWaterCard.setOnClickListener(new View.OnClickListener() {

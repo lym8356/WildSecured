@@ -11,53 +11,65 @@ import android.view.ViewGroup;
 
 import com.fit5046.wildsecured.Fragment.MarkdownFragment;
 import com.fit5046.wildsecured.R;
-import com.fit5046.wildsecured.databinding.FragmentDirectionSelectionBinding;
+import com.fit5046.wildsecured.databinding.FragmentPlantSelectionBinding;
 
-public class DirectionSelectionFragment extends Fragment {
-    FragmentDirectionSelectionBinding binding;
+public class PlantSelectionFragment extends Fragment {
+    FragmentPlantSelectionBinding binding;
 
-    public DirectionSelectionFragment() {
+    public PlantSelectionFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentDirectionSelectionBinding.inflate(inflater, container, false);
+
+        binding = FragmentPlantSelectionBinding.inflate(inflater, container, false);
         Bundle bundle = new Bundle();
 
-        binding.directionInfoBack.setOnClickListener(new View.OnClickListener() {
+        binding.plantInfoBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 fragmentManager.popBackStack();
             }
         });
-        binding.directionSun.setOnClickListener(new View.OnClickListener() {
+        binding.plantIdentification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bundle.putString("md_file_name","direction_sun.md");
-                bundle.putString("md_title","Using the Sun and Shadows");
+                bundle.putString("md_file_name","plant_identification.md");
+                bundle.putString("md_title","Plant Identification");
                 Fragment fragment = new MarkdownFragment();
                 fragment.setArguments(bundle);
                 getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, fragment).addToBackStack(null).commit();
             }
         });
-        binding.directionMoon.setOnClickListener(new View.OnClickListener() {
+        binding.plantEdibility.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bundle.putString("md_file_name","direction_moon.md");
-                bundle.putString("md_title","Using the Moon and the Stars");
+                bundle.putString("md_file_name","plant_edibility.md");
+                bundle.putString("md_title","Edibility of Plants");
                 Fragment fragment = new MarkdownFragment();
                 fragment.setArguments(bundle);
                 getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, fragment).addToBackStack(null).commit();
             }
         });
-        binding.directionOther.setOnClickListener(new View.OnClickListener() {
+        binding.plantMedicine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bundle.putString("md_file_name","direction_other.md");
-                bundle.putString("md_title","Other Methods");
+                bundle.putString("md_file_name","plant_medicine.md");
+                bundle.putString("md_title","Plants For Medicine");
+                Fragment fragment = new MarkdownFragment();
+                fragment.setArguments(bundle);
+                getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, fragment).addToBackStack(null).commit();
+            }
+        });
+        binding.plantMiscellaneous.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bundle.putString("md_file_name","plant_miscellaneous.md");
+                bundle.putString("md_title","Miscellaneous Use");
                 Fragment fragment = new MarkdownFragment();
                 fragment.setArguments(bundle);
                 getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, fragment).addToBackStack(null).commit();
