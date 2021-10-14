@@ -54,6 +54,46 @@ public class MedicalSelectionFragment extends Fragment {
                 getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, fragment).addToBackStack(null).commit();
             }
         });
+        binding.medicalBone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bundle.putString("md_file_name","medical_bone.md");
+                bundle.putString("md_title","Bone and Joint Injury");
+                Fragment fragment = new MarkdownFragment();
+                fragment.setArguments(bundle);
+                getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, fragment).addToBackStack(null).commit();
+            }
+        });
+        binding.medicalBites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bundle.putString("md_file_name","medical_bites.md");
+                bundle.putString("md_title","Bites and Stings");
+                Fragment fragment = new MarkdownFragment();
+                fragment.setArguments(bundle);
+                getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, fragment).addToBackStack(null).commit();
+            }
+        });
+        binding.medicalWounds.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bundle.putString("md_file_name","medical_wounds.md");
+                bundle.putString("md_title","Wounds");
+                Fragment fragment = new MarkdownFragment();
+                fragment.setArguments(bundle);
+                getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, fragment).addToBackStack(null).commit();
+            }
+        });
+        binding.medicalEnvironmental.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bundle.putString("md_file_name","medical_environmental.md");
+                bundle.putString("md_title","Environmental Injuries");
+                Fragment fragment = new MarkdownFragment();
+                fragment.setArguments(bundle);
+                getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, fragment).addToBackStack(null).commit();
+            }
+        });
         // Inflate the layout for this fragment
         return binding.getRoot();
     }

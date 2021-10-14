@@ -1,4 +1,4 @@
-# Fire Material Selection
+## Fire Material Selection
 
 You need three types of materials to build a fire.
 

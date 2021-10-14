@@ -1,4 +1,4 @@
-# Plants For Medicine
+## Plants For Medicine
 
 In using plants for medical treatment, positive identification of the plants involved is as critical as when using them for food. Proper use of these plants is equally important.
 

@@ -1,4 +1,4 @@
-# Plant Identification
+## Plant Identification
 
 You identify plants, other than by memorizing particular varieties through familiarity, by using such factors as leaf shape and margin, leaf arrangements, and root structure.
 

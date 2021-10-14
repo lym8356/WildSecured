@@ -1,4 +1,4 @@
-# Miscellaneous Uses of Plants
+## Miscellaneous Uses of Plants
 
 Plants can be your ally as long as you use them cautiously. Be sure that you know the plant and how to use it. Some additional uses of plants are as follows:
 

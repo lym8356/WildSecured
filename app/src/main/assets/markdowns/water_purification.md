@@ -1,4 +1,4 @@
-# Water Purification
+## Water Purification
 
 Rainwater collected in clean containers or in plants is usually safe for drinking. However, purify water from lakes, ponds, swamps, springs, or streams, especially the water near human settlements or in the tropics.
 

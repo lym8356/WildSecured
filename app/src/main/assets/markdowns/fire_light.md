@@ -1,4 +1,4 @@
-# How To Light A Fire
+## How To Light A Fire
 
 Always light your fire from the upwind side.
 Make sure you lay the tinder, kindling, and fuel so that your fire will burn as long as you need it.

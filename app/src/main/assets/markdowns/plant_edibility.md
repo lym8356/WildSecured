@@ -1,4 +1,4 @@
-# Edibility of Plants
+## Edibility of Plants
 
 Plants are valuable sources of food because they are widely available, easily procured, and, in the proper combinations, can meet all your nutritional needs.
 

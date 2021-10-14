@@ -1,4 +1,4 @@
-# How To Build A Fire
+## How To Build A Fire
 
 There are several methods for laying a fire and each one has advantages.
 The situation you are in will determine which of the following fires to use.

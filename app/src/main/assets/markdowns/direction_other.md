@@ -1,4 +1,4 @@
-# Other Means of Determining Direction
+## Other Means of Determining Direction
 
 ### MAKING IMPROVISED COMPASSES
 

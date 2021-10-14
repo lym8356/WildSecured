@@ -1,4 +1,4 @@
-# Maintenance of Health
+## Maintenance of Health
 
 To survive, you need water and food. You must also have and apply high personal hygiene standards.
 
