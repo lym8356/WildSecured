@@ -36,6 +36,7 @@ import android.view.ViewGroup;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import com.fit5046.wildsecured.Activity.PlacesDetailActivity;
 import com.fit5046.wildsecured.Adapter.GooglePlaceAdapter;
 import com.fit5046.wildsecured.Constant.AllConstant;
 import com.fit5046.wildsecured.GoogleModel.SharedPlaceModel;
@@ -627,7 +628,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
 
     @Override
     public void cardClick(GooglePlaceModel googlePlaceModel) {
-
+        Intent intent = new Intent(getActivity(), PlacesDetailActivity.class);
+        intent.putExtra("place_id", googlePlaceModel.getPlaceId());
+        startActivity(intent);
     }
 
     @Override

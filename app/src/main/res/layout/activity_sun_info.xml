@@ -57,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_margin="15dp"
+            android:layout_margin="10dp"
             android:gravity="center_horizontal">
             <TextView
                 android:id="@+id/sunAdviceTitle"
@@ -149,13 +149,12 @@
                 android:layout_margin="5dp"
                 android:textSize="16sp" />
             <ImageView
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
                 android:src="@drawable/uv_index" />
         </LinearLayout>
-
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

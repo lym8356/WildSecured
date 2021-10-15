@@ -26,7 +26,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge">
-        <activity android:name=".Activity.SnakeRecognizerActivity"></activity>
+        <activity android:name=".Activity.PlacesDetailActivity"></activity>
+        <activity android:name=".Activity.SnakeRecognizerActivity" />
         <activity android:name=".Activity.ClassifierActivity" />
         <activity android:name=".Activity.CameraActivity" />
         <activity android:name=".Activity.WildlifeDetailActivity" />

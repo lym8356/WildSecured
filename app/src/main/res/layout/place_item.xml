@@ -30,6 +30,7 @@
             android:src="@color/black" />
 
         <LinearLayout
+            android:id="@+id/placeCard"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.5"

@@ -97,6 +97,12 @@ public class GooglePlaceAdapter extends RecyclerView.Adapter<GooglePlaceAdapter.
                 cardClickListener.navigationClick(lat,lon);
             }
         });
+        holder.binding.placeCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cardClickListener.cardClick(googlePlaceModelList.get(position));
+            }
+        });
 
         holder.binding.imgSaveLocation.setOnClickListener(new View.OnClickListener() {
             @Override

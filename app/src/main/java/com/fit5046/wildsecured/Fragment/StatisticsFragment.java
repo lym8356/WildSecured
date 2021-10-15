@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 
 import com.fit5046.wildsecured.databinding.FragmentStatisticsBinding;
 
+import br.tiagohm.markdownview.css.ExternalStyleSheet;
+
 public class StatisticsFragment extends Fragment {
 
 
@@ -36,6 +38,7 @@ public class StatisticsFragment extends Fragment {
             }
         });
 
+        binding.statisticsMd.addStyleSheet(ExternalStyleSheet.fromAsset("markdown_css.css", null));
         binding.statisticsMd.loadMarkdownFromAsset("markdowns/Statistics.md");
 
         binding.statisticsGoTopBtn.setOnClickListener(new View.OnClickListener() {
