@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Plants_title">Plants</string>
+    <string name="Plants_content">Nature can provide you with food that will let you survive almost any ordeal, if you don eat the wrong plant. You must therefore learn as much as possible beforehand about the flora of the region where you will be operating. Plants can provide you with medicines in a survival situation. Plants can supply you with weapons and raw materials to construct shelters and build fires. Plants can even provide you with chemicals for poisoning fish, preserving animal hides, and for camouflaging yourself and your equipment.</string>
+    <string name="EDIBILITY_PLANTS_title">EDIBILITY OF PLANTS</string>
+    <string name="EDIBILITY_PLANTS_content">Plants are valuable sources of food because they are widely available, easily procured, and, in the proper combinations, can meet all your nutritional needs.
+You may find yourself in a situation where you not have had the chance to learn the plant life of the region in which you must survive. In this case you can use the Universal Edibility Test to determine which plants you can eat and which to avoid.</string>
+    <string name="PLANT_IDENTIFICATION_title">PLANT IDENTIFICATION</string>
+    <string name="PLANT_IDENTIFICATION_content">You identify plants, other than by memorizing particular varieties through familiarity, by using such factors as leaf shape and margin, leaf arrangements, and root structure.</string>
+    <string name="PLANT_IDENTIFICATION_title_1">Leaf Margins</string>
+    <string name="PLANT_IDENTIFICATION_content_1">These leaves may be lance-shaped, elliptical, egg-shaped, oblong, wedge-shaped, triangular, long-pointed, or top-shaped</string>
+    <string name="PLANT_IDENTIFICATION_title_2"> Leaf Shapes</string>
+    <string name="PLANT_IDENTIFICATION_content_2"> The basic types of leaf arrangements are opposite, alternate, compound, simple, and basal rosette.</string>
+    <string name="PLANT_IDENTIFICATION_title_3"> Leaf Arrangements</string>
+    <string name="PLANT_IDENTIFICATION_content_3"> The basic types of root structures are the taproot, tuber, bulb, rhizome, clove, corm, and crown (Figure 9-4). Bulbs are familiar to us as onions and, when sliced in half, will show concentric rings. Cloves are those bulblike structures that remind us of garlic and will separate into small pieces when broken apart. This characteristic separates wild onions from wild garlic. Taproots resemble carrots and may be single-rooted or branched, but usually only one plant stalk arises from each root. Tubers are like potatoes and daylilies. You will find these structures either on strings or in clusters underneath the parent plants. Rhizomes are large creeping rootstock or underground stems. Many plants arise from the "eyes" of these roots. Corms are similar to bulbs but are solid when cut rather than possessing rings. A crown is the type of root structure found on plants such as asparagus. Crowns look much like a mophead under the soils surface.</string>
+    <string name="PLANT_IDENTIFICATION_title_4"> Root Structures</string>
+    <string name="PLANT_IDENTIFICATION_content_4"> Learn as much as possible about the unique characteristics of plants you intend to use for food. Some plants have both edible and poisonous parts. Many are edible only at certain times of the year. Others may have poisonous relatives that look very similar to the varieties you can eat or use for medicine.</string>
+    <string name="UNIVERSAL_EDIBILITY_TEST_title">UNIVERSAL EDIBILITY TEST</string>
+    <string name="UNIVERSAL_EDIBILITY_TEST_content">There are many plants throughout the world. Tasting or swallowing even a small portion of some can cause severe discomfort, extreme internal disorders, and even death. Therefore, if you have the slightest doubt about a plant edibility, apply the Universal Edibility Test before eating any portion of it.</string>
+    <string name="PLANTS_MEDICINE_title_main">using plants for medical treatment</string>
+    <string name="PLANTS_MEDICINE_title_content">The following terms and their definitions are associated with medicinal plant use\n\n</string>
+    <string name="PLANTS_MEDICINE_Poultice_title">Poultice</string>
+    <string name="PLANTS_MEDICINE_Poultice_content">This is crushed leaves or other plant parts, possibly heated, that are applied to a wound or sore either directly or wrapped in cloth or paper. Poultices, when hot, increase the circulation in the affected area and help healing through the chemicals present in the plants. As the poultice dries out, it draws the toxins out of a wound. A poultice should be prepared to a "mashed potatoes-like" consistency and applied as warm as the patient can stand.</string>
+    <string name="PLANTS_MEDICINE_Infusion_title">Infusion or tisane or tea</string>
+    <string name="PLANTS_MEDICINE_Infusion_content">This is the extract of a boiled-down or simmered herb leaf or root. You add herb leaf or root to water. You bring them to a sustained boil or simmer them to draw their chemicals into the water. The average ratio is about 28 to 56 grams (1 to 2 ounces) of herb to 0.5 liter of water.</string>
+    <string name="PLANTS_MEDICINE_Decoction_title">Poultice</string>
+    <string name="PLANTS_MEDICINE_Decoction_content">This is the extract of a boiled-down or simmered herb leaf or root. You add herb leaf or root to water. You bring them to a sustained boil or simmer them to draw their chemicals into the water. The average ratio is about 28 to 56 grams (1 to 2 ounces) of herb to 0.5 liter of water.</string>
+    <string name="PLANTS_MEDICINE_Expressed_title">Expressed juice</string>
+    <string name="PLANTS_MEDICINE_Expressed_content">These are liquids or saps squeezed from plant material and either applied to the wound or made into another medicine.</string>
+
+    <string name="SPECIFIC_REMEDIES_title_main">PLANTS FOR MEDICINE</string>
+
+    <string name="SPECIFIC_REMEDIES_title_content"> Do not use them routinely as some can be potentially toxic and have serious long- term effects (for example, cancer).\n\n</string>
+    <string name="SPECIFIC_REMEDIES_Antidiarrhealss_title">Antidiarrheals for diarrhea</string>
+    <string name="SPECIFIC_REMEDIES_Antidiarrhealss_content">Drink tea made from the roots of blackberries and their relatives to stop diarrhea. White oak bark and other barks containing tannin are also effective when made into a strong tea. However, because of possible negative effects on the kidneys, use them with caution and only when nothing else is available. Clay, ashes, charcoal, powdered chalk, powdered bones, and pectin can be consumed or mixed in a tannic acid tea with good results. These powdered mixtures should be taken in a dose of two tablespoons every 2 hours.</string>
+    <string name="SPECIFIC_REMEDIES_Antihemorrhagicss_title">Antihemorrhagics for bleeding</string>
+    <string name="SPECIFIC_REMEDIES_Antihemorrhagicss_content">Make medications to stop bleeding from plantain leaves, or, most effectively, from the leaves of the common yarrow or woundwort (Achillea millefolium).</string>
+    <string name="SPECIFIC_REMEDIES_Dentifrices_title">Dentifrices for teeth</string>
+    <string name="SPECIFIC_REMEDIES_Dentifricess_content"> See Medicine for other techniques in addition to using twigs of sweet gum for its anti-inflammatory, analgesic, and antiseptic properties</string>
+    <string name="SPECIFIC_REMEDIES_Insect_title">Insect repellents</string>
+    <string name="SPECIFIC_REMEDIES_Insects_content">Garlic and onions can be eaten and the raw plant juice rubbed on the skin to repel some insects. Sassafras leaves can be rubbed on the skin. Cedar chips may help repel insects around your shelter.</string>
+    <string name="SPECIFIC_REMEDIES_Tannics_title">Tannic acid</string>
+    <string name="SPECIFIC_REMEDIES_Tannics_content">Because tannic acid is used for so many treatments (burns, antihemorrhagics, antihelminthics, antiseptics, antidiarrheals, antifungals, bronchitis, skin inflammation, lice), a note as to its preparation is in order. All thready plants, especially trees, contain tannic acid. Hardwood trees generally contain more than softwood trees. Of the hardwoods, oakespecially red and chestnutcontain the highest amount. The warty looking knots in oak trees can contain as much as 28 percent tannic acid.</string>
+
+
+
+
+
+
+
+
+
+
+
+</resources>
