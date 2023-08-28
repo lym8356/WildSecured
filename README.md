@@ -27,6 +27,7 @@ Victoria Hiker's Companion: An Android app dedicated to aiding hikers and camper
 [<img src="./readme/saved_places.png" width="200" hspace="10" vspace="10">](./readme/saved_places.png)
 [<img src="./readme/survival_tips.png" width="200" hspace="10" vspace="10">](./readme/survival_tips.png)
 [<img src="./readme/backpack_checklist.png" width="200" hspace="10" vspace="10">](./readme/backpack_checklist.png)
+[<img src="./readme/snake_recognizer.png" width="200" hspace="10" vspace="10">](./readme/snake_recognizer.png)
 
 
 ## Permissions
