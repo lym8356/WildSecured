@@ -35,7 +35,6 @@ Victoria Hiker's Companion: An Android app dedicated to aiding hikers and camper
 On Android versions prior to Android 6.0, wallabag requires the following permissions:
 - Full Network Access.
 - View Network Connections.
-- Run at startup.
 - Read and write access to external storage.
 
 
