@@ -19,14 +19,14 @@ Victoria Hiker's Companion: An Android app dedicated to aiding hikers and camper
 
 ## Screenshots
 
-![Home Screen](./readme/home_screen.png)
-![Home Page](./readme/home_screen.png)
-![Insect/Animal Info](./readme/insect_info.png)
-![Insect/Animal Detail](./readme/insect_detail.png)
-![Map](./readme/map.png)
-![Saved Places](./readme/saved_places.png)
-![Survival Tips](./readme/survival_tips.png)
-![Backpack Checklist](./readme/backpack_checklist.png)
+[<img src="./readme/home_screen.png" width="200" hspace="10" vspace="10">](./readme/home_screen.png)
+[<img src="./readme/home_page.png" width="200" hspace="10" vspace="10">](./readme/home_page.png)
+[<img src="./readme/insect_info.png" width="200" hspace="10" vspace="10">](./readme/insect_info.png)
+[<img src="./readme/insect_detail.png" width="200" hspace="10" vspace="10">](./readme/insect_detail.png)
+[<img src="./readme/map.png" width="200" hspace="10" vspace="10">](./readme/insect_detail.png)
+[<img src="./readme/saved_places.png" width="200" hspace="10" vspace="10">](./readme/saved_places.png)
+[<img src="./readme/survival_tips.png" width="200" hspace="10" vspace="10">](./readme/survival_tips.png)
+[<img src="./readme/backpack_checklist.png" width="200" hspace="10" vspace="10">](./readme/backpack_checklist.png)
 
 
 ## Permissions
