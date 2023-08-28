@@ -628,9 +628,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
 
     @Override
     public void cardClick(GooglePlaceModel googlePlaceModel) {
-        Intent intent = new Intent(getActivity(), PlacesDetailActivity.class);
-        intent.putExtra("place_id", googlePlaceModel.getPlaceId());
-        startActivity(intent);
+//        Intent intent = new Intent(getActivity(), PlacesDetailActivity.class);
+//        intent.putExtra("place_id", googlePlaceModel.getPlaceId());
+//        startActivity(intent);
     }
 
     @Override

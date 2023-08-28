@@ -1,6 +1,0 @@
-0 Carpet Python
-1 Curl Snake
-2 Eastern Brown Snake
-3 Lowland Copperhead
-4 Red-bellied_Black_Snake
-5 Tiger Snake

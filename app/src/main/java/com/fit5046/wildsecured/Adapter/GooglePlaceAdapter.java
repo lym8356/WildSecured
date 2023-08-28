@@ -57,6 +57,8 @@ public class GooglePlaceAdapter extends RecyclerView.Adapter<GooglePlaceAdapter.
             GooglePlaceModel googlePlaceModel = googlePlaceModelList.get(position);
             holder.binding.setGooglePlaceModel(googlePlaceModel);
 
+            //get the photo of the selected place
+
             final List<Place.Field> fields = Collections.singletonList(Place.Field.PHOTO_METADATAS);
             final FetchPlaceRequest placeRequest = FetchPlaceRequest.newInstance(googlePlaceModelList.get(position).getPlaceId(), fields);
             placesClient.fetchPlace(placeRequest).addOnSuccessListener((response) -> {
